@@ -1,35 +1,42 @@
 """Extract per-session behavioral features -> data/features.csv (RQ2).
 
-Inputs per recording:
-  out/<name>_timeline.csv   per-second phase labels (segment_sessions.py)
-  recovered/<name>.vtt      transcript (quiz correctness feedback)
-  recovered/<name>.mp4      video (webcam-corner motion, whole-frame motion)
+Inputs per recording (all produced/cached by segment_sessions.py):
+  out/<name>_timeline.csv   per-second phase labels
+  out/<name>_framesig.csv   per-second desktop flag + frame/cam motion
+  recovered/<name>.vtt      transcript (verbalized quiz feedback)
 
 Feature groups:
-  timing   - session span + dwell in each phase
-  quiz     - n correct / incorrect feedback cues, quiz duration
-  webcam   - motion energy + stillness ratio (disengagement proxy)
-  motion   - whole-frame motion (sanity / animation-activity check)
+  timing    - app session span + dwell per phase, pre-app menu time
+  retries   - survival scenario re-attempts, aborted-run seconds
+  quiz      - correct/incorrect feedback cues in quiz1 & final_quiz
+  speech    - participant utterance time inside the app session
+  webcam    - motion energy, stillness ratio, longest still streak;
+              contrast between passive lessons and active navigation
+  flags     - no_transcript, transcript_gap, incomplete recording
 """
 import glob
 import os
 import re
 import sys
 
-import cv2
 import numpy as np
 import pandas as pd
 
-SAMPLE_SEC = 1.0
-# webcam overlay occupies the top-right corner (Zoom layout)
-CAM_X0, CAM_X1 = 0.80, 1.00
-CAM_Y0, CAM_Y1 = 0.00, 0.15
 STILL_EPS = 1.2          # mean abs pixel diff below this = "still"
-SESSION_PHASES = ["pre_app", "lesson1", "quiz1", "lesson2", "impacts",
-                  "survival_call", "survival_nav", "final_quiz",
-                  "post_app"]
+GAP_HEAD_S = 120         # pre_app longer than this = untranscribed head
 
-CORRECT_RE = re.compile(r"\b(that is (absolutely )?correct|correct\.)", re.I)
+# labels that mean "the Storm app (or its window) was on screen"
+APP_LABELS = {"pre_app", "post_app", "app_idle", "aborted",
+              "app_no_transcript", "participant_speech",
+              "lesson1", "quiz1", "lesson2", "impacts",
+              "survival_call", "survival_nav", "final_quiz"}
+# scripted content phases in play order
+PHASES = ["lesson1", "quiz1", "lesson2", "impacts",
+          "survival_call", "survival_nav", "final_quiz"]
+LESSON_PHASES = ["lesson1", "lesson2", "impacts"]
+
+CORRECT_RE = re.compile(
+    r"\b(that is (absolutely )?correct|correct\.|well done)", re.I)
 INCORRECT_RE = re.compile(r"\bincorrect\b", re.I)
 
 
@@ -60,87 +67,132 @@ def quiz_feedback(cues, t0, t1):
     return c, i
 
 
-def motion_stats(video):
-    """Per-second frame/cam motion, read from the framesig cache written
-    by segment_sessions.py (avoids a second video decode)."""
-    name = os.path.splitext(os.path.basename(video))[0]
-    df = pd.read_csv(f"out/{name}_framesig.csv")
-    return (df["t_sec"].to_numpy(), df["frame_motion"].to_numpy(),
-            df["cam_motion"].to_numpy())
+def runs(tl, phase):
+    """Number of contiguous runs of a phase label (retry counting)."""
+    labels = tl["phase"].to_numpy()
+    n = 0
+    prev = False
+    for v in labels == phase:
+        if v and not prev:
+            n += 1
+        prev = v
+    return n
 
 
-def session_window(tl):
-    """(start,end) of app usage: first to last non-desktop/non-interview."""
-    in_app = tl["phase"].isin(SESSION_PHASES)
-    if not in_app.any():
-        return None, None
-    return tl.loc[in_app, "t_sec"].min(), tl.loc[in_app, "t_sec"].max()
+def span(tl, phase):
+    seg = tl[tl["phase"] == phase]
+    return (seg["t_sec"].min(), seg["t_sec"].max()) if len(seg) else (0, 0)
 
 
 def extract_one(video, pid):
     name = os.path.splitext(os.path.basename(video))[0]
     tl_path = f"out/{name}_timeline.csv"
     if not os.path.exists(tl_path):
-        return {"participant_id": pid, "file": name, "error": "no timeline"}
+        return {"participant_id": pid, "error": "no timeline"}
     tl = pd.read_csv(tl_path)
     vtt = next((c for c in (video[:-4] + ".transcript.vtt",
                             video[:-4] + ".vtt") if os.path.exists(c)), None)
     cues = parse_vtt(vtt) if vtt else []
+    sig = pd.read_csv(f"out/{name}_framesig.csv")
 
-    feat = {"participant_id": pid, "file": name}
+    feat = {"participant_id": pid}
     counts = tl["phase"].value_counts()
-    for ph in SESSION_PHASES:
+    for ph in PHASES:
+        feat[f"{ph}_s"] = int(counts.get(ph, 0))
+    for ph in ("pre_app", "post_app", "app_idle", "aborted",
+               "app_no_transcript", "interview"):
         feat[f"{ph}_s"] = int(counts.get(ph, 0))
 
-    s0, s1 = session_window(tl)
-    feat["session_s"] = (s1 - s0) if s0 is not None else np.nan
+    # session window: first non-desktop frame to sustained-desktop onset
+    # (the same 30s rule used by segment_sessions.py); without a desktop
+    # takeover the session runs to the last labeled app second
+    times = sig["t_sec"].to_numpy()
+    is_desk = sig["is_desktop"].to_numpy()
+    onset = np.nan
+    run = 0
+    for i, d in enumerate(is_desk):
+        run = run + 1 if d else 0
+        if run >= 30:
+            onset = times[i - 29]
+            break
+    first_app_mask = ~is_desk
+    s0 = times[first_app_mask].min() if first_app_mask.any() else np.nan
+    iv_secs = tl.loc[tl["phase"] == "interview", "t_sec"]
+    iv0 = iv_secs.min() if len(iv_secs) else np.nan
+    ends = [v for v in (onset, iv0) if not np.isnan(v)]
+    if ends:
+        s1 = min(ends)
+    else:
+        app_secs = tl[tl["phase"].isin(APP_LABELS)]["t_sec"]
+        s1 = app_secs.max() if len(app_secs) else np.nan
+    feat["session_s"] = (s1 - s0) if not np.isnan(s1) else np.nan
 
-    # quiz feedback windows: quiz1 span and final_quiz span
-    def span(phase):
-        seg = tl[tl["phase"] == phase]
-        return (seg["t_sec"].min(), seg["t_sec"].max()) if len(seg) else (0, 0)
+    # participant speech restricted to the session window
+    sp = tl[(tl["phase"] == "participant_speech")
+            & (tl["t_sec"] >= s0) & (tl["t_sec"] <= s1)]
+    feat["speech_in_session_s"] = int(len(sp))
 
-    q1a, q1b = span("quiz1")
-    fqa, fqb = span("final_quiz")
+    # retries / restarts
+    feat["survival_attempts"] = runs(tl, "survival_call")
+    feat["was_restarted"] = int(feat["aborted_s"] > 0)
+
+    # data-quality flags
+    feat["no_transcript"] = int(feat["app_no_transcript_s"] > 0)
+    feat["transcript_gap"] = int(
+        feat["pre_app_s"] > GAP_HEAD_S and feat["lesson1_s"] == 0)
+    feat["reached_end"] = int(
+        feat["final_quiz_s"] > 0 or feat["post_app_s"] > 0
+        or feat["interview_s"] > 0)
+
+    # quiz feedback inside the detected quiz windows
+    q1a, q1b = span(tl, "quiz1")
+    fqa, fqb = span(tl, "final_quiz")
     feat["quiz1_correct"], feat["quiz1_wrong"] = quiz_feedback(cues, q1a, q1b)
-    feat["finalq_correct"], feat["finalq_wrong"] = quiz_feedback(
-        cues, fqa, fqb)
+    feat["finalq_correct"], feat["finalq_wrong"] = quiz_feedback(cues, fqa, fqb)
 
     # motion stats restricted to the app session window
-    times, full_m, cam_m = motion_stats(video)
-    m = (times >= s0) & (times <= s1) if s0 is not None else np.ones(
-        len(times), bool)
-    feat["webcam_motion_mean"] = float(cam_m[m].mean()) if m.any() else np.nan
-    still = cam_m[m] < STILL_EPS
-    feat["webcam_still_ratio"] = float(still.mean()) if m.any() else np.nan
-    # longest consecutive still streak (seconds)
+    cam_m = sig["cam_motion"].to_numpy()
+    frame_m = sig["frame_motion"].to_numpy()
+    win = (times >= s0) & (times <= s1) if not np.isnan(s1) \
+        else np.zeros(len(times), bool)
+    feat["webcam_motion_mean"] = float(cam_m[win].mean()) if win.any() else np.nan
+    still = cam_m[win] < STILL_EPS
+    feat["webcam_still_ratio"] = float(still.mean()) if win.any() else np.nan
     longest = run = 0
     for v in still:
         run = run + 1 if v else 0
         longest = max(longest, run)
     feat["webcam_longest_still_s"] = longest
-    feat["frame_motion_mean"] = float(full_m[m].mean()) if m.any() else np.nan
+    feat["frame_motion_mean"] = float(frame_m[win].mean()) if win.any() else np.nan
+
+    # fidgeting during passive lessons vs active navigation
+    for tag, mask_labels in (("lessons", LESSON_PHASES),
+                             ("survival_nav", ["survival_nav"])):
+        secs = tl[tl["phase"].isin(mask_labels)]["t_sec"].to_numpy()
+        if len(secs):
+            sel = np.isin(times, secs)
+            feat[f"cam_motion_{tag}"] = float(cam_m[sel].mean()) \
+                if sel.any() else np.nan
+        else:
+            feat[f"cam_motion_{tag}"] = np.nan
     return feat
 
 
 def main():
     parts = pd.read_csv("data/participants.csv")
-
-    def pid_of(name):
-        for pid, f in zip(parts["participant_id"], parts["recording_file"]):
-            if os.path.splitext(f)[0] == name:
-                return pid
-        return None
+    stem_to_pid = {os.path.splitext(f)[0]: p
+                   for p, f in zip(parts["participant_id"],
+                                   parts["recording_file"])}
 
     videos = sorted(glob.glob("recovered/*.mp4"))
     if len(sys.argv) > 1:
         videos = [v for v in videos if sys.argv[1] in v]
     rows = []
     for v in videos:
-        name = os.path.basename(v)
+        name = os.path.splitext(os.path.basename(v))[0]
         print(f"features <- {name}", flush=True)
-        rows.append(extract_one(v, pid_of(os.path.splitext(name)[0])))
-    df = pd.DataFrame(rows)
+        rows.append(extract_one(v, stem_to_pid.get(name)))
+    df = pd.DataFrame(rows).sort_values("participant_id")
     df.to_csv("data/features.csv", index=False)
     print(f"\nwrote data/features.csv ({len(df)} sessions)")
     print(df.to_string(index=False))
