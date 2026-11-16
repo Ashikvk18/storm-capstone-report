@@ -159,23 +159,34 @@ def anchor_phases(app_cues):
     return out
 
 
-def frame_flags(video):
-    """Per-sample frame signature -> (t_sec, is_desktop, frac_orange).
+# webcam overlay occupies the top-right corner (Zoom layout)
+CAM_X0, CAM_X1 = 0.80, 1.00
+CAM_Y0, CAM_Y1 = 0.00, 0.15
 
-    Caches the expensive decode to out/<name>_framesig.csv - re-runs
-    after code changes skip the video pass entirely.
+
+def frame_flags(video):
+    """Per-sample frame signature:
+    (t_sec, is_desktop, frac_orange, frame_motion, cam_motion).
+
+    Motion columns are mean abs pixel diff vs the previous sample -
+    whole frame (app activity) and the webcam corner (participant
+    movement). Caches the expensive decode to out/<name>_framesig.csv.
     """
     name = os.path.splitext(os.path.basename(video))[0]
     cache = f"out/{name}_framesig.csv"
     if os.path.exists(cache):
         df = pd.read_csv(cache)
-        return list(zip(df["t_sec"], df["is_desktop"].astype(bool),
-                        df["frac_orange"]))
+        if "cam_motion" in df.columns:  # v2 cache
+            return list(zip(df["t_sec"], df["is_desktop"].astype(bool),
+                            df["frac_orange"], df["frame_motion"],
+                            df["cam_motion"]))
+        # v1 cache lacks motion - fall through and recompute
     cap = cv2.VideoCapture(video)
     fps = cap.get(cv2.CAP_PROP_FPS) or 25.0
     n = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
     step = max(1, int(round(fps * SAMPLE_SEC)))
     out = []
+    prev_g = prev_cam = None
     idx = 0
     while idx < n:
         cap.set(cv2.CAP_PROP_POS_FRAMES, idx)
@@ -189,19 +200,32 @@ def frame_flags(video):
         bottom = hsv[160:180]
         bh, bs, bv = cv2.split(bottom)
         frac_orange = float(((bh < 20) & (bs > 120) & (bv > 120)).mean())
-        out.append((idx / fps, frac_white > DESKTOP_WHITE, frac_orange))
+        g = cv2.cvtColor(small, cv2.COLOR_BGR2GRAY)
+        hh, ww = g.shape
+        cam = g[int(hh * CAM_Y0):int(hh * CAM_Y1),
+                int(ww * CAM_X0):int(ww * CAM_X1)]
+        if prev_g is None:
+            fm = cm = 0.0
+        else:
+            fm = float(np.abs(g.astype(int) - prev_g.astype(int)).mean())
+            cm = float(np.abs(cam.astype(int)
+                              - prev_cam.astype(int)).mean())
+        prev_g, prev_cam = g, cam
+        out.append((idx / fps, frac_white > DESKTOP_WHITE, frac_orange,
+                    fm, cm))
         idx += step
     cap.release()
     os.makedirs("out", exist_ok=True)
-    pd.DataFrame(out, columns=["t_sec", "is_desktop",
-                               "frac_orange"]).to_csv(cache, index=False)
+    pd.DataFrame(out, columns=["t_sec", "is_desktop", "frac_orange",
+                               "frame_motion", "cam_motion"]).to_csv(
+        cache, index=False)
     return out
 
 
 def build_timeline(dur, app_cues, other_cues, frames):
     """Per-second label vector."""
     labels = ["app_idle"] * int(dur + 1)
-    for t, is_desk, _ in frames:
+    for t, is_desk, *_ in frames:
         if is_desk and int(t) < len(labels):
             labels[int(t)] = "desktop"
     last_app_end = app_cues[-1][1] if app_cues else 0

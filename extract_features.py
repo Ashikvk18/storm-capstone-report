@@ -61,31 +61,12 @@ def quiz_feedback(cues, t0, t1):
 
 
 def motion_stats(video):
-    """Per-second mean abs diff for webcam corner and whole frame."""
-    cap = cv2.VideoCapture(video)
-    fps = cap.get(cv2.CAP_PROP_FPS) or 25.0
-    n = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
-    step = max(1, int(round(fps * SAMPLE_SEC)))
-    prev = prev_cam = None
-    cam_vals, full_vals, times = [], [], []
-    idx = 0
-    while idx < n:
-        cap.set(cv2.CAP_PROP_POS_FRAMES, idx)
-        ok, fr = cap.read()
-        if not ok:
-            break
-        g = cv2.cvtColor(cv2.resize(fr, (320, 180)), cv2.COLOR_BGR2GRAY)
-        h, w = g.shape
-        cam = g[int(h * CAM_Y0):int(h * CAM_Y1), int(w * CAM_X0):int(w * CAM_X1)]
-        if prev is not None:
-            full_vals.append(float(np.abs(g.astype(int) - prev.astype(int)).mean()))
-            cam_vals.append(float(np.abs(cam.astype(int)
-                                    - prev_cam.astype(int)).mean()))
-            times.append(idx / fps)
-        prev, prev_cam = g, cam
-        idx += step
-    cap.release()
-    return np.array(times), np.array(full_vals), np.array(cam_vals)
+    """Per-second frame/cam motion, read from the framesig cache written
+    by segment_sessions.py (avoids a second video decode)."""
+    name = os.path.splitext(os.path.basename(video))[0]
+    df = pd.read_csv(f"out/{name}_framesig.csv")
+    return (df["t_sec"].to_numpy(), df["frame_motion"].to_numpy(),
+            df["cam_motion"].to_numpy())
 
 
 def session_window(tl):
