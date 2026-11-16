@@ -7,6 +7,9 @@ _frames/
 *.xlsx
 data/
 
+# Analysis outputs (derived from participant video - keep local)
+out/
+
 # Scratch / intermediate files
 _*.txt
 _*.json
