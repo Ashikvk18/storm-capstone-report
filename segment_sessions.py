@@ -228,6 +228,21 @@ def frame_flags(video):
     return out
 
 
+def desktop_onset(frames, sustain=30):
+    """First second from which desktop persists for >= sustain seconds.
+
+    Stray 'Audio shared' cues (interview chit-chat misattributed to
+    shared audio) can appear long after the app closes - the frame
+    stream is the trustworthy boundary.
+    """
+    run = 0
+    for i, f in enumerate(frames):
+        run = run + 1 if f[1] else 0
+        if run >= sustain:
+            return frames[i - sustain + 1][0]
+    return None
+
+
 def build_timeline(dur, app_cues, other_cues, frames):
     """Per-second label vector."""
     labels = ["app_idle"] * int(dur + 1)
@@ -301,8 +316,11 @@ def main():
                         if "audio shared" in sp.lower()]
         other_cues = [(s, e, sp, t) for s, e, sp, t in cues
                       if "audio shared" not in sp.lower()]
-        app_cues = anchor_phases(app_cues_raw)
         frames = frame_flags(video)
+        onset = desktop_onset(frames)
+        if onset is not None:
+            app_cues_raw = [c for c in app_cues_raw if c[0] < onset]
+        app_cues = anchor_phases(app_cues_raw)
         dur = frames[-1][0] if frames else 0
         labels = build_timeline(dur, app_cues, other_cues, frames)
         segs = segments(labels)
