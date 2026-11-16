@@ -130,21 +130,46 @@ def anchor_phases(app_cues):
             cur = hit
         labeled.append((start, end, cur))
 
-    # split survival_call: basement navigation is silent gameplay, so a
-    # >20s gap between the call dialogue and the next (different) phase
-    # is navigation time
+    # split survival_call: the call dialogue has recognizable keywords;
+    # some transcripts keep emitting 'Audio shared' cues (game SFX/music)
+    # through navigation, so the call ends at the LAST cue that still
+    # looks like dialogue - everything after is survival_nav
     out = []
-    for i, (s, e, ph) in enumerate(labeled):
-        out.append((s, e, ph))
-        nxt = labeled[i + 1] if i + 1 < len(labeled) else None
-        if (ph == "survival_call" and nxt
-                and nxt[2] != "survival_call" and nxt[0] - e > 20):
-            out.append((e, nxt[0], "survival_nav"))
+    call_idx = [i for i, (_, _, ph) in enumerate(labeled)
+                if ph == "survival_call"]
+    if call_idx:
+        last_dialogue = labeled[call_idx[0]][1]
+        for i in call_idx:
+            s, e, _ = labeled[i]
+            if any(k in app_cues[i][2].lower() for k in SURVIVAL_KW):
+                last_dialogue = e
+        nav_end = (labeled[call_idx[-1] + 1][0]
+                   if call_idx[-1] + 1 < len(labeled)
+                   else labeled[call_idx[-1]][1])
+        for i, (s, e, ph) in enumerate(labeled):
+            if ph == "survival_call" and s >= last_dialogue:
+                ph = "survival_nav"
+            out.append((s, e, ph))
+        if last_dialogue < nav_end:
+            out.append((last_dialogue, nav_end, "survival_nav"))
+    else:
+        out = labeled
+    out.sort(key=lambda x: x[0])
     return out
 
 
 def frame_flags(video):
-    """Per-sample frame signature -> (t_sec, is_desktop, frac_orange)."""
+    """Per-sample frame signature -> (t_sec, is_desktop, frac_orange).
+
+    Caches the expensive decode to out/<name>_framesig.csv - re-runs
+    after code changes skip the video pass entirely.
+    """
+    name = os.path.splitext(os.path.basename(video))[0]
+    cache = f"out/{name}_framesig.csv"
+    if os.path.exists(cache):
+        df = pd.read_csv(cache)
+        return list(zip(df["t_sec"], df["is_desktop"].astype(bool),
+                        df["frac_orange"]))
     cap = cv2.VideoCapture(video)
     fps = cap.get(cv2.CAP_PROP_FPS) or 25.0
     n = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
@@ -166,6 +191,9 @@ def frame_flags(video):
         out.append((idx / fps, frac_white > DESKTOP_WHITE, frac_orange))
         idx += step
     cap.release()
+    os.makedirs("out", exist_ok=True)
+    pd.DataFrame(out, columns=["t_sec", "is_desktop",
+                               "frac_orange"]).to_csv(cache, index=False)
     return out
 
 
@@ -175,20 +203,25 @@ def build_timeline(dur, app_cues, other_cues, frames):
     for t, is_desk, _ in frames:
         if is_desk and int(t) < len(labels):
             labels[int(t)] = "desktop"
-    # interview/post-session speech overrides
+    last_app_end = app_cues[-1][1] if app_cues else 0
+    # speech by real people: during the app session it is the participant
+    # talking (engagement data); after the app ends it is the interview
     for s, e, _sp, _tx in other_cues:
+        tag = "participant_speech" if s < last_app_end else "interview"
         for t in range(int(s), min(int(e) + 1, len(labels))):
-            labels[t] = "interview"
+            labels[t] = tag
+    protected = ("desktop", "interview", "participant_speech")
     for s, e, ph in app_cues:
         for t in range(int(s), min(int(e) + 1, len(labels))):
-            labels[t] = ph
+            if labels[t] not in protected:
+                labels[t] = ph
     # extend each phase across gaps to next phase start
     labeled_times = sorted({s for s, _, _ in app_cues})
     for i, s, e, ph in [(i, *x) for i, x in enumerate(app_cues)]:
         nxt = labeled_times[i + 1] if i + 1 < len(labeled_times) else None
         end_fill = int(nxt) if nxt else int(e) + 1
         for t in range(int(s), min(end_fill, len(labels))):
-            if labels[t] != "desktop" and labels[t] != "interview":
+            if labels[t] not in protected:
                 labels[t] = ph
     first_app = app_cues[0][0] if app_cues else dur
     last_app = app_cues[-1][1] if app_cues else 0
