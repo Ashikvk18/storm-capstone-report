@@ -116,6 +116,22 @@ def extract_one(video, pid):
                "app_no_transcript", "interview"):
         feat[f"{ph}_s"] = int(counts.get(ph, 0))
 
+    # censor phases that ran during an untranscribed head (P04) or a
+    # transcript-less recording (P07): their durations are unknown,
+    # not zero
+    feat["no_transcript"] = int(feat["app_no_transcript_s"] > 0)
+    feat["transcript_gap"] = int(
+        feat["pre_app_s"] > GAP_HEAD_S and feat["lesson1_s"] == 0)
+    if feat["no_transcript"]:
+        for ph in PHASES:
+            feat[f"{ph}_s"] = np.nan
+    elif feat["transcript_gap"]:
+        gap_end = feat["pre_app_s"]
+        for ph in PHASES:
+            seg = tl.loc[tl["phase"] == ph, "t_sec"]
+            if len(seg) == 0 or seg.min() <= gap_end:
+                feat[f"{ph}_s"] = np.nan
+
     # session window: first non-desktop frame to sustained-desktop onset
     # (the same 30s rule used by segment_sessions.py); without a desktop
     # takeover the session runs to the last labeled app second
@@ -150,18 +166,19 @@ def extract_one(video, pid):
     feat["was_restarted"] = int(feat["aborted_s"] > 0)
 
     # data-quality flags
-    feat["no_transcript"] = int(feat["app_no_transcript_s"] > 0)
-    feat["transcript_gap"] = int(
-        feat["pre_app_s"] > GAP_HEAD_S and feat["lesson1_s"] == 0)
     feat["reached_end"] = int(
         feat["final_quiz_s"] > 0 or feat["post_app_s"] > 0
         or feat["interview_s"] > 0)
 
-    # quiz feedback inside the detected quiz windows
-    q1a, q1b = span(tl, "quiz1")
-    fqa, fqb = span(tl, "final_quiz")
-    feat["quiz1_correct"], feat["quiz1_wrong"] = quiz_feedback(cues, q1a, q1b)
-    feat["finalq_correct"], feat["finalq_wrong"] = quiz_feedback(cues, fqa, fqb)
+    # quiz feedback inside the detected quiz windows (NaN if the window
+    # itself was unobserved)
+    for pre, phase in (("quiz1", "quiz1"), ("finalq", "final_quiz")):
+        a, b = span(tl, phase)
+        if b > a:
+            c, w = quiz_feedback(cues, a, b)
+            feat[f"{pre}_correct"], feat[f"{pre}_wrong"] = c, w
+        else:
+            feat[f"{pre}_correct"] = feat[f"{pre}_wrong"] = np.nan
 
     # motion stats restricted to the app session window
     cam_m = sig["cam_motion"].to_numpy()
