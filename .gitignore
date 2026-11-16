@@ -1,0 +1,14 @@
+# Large media & archives (keep local only)
+*.zip
+recovered/
+_frames/
+
+# Research data containing participant PII (names, emails, IPs)
+*.xlsx
+data/
+
+# Scratch / intermediate files
+_*.txt
+_*.json
+*.pyc
+__pycache__/
