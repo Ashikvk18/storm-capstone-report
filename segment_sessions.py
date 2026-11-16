@@ -1,0 +1,262 @@
+"""Segment each Storm session recording into phases.
+
+Combines two sources:
+  1. VTT transcript cues - 'Audio shared by Participant:' = in-app audio
+     (narration). Keyword anchors locate lesson/quiz/survival boundaries.
+     Other speakers (interviewers, 'Participant') = post-session interview.
+  2. Frame sampling at 1fps - frac_white > 0.6 reliably flags desktop/
+     browser windows vs the fullscreen app (brightest app sky ~0.48).
+
+Outputs per session:
+  out/<name>_timeline.csv  - per-second phase labels
+  a verification contact sheet
+And appends one summary row per session to data/session_segments.csv.
+
+Phases (app order): pre_app, lesson1, quiz1, lesson2, impacts,
+survival_call, survival_nav, final_quiz, post_app, interview, desktop
+"""
+import glob
+import os
+import re
+import sys
+
+import cv2
+import numpy as np
+import pandas as pd
+
+SAMPLE_SEC = 1.0
+DESKTOP_WHITE = 0.60
+MIN_SEG = 3  # ignore segments shorter than this when summarizing
+
+# Ordered landmark phrases found in narration (lower-case substrings).
+# Each maps a cue to the phase that cue STARTS.
+LANDMARKS = [
+    ("welcome, learner", "lesson1"),
+    ("exciting journey into the world of tornadoes", "lesson1"),
+    ("which state in tornado alley sees the most tornadoes annually", "quiz1"),
+    ("welcome to the tornado formation lesson", "lesson2"),
+    ("tornadoes start with warm, moist air", "lesson2"),
+    ("unleash incredible power", "impacts"),
+    ("winds can reach speeds", "impacts"),
+    ("vehicle unexpectedly breaks down", "survival_call"),
+    ("on a journey when your vehicle", "survival_call"),
+    ("what is a tornado?", "final_quiz"),
+    ("which country gets the most tornadoes", "final_quiz"),
+]
+
+SURVIVAL_KW = ("mom", "honey", "basement", "church", "stranded",
+               "broke down", "sturdy shelter", "get to that church",
+               "warning sounds", "hurry")
+IMPACTS_KW = ("damage", "power outage", "deadly threat", "rebuild",
+              "billion", "devastating", "reshaping", "tearing through")
+L2_KW = ("supercell", "cumulonimbus", "wind shear", "upper-level",
+         "lower-level", "rotating column", "funnel", "moist air",
+         "thunderstorm", "building blocks", "touches the ground",
+         "debris", "tornadoes start")
+L1_KW = ("tornado alley", "texas", "oklahoma", "kansas", "nebraska",
+         "gulf of mexico", "canada", "central u.s", "hotspot",
+         "150 tornadoes", "spring", "may and june", "flat plains",
+         "twister")
+QUIZ_FB = re.compile(r"\b(correct|incorrect|well done)\b", re.I)
+
+
+def parse_vtt(path):
+    """Return list of (start_sec, end_sec, speaker, text)."""
+    txt = open(path, encoding="utf-8", errors="replace").read()
+    cues = []
+    for m in re.finditer(
+            r"(\d{2}):(\d{2}):(\d{2})\.(\d{3}) --> (\d{2}):(\d{2}):(\d{2})\.(\d{3})\s*\n(.+?)(?=\n\n|\Z)",
+            txt, re.S):
+        h1, m1, s1, ms1, h2, m2, s2, ms2, body = m.groups()
+        start = int(h1) * 3600 + int(m1) * 60 + int(s1) + int(ms1) / 1000
+        end = int(h2) * 3600 + int(m2) * 60 + int(s2) + int(ms2) / 1000
+        body = " ".join(body.split())
+        speaker, text = ("", body)
+        if ": " in body:
+            speaker, text = body.split(": ", 1)
+        cues.append((start, end, speaker, text))
+    return cues
+
+
+def classify_app_cue(text):
+    """Keyword-classify one in-app audio cue to a phase guess."""
+    t = text.lower()
+    if any(k in t for k in SURVIVAL_KW):
+        return "survival_call"
+    if QUIZ_FB.search(t) and len(t) < 60:
+        return "quiz_fb"
+    if any(k in t for k in IMPACTS_KW):
+        return "impacts"
+    if any(k in t for k in L2_KW):
+        return "lesson2"
+    if any(k in t for k in L1_KW):
+        return "lesson1"
+    return "app_other"
+
+
+def anchor_phases(app_cues):
+    """Assign a phase to each app-audio cue.
+
+    Transitions are driven by landmark phrases (most reliable). Keyword
+    classification is only a fallback for phases whose landmark never
+    appears in this transcript - otherwise stray content words (e.g.
+    'warm, moist air' inside lesson 1 narration) hijack the phase.
+    """
+    order = ["lesson1", "quiz1", "lesson2", "impacts", "survival_call",
+             "final_quiz"]
+
+    def landmark_of(text):
+        t = text.lower()
+        for phrase, ph in LANDMARKS:
+            if phrase in t:
+                return ph
+        return None
+
+    # which phases have a landmark hit anywhere in this transcript
+    landmark_phases = {lm for _, _, t in app_cues
+                       for lm in [landmark_of(t)] if lm}
+
+    labeled = []
+    cur = "lesson1"
+    for start, end, text in app_cues:
+        hit = landmark_of(text)
+        if hit is None:
+            guess = classify_app_cue(text)
+            # fallback promotion only for landmark-missing phases
+            if (guess in order and guess not in landmark_phases
+                    and order.index(guess) > order.index(cur)):
+                hit = guess
+        if hit in order and order.index(hit) >= order.index(cur):
+            cur = hit
+        labeled.append((start, end, cur))
+
+    # split survival_call: basement navigation is silent gameplay, so a
+    # >20s gap between the call dialogue and the next (different) phase
+    # is navigation time
+    out = []
+    for i, (s, e, ph) in enumerate(labeled):
+        out.append((s, e, ph))
+        nxt = labeled[i + 1] if i + 1 < len(labeled) else None
+        if (ph == "survival_call" and nxt
+                and nxt[2] != "survival_call" and nxt[0] - e > 20):
+            out.append((e, nxt[0], "survival_nav"))
+    return out
+
+
+def frame_flags(video):
+    """Per-sample frame signature -> (t_sec, is_desktop, frac_orange)."""
+    cap = cv2.VideoCapture(video)
+    fps = cap.get(cv2.CAP_PROP_FPS) or 25.0
+    n = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+    step = max(1, int(round(fps * SAMPLE_SEC)))
+    out = []
+    idx = 0
+    while idx < n:
+        cap.set(cv2.CAP_PROP_POS_FRAMES, idx)
+        ok, fr = cap.read()
+        if not ok:
+            break
+        small = cv2.resize(fr, (320, 180))
+        hsv = cv2.cvtColor(small, cv2.COLOR_BGR2HSV)
+        h, s, v = cv2.split(hsv)
+        frac_white = float(((v > 200) & (s < 40)).mean())
+        bottom = hsv[160:180]
+        bh, bs, bv = cv2.split(bottom)
+        frac_orange = float(((bh < 20) & (bs > 120) & (bv > 120)).mean())
+        out.append((idx / fps, frac_white > DESKTOP_WHITE, frac_orange))
+        idx += step
+    cap.release()
+    return out
+
+
+def build_timeline(dur, app_cues, other_cues, frames):
+    """Per-second label vector."""
+    labels = ["app_idle"] * int(dur + 1)
+    for t, is_desk, _ in frames:
+        if is_desk and int(t) < len(labels):
+            labels[int(t)] = "desktop"
+    # interview/post-session speech overrides
+    for s, e, _sp, _tx in other_cues:
+        for t in range(int(s), min(int(e) + 1, len(labels))):
+            labels[t] = "interview"
+    for s, e, ph in app_cues:
+        for t in range(int(s), min(int(e) + 1, len(labels))):
+            labels[t] = ph
+    # extend each phase across gaps to next phase start
+    labeled_times = sorted({s for s, _, _ in app_cues})
+    for i, s, e, ph in [(i, *x) for i, x in enumerate(app_cues)]:
+        nxt = labeled_times[i + 1] if i + 1 < len(labeled_times) else None
+        end_fill = int(nxt) if nxt else int(e) + 1
+        for t in range(int(s), min(end_fill, len(labels))):
+            if labels[t] != "desktop" and labels[t] != "interview":
+                labels[t] = ph
+    first_app = app_cues[0][0] if app_cues else dur
+    last_app = app_cues[-1][1] if app_cues else 0
+    for t in range(len(labels)):
+        if labels[t] == "app_idle":
+            labels[t] = ("pre_app" if t < first_app else
+                         "post_app" if t > last_app else "app_idle")
+    return labels
+
+
+def segments(labels):
+    """Collapse per-second labels into (phase,start,end) segments."""
+    segs = []
+    cur, start = labels[0], 0
+    for i, l in enumerate(labels[1:], 1):
+        if l != cur:
+            segs.append((cur, start, i))
+            cur, start = l, i
+    segs.append((cur, start, len(labels)))
+    return [(p, a, b) for p, a, b in segs if b - a >= MIN_SEG]
+
+
+def main():
+    out_dir = "out"
+    os.makedirs(out_dir, exist_ok=True)
+    os.makedirs("data", exist_ok=True)
+    videos = sorted(glob.glob("recovered/*.mp4"))
+    if len(sys.argv) > 1:
+        videos = [v for v in videos if sys.argv[1] in v]
+    summary = []
+    for video in videos:
+        name = os.path.splitext(os.path.basename(video))[0]
+        vtt = None
+        for cand in (video[:-4] + ".transcript.vtt", video[:-4] + ".vtt"):
+            if os.path.exists(cand):
+                vtt = cand
+        cues = parse_vtt(vtt) if vtt else []
+        app_cues_raw = [(s, e, t) for s, e, sp, t in cues
+                        if "audio shared" in sp.lower()]
+        other_cues = [(s, e, sp, t) for s, e, sp, t in cues
+                      if "audio shared" not in sp.lower()]
+        app_cues = anchor_phases(app_cues_raw)
+        frames = frame_flags(video)
+        dur = frames[-1][0] if frames else 0
+        labels = build_timeline(dur, app_cues, other_cues, frames)
+        segs = segments(labels)
+
+        pd.DataFrame({"t_sec": range(len(labels)), "phase": labels}).to_csv(
+            f"{out_dir}/{name}_timeline.csv", index=False)
+        row = {"file": name}
+        for ph, a, b in segs:
+            row.setdefault(f"{ph}_t", []).append((a, b))
+        flat = {"file": name, "duration_s": int(dur)}
+        for ph, spans in row.items():
+            if ph == "file":
+                continue
+            flat[f"{ph}_start"] = spans[0][0]
+            flat[f"{ph}_end"] = spans[-1][1]
+            flat[f"{ph}_dur"] = sum(b - a for a, b in spans)
+        summary.append(flat)
+        print(f"\n=== {name} ({int(dur)}s) ===")
+        for ph, a, b in segs:
+            print(f"  {ph:14s} {a:5d}-{b:5d} ({b-a:4d}s)")
+
+    sdf = pd.DataFrame(summary)
+    sdf.to_csv("data/session_segments.csv", index=False)
+    print(f"\nwrote data/session_segments.csv ({len(sdf)} sessions)")
+
+
+if __name__ == "__main__":
+    main()
