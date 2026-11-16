@@ -130,11 +130,13 @@ def anchor_phases(app_cues):
             cur = hit
         labeled.append((start, end, cur))
 
-    # split survival_call: the call dialogue has recognizable keywords;
-    # some transcripts keep emitting 'Audio shared' cues (game SFX/music)
-    # through navigation, so the call ends at the LAST cue that still
-    # looks like dialogue - everything after is survival_nav
-    out = []
+    # split survival_call into dialogue vs navigation:
+    #  - a scenario can be ATTEMPTED multiple times (the call replays);
+    #    >20s of silence inside the survival block is navigation time,
+    #    which also reveals retries as separate call clusters
+    #  - some transcripts keep emitting 'Audio shared' cues through nav
+    #    (game SFX/music) - call cues after the last keyword-bearing
+    #    dialogue cue are navigation too
     call_idx = [i for i, (_, _, ph) in enumerate(labeled)
                 if ph == "survival_call"]
     if call_idx:
@@ -143,18 +145,17 @@ def anchor_phases(app_cues):
             s, e, _ = labeled[i]
             if any(k in app_cues[i][2].lower() for k in SURVIVAL_KW):
                 last_dialogue = e
-        nav_end = (labeled[call_idx[-1] + 1][0]
-                   if call_idx[-1] + 1 < len(labeled)
-                   else labeled[call_idx[-1]][1])
-        for i, (s, e, ph) in enumerate(labeled):
-            if ph == "survival_call" and s >= last_dialogue:
-                ph = "survival_nav"
-            out.append((s, e, ph))
-        if last_dialogue < nav_end:
-            out.append((last_dialogue, nav_end, "survival_nav"))
-    else:
-        out = labeled
-    out.sort(key=lambda x: x[0])
+        labeled = [(s, e, "survival_nav" if ph == "survival_call"
+                    and s >= last_dialogue else ph)
+                   for s, e, ph in labeled]
+
+    out = []
+    for i, (s, e, ph) in enumerate(labeled):
+        out.append((s, e, ph))
+        nxt = labeled[i + 1] if i + 1 < len(labeled) else None
+        if (ph in ("survival_call", "survival_nav") and nxt
+                and nxt[0] - e > 20):
+            out.append((e, nxt[0], "survival_nav"))
     return out
 
 
