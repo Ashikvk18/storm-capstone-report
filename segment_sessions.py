@@ -126,8 +126,14 @@ def anchor_phases(app_cues):
             if (guess in order and guess not in landmark_phases
                     and order.index(guess) > order.index(cur)):
                 hit = guess
-        if hit in order and order.index(hit) >= order.index(cur):
-            cur = hit
+        if hit in order:
+            if order.index(hit) < order.index(cur):
+                # backward landmark = the app was restarted; the previous
+                # run is a fragment and must not contaminate timings
+                labeled = [(s, e, "aborted") for s, e, _ in labeled]
+                cur = hit
+            else:
+                cur = hit
         labeled.append((start, end, cur))
 
     # split survival_call into dialogue vs navigation:
@@ -243,13 +249,20 @@ def build_timeline(dur, app_cues, other_cues, frames):
     # extend each phase across gaps to next phase start
     labeled_times = sorted({s for s, _, _ in app_cues})
     for i, s, e, ph in [(i, *x) for i, x in enumerate(app_cues)]:
+        if ph == "aborted":
+            continue  # leave gaps around aborted runs as app_idle
         nxt = labeled_times[i + 1] if i + 1 < len(labeled_times) else None
         end_fill = int(nxt) if nxt else int(e) + 1
         for t in range(int(s), min(end_fill, len(labels))):
             if labels[t] not in protected:
                 labels[t] = ph
-    first_app = app_cues[0][0] if app_cues else dur
-    last_app = app_cues[-1][1] if app_cues else 0
+    if not app_cues:
+        # no transcript (P07): every non-desktop frame is app content we
+        # cannot phase-segment
+        return ["desktop" if l == "desktop" else "app_no_transcript"
+                for l in labels]
+    first_app = app_cues[0][0]
+    last_app = app_cues[-1][1]
     for t in range(len(labels)):
         if labels[t] == "app_idle":
             labels[t] = ("pre_app" if t < first_app else
@@ -299,7 +312,9 @@ def main():
         row = {"file": name}
         for ph, a, b in segs:
             row.setdefault(f"{ph}_t", []).append((a, b))
-        flat = {"file": name, "duration_s": int(dur)}
+        pid_m = re.search(r"P\d+", name)
+        flat = {"pid": pid_m.group(0) if pid_m else name,
+                "duration_s": int(dur)}
         for ph, spans in row.items():
             if ph == "file":
                 continue
