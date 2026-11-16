@@ -67,16 +67,29 @@ def quiz_feedback(cues, t0, t1):
     return c, i
 
 
-def runs(tl, phase):
-    """Number of contiguous runs of a phase label (retry counting)."""
+def runs(tl, phase, merge_gap=10):
+    """Number of attempts: contiguous runs of a phase, merging runs
+    separated by < merge_gap seconds (a 2s participant_speech blip must
+    not split one survival call into two 'attempts')."""
     labels = tl["phase"].to_numpy()
-    n = 0
-    prev = False
-    for v in labels == phase:
-        if v and not prev:
-            n += 1
-        prev = v
-    return n
+    spans = []
+    i = 0
+    while i < len(labels):
+        if labels[i] == phase:
+            j = i
+            while j < len(labels) and labels[j] == phase:
+                j += 1
+            spans.append((i, j))
+            i = j
+        else:
+            i += 1
+    merged = 0
+    last_end = -merge_gap
+    for s, e in spans:
+        if s - last_end >= merge_gap:
+            merged += 1
+        last_end = e
+    return merged
 
 
 def span(tl, phase):

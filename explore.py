@@ -19,7 +19,9 @@ FEATURES = [
     "webcam_motion_mean", "webcam_still_ratio", "webcam_longest_still_s",
     "cam_motion_lessons", "cam_motion_survival_nav", "frame_motion_mean",
 ]
-TARGETS = ["engagement", "confusion", "post_score", "learning_gain"]
+TARGETS = ["engagement", "confusion", "confusion_any", "effort",
+           "complexity", "perceived_learning", "guess_full",
+           "post_score", "learning_gain"]
 
 
 def main():
@@ -27,6 +29,7 @@ def main():
     lab = pd.read_csv("data/labels.csv")
     df = feat.merge(lab, on="participant_id", how="inner")
     df = df[df["engagement"].notna()]
+    df["confusion_any"] = (df["confusion"] > 0).astype(int)
     print(f"joined: {len(df)} participants with features + labels")
     print("(excluded: P17 no post-survey; P07 keeps row but phase "
           "features are NaN)\n")
