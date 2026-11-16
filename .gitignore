@@ -5,7 +5,7 @@ _frames/
 
 # Research data containing participant PII (names, emails, IPs)
 *.xlsx
-data/
+data/participants.csv
 
 # Analysis outputs (derived from participant video - keep local)
 out/
