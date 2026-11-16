@@ -15,3 +15,5 @@ _*.txt
 _*.json
 *.pyc
 __pycache__/
+_tmp/
+nul
