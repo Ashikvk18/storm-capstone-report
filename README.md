@@ -39,6 +39,7 @@ de-identified derived data (PIDs only) are committed.
 | `pilot_segment.py` | Single-video segmentation proof-of-concept (P08) |
 | `segment_sessions.py` | Fuses VTT narration landmarks + 1-fps frame signatures → per-second phase labels per session; handles restarts, transcript gaps, missing transcripts; caches frame signatures + webcam motion |
 | `extract_features.py` | Timing, retries, quiz correctness, speech, webcam motion/stillness → `data/features.csv` |
+| `extract_face.py` | **ML head-pose estimation** — MediaPipe FaceLandmarker on the webcam overlay → yaw/pitch/roll + face presence per second |
 | `build_labels.py` | Survey → engagement, confusion, knowledge scores → `data/labels.csv` |
 | `explore.py` | Feature–label Spearman correlation screen → `data/explore_correlations.csv` |
 | `model_rq2.py` | LASSO + leave-one-out CV; binary logistic for confusion flag → `data/model_coefficients.csv` |
@@ -83,7 +84,15 @@ the transcript.
 
 ![P02 session timeline](figures/p02_timeline.png)
 
-### 4. Honest null on prediction
+### 4. ML head-pose features correlate with engagement/effort
+
+MediaPipe FaceLandmarker estimates head yaw/pitch per second from the
+webcam overlay. Participants whose pose deviated from their own median
+(looking away) reported **less effort** (ρ=−0.64, p=.005) and **less
+engagement** (ρ=−0.46, p=.055) — a visible-disengagement signal in the
+expected direction.
+
+### 5. Honest null on prediction
 
 At n≈19 with session-level self-report labels, a LASSO model cannot
 predict engagement/confusion better than the mean (LOO R² < 0). The

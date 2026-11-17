@@ -222,8 +222,18 @@ def extract_one(video, pid):
         feat["head_turn_rate"] = float(
             (yaw.diff().abs() + pitch.diff().abs()).mean())
         feat["pitch_mean"] = float(pitch.mean())
-        away = (~found) | (yaw.abs() > 25) | (pitch.abs() > 20)
-        feat["look_away_ratio"] = float(away.mean()) if len(fw) else np.nan
+        # look-away measured relative to each participant's own median
+        # pose - camera mounting/hair causes systematic offsets (P05
+        # reads -25deg pitch all session), and face-miss seconds are
+        # recording artifacts (P09's overlay was off during the app)
+        vis = fw[found]
+        if len(vis) >= 60:
+            my, mp_ = vis["yaw"].median(), vis["pitch"].median()
+            away = ((vis["yaw"] - my).abs() > 25
+                    ) | ((vis["pitch"] - mp_).abs() > 20)
+            feat["look_away_ratio"] = float(away.mean())
+        else:
+            feat["look_away_ratio"] = np.nan
     return feat
 
 

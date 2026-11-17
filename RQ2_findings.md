@@ -36,6 +36,14 @@ correct/incorrect counts from verbalized feedback, participant speech
 seconds, webcam motion energy / stillness ratio / longest still streak,
 cam-motion contrast (lessons vs navigation), plus data-quality flags.
 
+**ML-derived head-pose features** (`extract_face.py`): MediaPipe
+FaceLandmarker runs on the webcam overlay at 1 fps, estimating head
+yaw/pitch/roll, face presence and position. Aggregated per session:
+face detection ratio, yaw/pitch spread, head-turn rate, pitch bias, and
+look-away ratio (pose deviating >20–25° from each participant's own
+median — controls for camera mounting; P05 sits at −25° pitch and P09's
+overlay was off during the app, so raw thresholds would mislead).
+
 ## 4. Results
 
 ### 4a. Descriptive associations (Spearman, n≈17–19)
@@ -47,12 +55,17 @@ cam-motion contrast (lessons vs navigation), plus data-quality flags.
 | session_s → GUESS full | +0.49 | .033 | Longer app time → higher reported engagement. |
 | session_s → perceived_learning | +0.48 | .040 | Same direction. |
 | webcam_longest_still_s → complexity | −0.54 | .017 | Longer stillness → lower perceived complexity (focused vs lost — ambiguous). |
+| **look_away_ratio → effort** | **−0.64** | **.005** | **Strongest single association.** Participants whose head pose deviated from their own median more often reported less effort — a visible-disengagement signal. |
+| look_away_ratio → engagement | −0.46 | .055 | Same direction: looking away → lower reported engagement. |
+| head_pitch_std → effort | −0.53 | .020 | Less nod-pitch variability → higher effort ratings. |
+| head_turn_rate → GUESS | +0.41 | .086 | More head scanning → higher game-experience scores. |
 | survival_nav_s → confusion | +0.35 | .15 | Direction matches interviews but weak at this n. |
 
 ### 4b. Predictive modeling (LASSO, leave-one-out CV)
 
-- Engagement: LOO R² = −0.36; Confusion: R² = −0.12 — **worse than
-  predicting the mean.** Binary confusion: 0.74 acc = majority baseline.
+- Engagement: LOO R² = −0.21; Confusion: R² = −0.13 — **worse than
+  predicting the mean.** Binary confusion: 0.63 acc < 0.74 majority
+  baseline (with head-pose features included).
 - **Honest null:** at n=19 with session-level labels and floor-compressed
   scales, these features do not support multivariate prediction. This is a
   legitimate methods finding: argues for per-phase labels and larger
@@ -90,7 +103,9 @@ is visible verbatim in the transcript (mom-call dialogue replays at t=1097).
 
 - n≈19 usable sessions; survey labels are **session-level**, not per-lesson
 - Confusion scale has floor effect (6/19 zeros → binary target used too)
-- No eye tracking, gaze, or headset telemetry; webcam motion is a coarse proxy
+- No eye tracking, gaze, or headset telemetry; head pose and webcam
+  motion are coarse proxies (camera mounting/overlay visibility vary by
+  machine; P09's self-view was off during the app → look_away NaN)
 - Two lesson-1 durations are participant pacing on interstitials, not
   different builds (same narration, same-day counterexample P12/P13)
 - P02's retry may partly reflect unfamiliarity with the controls
@@ -108,5 +123,9 @@ is visible verbatim in the transcript (mom-call dialogue replays at t=1097).
 3. Survival navigation time is the highest-variance behavior and the
    phase participants most often describe as confusing — a candidate
    confusion indicator for future instrumented studies.
-4. Session-level self-reports at n≈20 cannot support predictive modeling;
+4. Head-pose-derived attention features (look-away ratio, head-turn
+   rate) correlate with engagement/effort scales in the expected
+   direction (ρ ≈ −0.5 to −0.65) — the strongest behavioral signal in
+   the dataset after lesson-1 dwell.
+5. Session-level self-reports at n≈20 cannot support predictive modeling;
    per-phase experience sampling is needed.
