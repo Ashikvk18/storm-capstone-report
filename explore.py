@@ -18,6 +18,8 @@ FEATURES = [
     "quiz1_correct", "finalq_correct", "finalq_wrong",
     "webcam_motion_mean", "webcam_still_ratio", "webcam_longest_still_s",
     "cam_motion_lessons", "cam_motion_survival_nav", "frame_motion_mean",
+    "face_detect_ratio", "head_yaw_std", "head_pitch_std",
+    "head_turn_rate", "pitch_mean", "look_away_ratio",
 ]
 TARGETS = ["engagement", "confusion", "confusion_any", "effort",
            "complexity", "perceived_learning", "guess_full",

@@ -12,6 +12,8 @@ Feature groups:
   speech    - participant utterance time inside the app session
   webcam    - motion energy, stillness ratio, longest still streak;
               contrast between passive lessons and active navigation
+  head pose - MediaPipe FaceLandmarker output (extract_face.py):
+              face presence, yaw/pitch spread, turn rate, look-away ratio
   flags     - no_transcript, transcript_gap, incomplete recording
 """
 import glob
@@ -205,6 +207,23 @@ def extract_one(video, pid):
                 if sel.any() else np.nan
         else:
             feat[f"cam_motion_{tag}"] = np.nan
+
+    # ML head-pose features (extract_face.py -> out/<name>_face.csv),
+    # restricted to the same session window
+    face_path = f"out/{name}_face.csv"
+    if os.path.exists(face_path) and not np.isnan(s1):
+        fc = pd.read_csv(face_path)
+        fw = fc[(fc["t_sec"] >= s0) & (fc["t_sec"] <= s1)]
+        found = fw["face_found"] == 1
+        feat["face_detect_ratio"] = float(found.mean()) if len(fw) else np.nan
+        yaw = fw["yaw"]; pitch = fw["pitch"]
+        feat["head_yaw_std"] = float(yaw.std())
+        feat["head_pitch_std"] = float(pitch.std())
+        feat["head_turn_rate"] = float(
+            (yaw.diff().abs() + pitch.diff().abs()).mean())
+        feat["pitch_mean"] = float(pitch.mean())
+        away = (~found) | (yaw.abs() > 25) | (pitch.abs() > 20)
+        feat["look_away_ratio"] = float(away.mean()) if len(fw) else np.nan
     return feat
 
 
