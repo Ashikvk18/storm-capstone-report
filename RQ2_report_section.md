@@ -197,3 +197,11 @@ Per-phase experience sampling (in-VR prompts at phase boundaries),
 larger cohorts, genuine gaze/eye tracking or headset telemetry, and
 re-testing the expression features on higher-resolution face footage.
 
+## 5. Conclusion
+
+From video alone — no telemetry — we extracted explainable behavioral
+features that track engagement and confusion in a VR learning session:
+pacing dwell, navigation struggle, attention direction, and facial
+expression dynamics. The strongest claims are correlational, and the
+honest null on prediction is itself a finding: measuring confusion
+*during* the experience, per phase, is the next methodological step.
