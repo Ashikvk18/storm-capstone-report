@@ -58,3 +58,10 @@ def load_expressions():
     return expr
 
 
+def load_phases():
+    """Per-second phase labels, trimmed to the app window."""
+    tl = pd.read_csv(TIMELINE_CSV)
+    keep = tl["phase"].isin(PHASE_COLORS)
+    return tl.loc[keep, ["t_sec", "phase"]]
+
+
