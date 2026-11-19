@@ -231,3 +231,18 @@ python make_pdf.py               # README.md -> storm-capstone.pdf
 
 Minimal markdown→PDF renderer (fpdf2). Regenerate whenever `README.md`
 changes; it embeds the three `make_figures.py` PNGs inline.
+
+## Output artifacts
+
+| Artifact | Producer | Rows / pages | Contents |
+|---|---|---|---|
+| `data/session_segments.csv` | segment_sessions | 20 | per-phase start/end/duration per session |
+| `data/features.csv` | extract_features | 20 × ~46 | all behavioral features (see `data/DATA_DICTIONARY.md`) |
+| `data/labels.csv` | build_labels | ~22 | survey composites + knowledge scores |
+| `data/explore_correlations.csv` | explore | ~120 | every feature×target Spearman result |
+| `data/model_coefficients.csv` | model_rq2 | ~78 | LASSO selection frequency + median coef |
+| `figures/*.png` | make_figures / make_pca / make_expr_timeline | 6 | report visuals |
+| `storm-capstone.pdf` | make_pdf | 4 pages | README rendered with figures |
+| `out/*_timeline.csv` | segment_sessions | per-second | phase label per second (cached) |
+| `out/*_framesig.csv` | segment_sessions | per-second | desktop flag + motion (cached) |
+| `out/*_face.csv` / `*_blend.csv` | extract_face | per-second | head pose / action units (cached) |
