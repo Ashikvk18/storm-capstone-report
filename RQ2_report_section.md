@@ -135,3 +135,15 @@ the timing data flags — navigation/controls difficulty:
 | P12 | 122 | "don't play much games, a little confused on navigation" |
 | P08 | 145 | "the instructions were a little bit unclear" |
 
+### 3.4 Case study: P02
+
+Normal lessons → survival call → **~8.5 min failed navigation** →
+scenario auto-restarts the call → second attempt → elevated reported
+confusion. The replayed dialogue appears verbatim in the transcript
+(t=1097).
+
+![P02 session timeline](figures/p02_timeline.png)
+
+![P02 facial expressions](figures/p02_expressions.png)
+
+
