@@ -129,3 +129,14 @@ def check_p04_gap(d):
            f"gap={r['transcript_gap']}, lesson1={r['lesson1_s']}")
 
 
+def check_p07_notranscript(d):
+    """P07's MP4 is truncated with no VTT: no_transcript=1 and all
+    phase durations NaN."""
+    r = row_of(d["features"], "P07")
+    phases = ["lesson1_s", "survival_nav_s", "final_quiz_s"]
+    ok = (r is not None and r["no_transcript"] == 1
+          and all(pd.isna(r[p]) for p in phases))
+    expect(ok, "P07 no_transcript=1 + phases NaN",
+           f"flag={r['no_transcript']}")
+
+
