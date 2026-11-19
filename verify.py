@@ -282,3 +282,13 @@ def check_model_selection_bounds(d):
            f"max {sf.max()}")
 
 
+def check_figures_exist():
+    """All six report figures must exist and be non-trivial."""
+    for fn in FIGURE_FILES:
+        p = os.path.join(FIGS, fn)
+        ok = os.path.exists(p) and os.path.getsize(p) > 5000
+        expect(ok, f"figure exists: {fn}",
+               f"{os.path.getsize(p)} bytes" if os.path.exists(p)
+               else "MISSING")
+
+
