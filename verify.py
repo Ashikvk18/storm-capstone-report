@@ -35,3 +35,8 @@ def record(name, ok, detail=""):
     RESULTS.append((name, bool(ok), detail))
 
 
+def expect(cond, name, detail=""):
+    """Record a pass/fail check with an explanatory detail string."""
+    record(name, cond, detail)
+
+
