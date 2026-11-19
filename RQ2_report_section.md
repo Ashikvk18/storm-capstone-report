@@ -71,3 +71,21 @@ survey-filling and interview time cannot contaminate "in-app behavior":
   stretch, sneer) aggregated into 9 session features. Webcam faces are
   ~90 px, so these are noisy proxies — not emotion labels.
 
+### 2.4 Analysis
+
+Spearman rank correlations screened every feature against every outcome
+(n≈17–19; hypothesis-generating, no multiple-testing correction).
+Prediction was tested with standardized LASSO under leave-one-out
+cross-validation (nested inner CV for alpha selection), plus L1
+logistic regression for a binary "any confusion" flag — always compared
+against mean/majority baselines.
+
+### 2.5 Labels
+
+Survey composites (`build_labels.py`): knowledge pre/post scores (10
+items, partial credit on drag-drop and sequencing items), engagement
+(six GUESS items, one reverse-coded, alpha≈.85), confusion (four
+cognitive-load "unclear explanation" items, alpha≈.80), plus effort,
+complexity, perceived learning, and full GUESS. Missing answers score
+NaN, never zero.
+
