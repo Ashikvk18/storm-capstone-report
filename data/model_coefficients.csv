@@ -7,7 +7,7 @@ engagement,lesson2_s,0,0.0
 engagement,survival_call_s,0,0.0
 engagement,survival_nav_s,0,0.0
 engagement,final_quiz_s,0,0.0
-engagement,survival_attempts,2,0.0
+engagement,survival_attempts,1,0.0
 engagement,speech_in_session_s,0,0.0
 engagement,quiz1_correct,0,0.0
 engagement,finalq_correct,0,0.0
@@ -23,6 +23,15 @@ engagement,head_pitch_std,0,0.0
 engagement,head_turn_rate,0,0.0
 engagement,pitch_mean,5,0.0
 engagement,look_away_ratio,0,0.0
+engagement,expr_smile_mean,0,0.0
+engagement,expr_smile_max,0,0.0
+engagement,expr_frown_mean,0,0.0
+engagement,expr_brow_up_mean,0,0.0
+engagement,expr_brow_up_max,0,0.0
+engagement,expr_blink_mean,0,0.0
+engagement,expr_jaw_mean,1,0.0
+engagement,expr_sneer_mean,0,0.0
+engagement,expr_stretch_mean,0,0.0
 confusion,session_s,0,0.0
 confusion,pre_app_s,0,0.0
 confusion,lesson1_s,0,0.0
@@ -47,3 +56,12 @@ confusion,head_pitch_std,0,0.0
 confusion,head_turn_rate,0,0.0
 confusion,pitch_mean,0,0.0
 confusion,look_away_ratio,0,0.0
+confusion,expr_smile_mean,0,0.0
+confusion,expr_smile_max,0,0.0
+confusion,expr_frown_mean,0,0.0
+confusion,expr_brow_up_mean,0,0.0
+confusion,expr_brow_up_max,0,0.0
+confusion,expr_blink_mean,0,0.0
+confusion,expr_jaw_mean,0,0.0
+confusion,expr_sneer_mean,0,0.0
+confusion,expr_stretch_mean,0,0.0
