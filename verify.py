@@ -30,3 +30,8 @@ FIGURE_FILES = ["p02_timeline.png", "p02_expressions.png",
                 "pca_engagement.png", "pca_confusion.png"]
 
 
+def record(name, ok, detail=""):
+    """Append one check result; ok may be bool or a short string."""
+    RESULTS.append((name, bool(ok), detail))
+
+
