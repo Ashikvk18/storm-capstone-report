@@ -157,3 +157,6 @@ For each of the 19 transcripts:
 - **Survival coverage** — every transcripted session contains a
   nonzero `survival_call` duration (P07 excluded via the
   `no_transcript` flag in features.csv)
+
+Latest run: **62 checks, 62 passed** — see
+`transcript_verification_output.txt`.
