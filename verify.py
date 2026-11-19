@@ -177,3 +177,21 @@ def check_nonnegative(d):
     expect(bad == 0, "no negative duration/count values", f"{bad} bad")
 
 
+def check_value_ranges(d):
+    """Bounded features must stay in [0,1]; scores in survey ranges."""
+    f, l = d["features"], d["labels"]
+    ratios = ["webcam_still_ratio", "face_detect_ratio",
+              "look_away_ratio"]
+    for c in ratios:
+        v = f[c].dropna()
+        expect(((v >= 0) & (v <= 1)).all(),
+               f"{c} within [0,1]", f"range {v.min():.2f}-{v.max():.2f}")
+    expr = [c for c in f.columns if c.startswith("expr_")]
+    bad = ((f[expr].dropna() < 0) | (f[expr].dropna() > 1)).sum().sum()
+    expect(bad == 0, "expression scores within [0,1]", f"{bad} bad")
+    expect(l["post_score"].dropna().between(0, 10).all(),
+           "post_score within 0-10")
+    expect(l["engagement"].dropna().between(1, 7).all(),
+           "engagement within 1-7")
+
+
