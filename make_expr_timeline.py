@@ -14,3 +14,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
+STEM = "2026-01-20_StorM_P02_Kamsi Amaeshi"
+BLEND_CSV = f"out/{STEM}_blend.csv"
+TIMELINE_CSV = f"out/{STEM}_timeline.csv"
+OUT_PNG = "figures/p02_expressions.png"
+
