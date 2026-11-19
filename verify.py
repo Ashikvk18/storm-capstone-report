@@ -58,3 +58,9 @@ def load_inputs():
     return out
 
 
+def check_file_exists(path, name):
+    """Generic existence check used for scripts and caches."""
+    expect(os.path.exists(path), name, path if os.path.exists(path)
+           else "MISSING")
+
+
