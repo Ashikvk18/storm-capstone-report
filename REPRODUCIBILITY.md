@@ -263,3 +263,19 @@ After a full run, confirm:
    R² ≈ −.13, `confusion_any` accuracy ≈ .63 < .74 baseline.
 5. **Figures regenerate** — all six PNGs and the 4-page PDF produce
    without error.
+
+## Troubleshooting
+
+- **Truncated video (P07)** — OpenCV/ffmpeg report "partial file";
+  expected. The pipeline labels its usable seconds `app_no_transcript`
+  and continues.
+- **Stale caches** — `*_framesig.csv` from before the motion columns
+  existed is auto-detected (missing `cam_motion`) and recomputed;
+  delete `out/*_framesig.csv` to force a fresh decode.
+- **MediaPipe API names** — this project pins the Tasks API:
+  `output_face_blendshapes=True` (option) and `res.face_blendshapes`
+  (result). Older guesses (`output_facial_blendshapes`,
+  `facial_blendshapes`) raise TypeError/AttributeError.
+- **Name leakage** — filenames contain real names; every committed
+  artifact must use `participant_id`. `participants.csv` and survey
+  exports stay local.
