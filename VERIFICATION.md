@@ -99,3 +99,9 @@ not an error).
 - `selected_folds` ∈ [0,19] — cannot exceed the 19 leave-one-out folds
   (observed max: 6, i.e., no feature was stably selected — consistent
   with the reported null result)
+
+## Artifact integrity (3 checks)
+
+- All 6 figures exist and exceed 5 KB
+- Every PNG starts with the 8-byte PNG signature
+- `storm-capstone.pdf` starts with `%PDF-`
