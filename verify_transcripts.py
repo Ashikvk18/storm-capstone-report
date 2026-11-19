@@ -100,3 +100,23 @@ def transcript_checks():
                    last <= dur + 60, f"last={last:.0f} dur={dur}")
 
 
+def phase_order_checks():
+    """Observed content phases must respect play order per session."""
+    seg = pd.read_csv("data/session_segments.csv")
+    order_idx = {p: i for i, p in enumerate(PHASE_ORDER)}
+    bad = []
+    for _, row in seg.iterrows():
+        starts = []
+        for ph in PHASE_ORDER[1:8]:  # content phases only
+            c = f"{ph}_t_start"
+            if c in row and pd.notna(row[c]):
+                starts.append((row[c], ph))
+        starts.sort()
+        seq = [ph for _, ph in starts]
+        idxs = [order_idx[p] for p in seq]
+        if idxs != sorted(idxs):
+            bad.append(row["pid"])
+    record("content phases respect play order", not bad,
+           f"out-of-order: {bad}" if bad else "ok")
+
+
