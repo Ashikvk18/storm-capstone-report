@@ -66,6 +66,10 @@ not emotion labels.
 | look_away_ratio → engagement | −0.46 | .055 | Same direction: looking away → lower reported engagement. |
 | head_pitch_std → effort | −0.53 | .020 | Less nod-pitch variability → higher effort ratings. |
 | head_turn_rate → GUESS | +0.41 | .086 | More head scanning → higher game-experience scores. |
+| expr_frown_mean → confusion | +0.57 | .013 | Frowning action units co-occur with reported confusion — direction matches the construct. |
+| expr_stretch_mean → confusion | +0.54 | .020 | Mouth-stretch (grimace-like) activation, same direction. |
+| **expr_brow_up_max → complexity** | **−.76** | **.0002** | **Largest |rho| in the dataset** — but fragile: a max-statistic over 1-fps blendshapes is sensitive to single-frame artifacts, the direction is counterintuitive, and it does not survive as a predictor. Hypothesis only. |
+| expr_jaw_mean → learning_gain | −.48 | .045 | Jaw-drop activation vs knowledge gain — weak, exploratory. |
 | survival_nav_s → confusion | +0.35 | .15 | Direction matches interviews but weak at this n. |
 
 ### 4b. Predictive modeling (LASSO, leave-one-out CV)
