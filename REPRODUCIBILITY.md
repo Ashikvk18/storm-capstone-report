@@ -258,6 +258,8 @@ captured runs.
 | `data/model_coefficients.csv` | model_rq2 | ~78 | LASSO selection frequency + median coef |
 | `figures/*.png` | make_figures / make_pca / make_expr_timeline | 6 | report visuals |
 | `storm-capstone.pdf` | make_pdf | 4 pages | README rendered with figures |
+| `verification_output.txt` | verify.py | 52 checks | captured PASS/FAIL run |
+| `transcript_verification_output.txt` | verify_transcripts.py | 62 checks | captured PASS/FAIL run |
 | `out/*_timeline.csv` | segment_sessions | per-second | phase label per second (cached) |
 | `out/*_framesig.csv` | segment_sessions | per-second | desktop flag + motion (cached) |
 | `out/*_face.csv` / `*_blend.csv` | extract_face | per-second | head pose / action units (cached) |
