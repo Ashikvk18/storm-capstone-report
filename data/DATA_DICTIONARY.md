@@ -28,3 +28,13 @@ survival_nav_s, final_quiz_s` — the seven scripted content phases —
 plus `pre_app_s, post_app_s, app_idle_s, aborted_s,
 app_no_transcript_s, interview_s` for everything else.
 `session_s` = first app frame → sustained-desktop/interview onset.
+
+### Retry, quiz, and speech columns
+
+| Column | Meaning |
+|---|---|
+| `survival_attempts` | Count of survival-call clusters (<10 s gaps merged) — P02=2, all others=1 |
+| `was_restarted` | 1 if any `aborted` seconds exist (app restarted mid-recording; P15) |
+| `speech_in_session_s` | Participant utterance seconds inside the session window |
+| `reached_end` | 1 if the session reached final quiz / post-app / interview |
+| `quiz1_correct`, `quiz1_wrong`, `finalq_correct`, `finalq_wrong` | Spoken feedback counts inside each quiz window |
