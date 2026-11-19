@@ -179,3 +179,26 @@ facial blendshapes (action units) → `*_blend.csv`.
 
 ---
 
+## Cross-cutting decisions worth remembering
+
+- **Missing ≠ zero.** P04 (late transcript) and P07 (no transcript/truncated
+  video) produce NaN features, never 0 — "unobserved" must not masquerade as
+  "didn't happen."
+- **Names stay local.** `participants.csv` and survey exports contain PII and
+  are `.gitignore`d; every committed artifact uses `participant_id` (P01–P20).
+- **Caches are versioned by content.** `*_framesig.csv` recomputes when the
+  `cam_motion` column is absent; `*_face.csv`/`*_blend.csv` are skipped
+  independently — re-running a stage never redoes finished work.
+- **Session window everywhere.** Every behavioral feature is restricted to
+  `[s0, s1]` (first app frame → sustained desktop/interview) so survey-filling
+  and interview time can't contaminate "in-app behavior."
+- **Honest nulls are results.** The LASSO/LOO models report R²<0 and
+  majority-baseline accuracy — that null is a finding about n=19 +
+  session-level labels, documented rather than hidden.
+- **Verify before trusting.** The P05/P06 retry artifact and the P02 real
+  retry were both caught by checking transcripts against features — any
+  surprising correlation gets a sanity check before it enters the report.
+
+*Last updated: after the facial-blendshape pass and PCA figures.*
+*Blendshape batch status at time of writing: in progress (per-second
+action-unit extraction via MediaPipe FaceLandmarker).*
