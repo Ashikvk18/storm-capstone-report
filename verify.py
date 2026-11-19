@@ -274,3 +274,11 @@ def check_model_targets(d):
            "model targets include engagement + confusion", str(tg))
 
 
+def check_model_selection_bounds(d):
+    """selected_folds cannot exceed the 19 LOO folds."""
+    sf = d["coefficients"]["selected_folds"]
+    expect(sf.between(0, 19).all(),
+           "selected_folds within [0,19]",
+           f"max {sf.max()}")
+
+
