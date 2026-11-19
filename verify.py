@@ -119,3 +119,13 @@ def check_p02_nav_long(d):
            "P02 survival_nav_s > 500s", f"got {r['survival_nav_s']}")
 
 
+def check_p04_gap(d):
+    """P04's transcript starts ~4min in: transcript_gap=1 and early
+    phases must be NaN, not zero."""
+    r = row_of(d["features"], "P04")
+    ok = (r is not None and r["transcript_gap"] == 1
+          and pd.isna(r["lesson1_s"]))
+    expect(ok, "P04 transcript_gap=1 + lesson1_s NaN",
+           f"gap={r['transcript_gap']}, lesson1={r['lesson1_s']}")
+
+
