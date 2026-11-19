@@ -279,3 +279,14 @@ After a full run, confirm:
 - **Name leakage** — filenames contain real names; every committed
   artifact must use `participant_id`. `participants.csv` and survey
   exports stay local.
+
+## Pointers
+
+- **`DEVLOG.md`** — per-construct rationale: why each threshold, guard,
+  and merge rule exists.
+- **`RQ2_findings.md`** — detailed analysis write-up with all tables.
+- **`RQ2_report_section.md`** — the report-ready chapter.
+- **`data/DATA_DICTIONARY.md`** — column-by-column definitions for every
+  committed CSV.
+
+*Reproducibility appendix — Storm capstone, RQ2 (Ashik Dey Rupak).*
