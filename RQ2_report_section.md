@@ -147,3 +147,27 @@ confusion. The replayed dialogue appears verbatim in the transcript
 ![P02 facial expressions](figures/p02_expressions.png)
 
 
+## 4. Discussion
+
+### 4.1 What the data supports
+
+1. **Video observation is a viable behavioral-data source** when
+   in-app logging is absent. Scripted narration + frame signatures
+   produced reliable per-second phase labels across 20 heterogeneous
+   recordings, including restarts, gaps, and a truncated file.
+2. **Dwell time on lesson transitions predicts knowledge gain**
+   (ρ≈.5). The bimodal lesson-1 durations reflect deliberate pacing on
+   interstitial screens — a behavioral signature of engagement with
+   content.
+3. **Survival navigation is the confusion hotspot.** It is the only
+   phase with large behavioral variance, and it is the phase
+   participants most often describe as confusing — convergent
+   quantitative + qualitative evidence.
+4. **Attention proxies carry signal.** Head-pose-derived look-away
+   ratio correlates with effort (ρ=−.64) and engagement (ρ=−.46) in the
+   expected direction — the strongest behavioral associations after
+   lesson-1 dwell.
+5. **Facial action units add preliminary signal.** Frown and
+   mouth-stretch activation co-occur with reported confusion
+   (ρ≈.55). Expression proxies warrant replication at larger n.
+
