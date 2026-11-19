@@ -33,3 +33,25 @@ def record(name, ok, detail=""):
     RESULTS.append((name, bool(ok), detail))
 
 
+def parse_vtt_speakers(path):
+    """Return (n_cues, n_audio_shared, first_t, last_t, text_blob)."""
+    txt = open(path, encoding="utf-8", errors="replace").read()
+    cues = re.findall(
+        r"(\d{2}):(\d{2}):(\d{2})\.(\d{3}) --> "
+        r"(\d{2}):(\d{2}):(\d{2})\.(\d{3})\s*\n(.+?)(?=\n\n|\Z)",
+        txt, re.S)
+    n_shared = 0
+    first = last = None
+    blob = []
+    for h1, m1, s1, ms1, h2, m2, s2, ms2, body in cues:
+        st = int(h1) * 3600 + int(m1) * 60 + int(s1)
+        en = int(h2) * 3600 + int(m2) * 60 + int(s2)
+        first = st if first is None else min(first, st)
+        last = en if last is None else max(last, en)
+        body = " ".join(body.split())
+        blob.append(body.lower())
+        if "audio shared" in body.lower():
+            n_shared += 1
+    return len(cues), n_shared, first, last, " ".join(blob)
+
+
