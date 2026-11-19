@@ -25,3 +25,10 @@ Latest run: **52 checks, 52 passed** — see `verification_output.txt`.
 | Model | Both targets present; selection counts within 19 folds |
 | Artifacts | 6 PNGs valid headers, PDF has `%PDF-` magic |
 | PII | No names/emails/raw media tracked in git |
+
+## File existence (8 checks)
+
+All seven pipeline scripts (`extract_zip`, `segment_sessions`,
+`extract_features`, `extract_face`, `build_labels`, `explore`,
+`model_rq2`) plus the `face_landmarker.task` model file must exist —
+missing inputs would silently produce empty outputs downstream.
