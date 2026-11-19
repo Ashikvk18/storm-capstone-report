@@ -238,3 +238,20 @@ def check_corr_reproduces(d, feature, target, expected, tol=0.02):
            f"vs expected {expected:.3f}")
 
 
+def check_all_correlations_reproduce(d):
+    """Every row in explore_correlations.csv must recompute."""
+    df = merged_labels(d)
+    df["confusion_any"] = (df["confusion"] > 0).astype(int)
+    bad = 0
+    for _, row in d["correlations"].iterrows():
+        f_, t_ = row["feature"], row["target"]
+        if f_ not in df.columns or t_ not in df.columns:
+            bad += 1
+            continue
+        r, _ = recompute_rho(df, f_, t_)
+        if abs(r - row["rho"]) > 0.02:
+            bad += 1
+    expect(bad == 0, "all correlation rows recompute within .02",
+           f"{bad} mismatches")
+
+
