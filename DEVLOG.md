@@ -179,6 +179,19 @@ facial blendshapes (action units) → `*_blend.csv`.
 
 ---
 
+## verify.py / verify_transcripts.py — independent audits
+
+| Construct | Why |
+|---|---|
+| `RESULTS` + `record()`/`expect()` | Every check appends `(name, ok, detail)` so the final report lists exactly what was verified and how — an audit trail, not just a boolean. |
+| `load_inputs()` | Loads all five committed CSVs once; a missing file records a failure instead of crashing — verification must report, not abort. |
+| per-anomaly check functions (`check_p02_retry`, `check_p04_gap`, `check_p07_notranscript`, `check_p15_restart`, `check_p05_single_attempt`) | Each exists because it caught a real bug during development (P05/P06 split artifact, P04 NaN-vs-zero, P07 truncation, P15 restart, P02 genuine retry). They are regression guards. |
+| `check_nan_convention()` | Enforces the project's core rule: unobserved phases are NaN, never 0 — the single most important data-integrity invariant. |
+| `recompute_rho()`/`csv_rho()`/`check_all_correlations_reproduce()` | Independently recomputes every Spearman ρ rather than trusting the committed CSV — catches stale or hand-edited outputs. 324 rows, 0 mismatches. |
+| `check_pii_hygiene()` | Runs `git ls-files` and fails if any name/email/raw-media file is tracked — automated enforcement of the privacy rule. |
+| `verify_transcripts.py` functions | Audits the raw .vtt/.mp4 inputs verify.py cannot see: shared-audio cue presence, landmark hints, duration bounds, phase play-order, survival-call coverage. Caught the `*.vtt`/`*.transcript.vtt` glob double-count during its own development. |
+| `print_report()` + `SystemExit` | Non-zero exit on any failure so the checks can gate re-runs in scripts or CI. |
+
 ## Cross-cutting decisions worth remembering
 
 - **Missing ≠ zero.** P04 (late transcript) and P07 (no transcript/truncated
