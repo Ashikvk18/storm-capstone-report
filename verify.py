@@ -90,3 +90,10 @@ def check_feature_columns(d):
            f"missing: {missing}" if missing else "ok")
 
 
+def check_participant_ids(d):
+    """All 20 PIDs present exactly once, sorted."""
+    pids = sorted(d["features"]["participant_id"].astype(str))
+    expect(len(pids) == len(set(pids)) == 20,
+           "features.csv has 20 unique participant_ids", str(pids))
+
+
