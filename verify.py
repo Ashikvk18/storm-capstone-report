@@ -97,3 +97,9 @@ def check_participant_ids(d):
            "features.csv has 20 unique participant_ids", str(pids))
 
 
+def row_of(df, pid):
+    """First row for a participant id, or None."""
+    m = df[df["participant_id"] == pid]
+    return m.iloc[0] if len(m) else None
+
+
