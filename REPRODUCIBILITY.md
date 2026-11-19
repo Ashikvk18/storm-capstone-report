@@ -60,3 +60,18 @@ sampling, which keeps the whole face pass at roughly 3 min per recording.
 Raw recordings, transcripts, survey exports, and the participant map
 contain PII and are `.gitignore`d — only derived, de-identified CSVs and
 figures are committed.
+
+### Input detail: recordings + transcripts
+
+`recovered/` must contain one `.mp4` and (usually) one `.vtt` per
+session, named consistently — the pipeline pairs them by filename
+stem. Transcripts are Zoom auto-captions; speaker labels vary by
+recording machine, so only the `"audio shared"` substring is trusted
+to mark in-app narration.
+
+Two known data-quality cases are expected, not bugs:
+
+- **P04** — transcript begins ~4 min into the video; early phases are
+  censored to NaN, not zero.
+- **P07** — truncated MP4, no transcript; all phase features are NaN
+  and `app_no_transcript_s` carries the usable duration.
