@@ -46,3 +46,17 @@ Steps 6–11 can run in any order once 1–5 are complete.
 
 No GPU required — MediaPipe FaceLandmarker runs on CPU at ~1 fps
 sampling, which keeps the whole face pass at roughly 3 min per recording.
+
+## Required inputs (not in the repo)
+
+| Input | Where it comes from | Used by |
+|---|---|---|
+| `VR_Training_Zoom_Recordings.zip` | Study recordings archive | `extract_zip.py` |
+| Pre-survey `.xlsx` | Qualtrics export | `build_labels.py` |
+| Post-survey `.xlsx` | Qualtrics export | `build_labels.py` |
+| `data/participants.csv` | Manually built name↔PID↔file map | `extract_features.py` |
+| `face_landmarker.task` | MediaPipe model URL (in `extract_face.py` docstring) | `extract_face.py` |
+
+Raw recordings, transcripts, survey exports, and the participant map
+contain PII and are `.gitignore`d — only derived, de-identified CSVs and
+figures are committed.
