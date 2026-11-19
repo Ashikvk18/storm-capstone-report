@@ -121,6 +121,10 @@ is visible verbatim in the transcript (mom-call dialogue replays at t=1097).
   different builds (same narration, same-day counterexample P12/P13)
 - P02's retry may partly reflect unfamiliarity with the controls
   ("I don't usually use a Dell"), not only content confusion
+- Facial blendshapes are estimated from ~90 px webcam faces at 1 fps;
+  max-statistic features (expr_*_max) can be driven by single-frame
+  artifacts, and mean activations sit near the noise floor for some
+  participants (P04's expressions are near-zero throughout)
 - Multiple-testing: ~20 features × several outcomes; correlations are
   hypothesis-generating
 
