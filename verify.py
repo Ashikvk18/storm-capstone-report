@@ -103,3 +103,12 @@ def row_of(df, pid):
     return m.iloc[0] if len(m) else None
 
 
+def check_p02_retry(d):
+    """P02 genuinely replayed the survival scenario (verified in
+    transcript: call dialogue reappears at t=1097)."""
+    r = row_of(d["features"], "P02")
+    expect(r is not None and r["survival_attempts"] == 2,
+           "P02 survival_attempts == 2 (real retry)",
+           f"got {r['survival_attempts'] if r is not None else 'NA'}")
+
+
