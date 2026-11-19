@@ -115,3 +115,16 @@ not an error).
   positive rate (0.74) matches the known floor effect
 - All `session_s` values positive (min 681 s)
 - P02's timeline file contains only known phase labels
+
+## Known caveats surfaced by verification
+
+1. **`quiz1_correct` is constant** — every participant answered the
+   same number of quiz-1 items correctly, so its 9 correlation rows
+   are NaN. Harmless, but it means quiz-1 correctness carries no
+   signal in this dataset.
+2. **P09's face/blend coverage is near-zero** — her webcam overlay was
+   off during the app; `face_detect_ratio` ≈ 0 and expression features
+   are NaN. Correctly handled as missing, not zero.
+3. **Verification checks the committed artifacts, not the raw videos**
+   — a full re-run of steps 1–5 is the deeper check (see
+   `REPRODUCIBILITY.md`).
