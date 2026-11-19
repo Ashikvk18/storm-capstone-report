@@ -89,3 +89,28 @@ cognitive-load "unclear explanation" items, alpha≈.80), plus effort,
 complexity, perceived learning, and full GUESS. Missing answers score
 NaN, never zero.
 
+## 3. Results
+
+### 3.1 Descriptive associations (Spearman)
+
+| Feature → Outcome | ρ | p | Reading |
+|---|---|---|---|
+| lesson1_s → post_score | +.51 | .039 | Deliberate pacing → higher knowledge |
+| finalq_wrong → post_score | −.48 | .042 | Internal validity check |
+| session_s → GUESS / perceived_learning | +.49 / +.48 | .033 / .040 | Longer app time → higher engagement |
+| look_away_ratio → effort | **−.64** | **.005** | Strongest behavioral association |
+| look_away_ratio → engagement | −.46 | .055 | Same direction |
+| head_pitch_std → effort | −.53 | .020 | Less head-nod variance → higher effort |
+| expr_frown_mean → confusion | +.57 | .013 | Frowning co-occurs with confusion |
+| expr_stretch_mean → confusion | +.54 | .020 | Grimace-like activation, same direction |
+| expr_brow_up_max → complexity | −.76 | .0002 | Largest ρ — fragile max-statistic, hypothesis only |
+| survival_nav_s → confusion | +.35 | .15 | Direction matches interviews, weak at n |
+
+**Lesson-1 dwell is bimodal** (~68 s vs ~130 s): the extra ~70 s is time
+on "Next →" interstitial screens, not different app builds (same
+narration; same-day counterexample). Participants who lingered scored
+~0.9 points higher — engagement-with-content, not just time-on-task.
+
+**Survival navigation is the highest-variance behavior** (70–633 s;
+every other scripted phase is near-constant).
+
