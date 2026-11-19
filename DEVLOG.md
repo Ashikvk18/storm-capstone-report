@@ -158,3 +158,12 @@ facial blendshapes (action units) → `*_blend.csv`.
 | `scatter()` | Generic feature-vs-outcome scatter with participant-ID labels and a trend line — used for the lesson1→post-score and nav→confusion figures. Participant IDs (not names) are annotated because the figures are committed. |
 | `import numpy`/`os` mid-file | Placed just before first use — the file grew organically; functionally fine, stylistically imperfect. |
 
+## make_pca.py — unsupervised behavior profiles
+
+| Construct | Why |
+|---|---|
+| `FEATS` | A curated 10-feature subset (timing + stillness + head-pose + motion contrast) — deliberately excludes redundant/quasi-constant columns so PCs reflect behavior, not noise. |
+| `StandardScaler` + `PCA(n_components=2)` | Features are on wildly different scales (seconds vs. ratios); standardizing is required before PCA or `session_s` would dominate PC1 purely by magnitude. |
+| `df.iterrows()` annotation | Each point is labeled with its participant ID — the direct index `i` is required because `Z` rows align with `df`'s positional order after `reset_index`. |
+| two figures (engagement / confusion) | Same embedding, two colorings — shows whether the behavior-space structure aligns with either label. PC1 ≈ 48 % of variance, PC2 ≈ 21 %. |
+
