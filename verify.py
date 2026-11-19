@@ -327,3 +327,12 @@ def check_pii_hygiene():
            f"bad: {bad}" if bad else "ok")
 
 
+def check_labels_join_coverage(d):
+    """Every features PID should appear in labels or be flagged."""
+    lab_pids = set(d["labels"]["participant_id"].astype(str))
+    feat_pids = set(d["features"]["participant_id"].astype(str))
+    missing = feat_pids - lab_pids
+    expect(len(missing) <= 2, "features/labels PID coverage sane",
+           f"unmatched: {missing}" if missing else "all matched")
+
+
