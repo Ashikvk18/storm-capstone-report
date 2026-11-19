@@ -140,6 +140,8 @@ python build_labels.py        # -> data/labels.csv (needs survey xlsx)
 python explore.py             # correlations
 python model_rq2.py           # LASSO + LOO-CV
 python make_figures.py        # figures/
+python verify.py              # 52 artifact checks (must pass)
+python verify_transcripts.py    # 62 transcript checks (must pass)
 ```
 
 *Capstone project — Ashik Dey Rupak (RQ2) & Shalin Bhattarai (RQ1).*
