@@ -90,3 +90,12 @@ the exact filenames at the top of the script — rename or edit the
 constants if your exports differ. The script drops Qualtrics' two
 metadata rows, dedupes repeat pre-survey submissions, excludes
 pilot/test rows by name, and fuzzy-matches survey names to PIDs.
+
+### Input detail: `face_landmarker.task`
+
+Download from:
+`https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/1/face_landmarker.task`
+
+Place it in the repo root. `extract_face.py` loads it via
+`BaseOptions(model_asset_path="face_landmarker.task")`. The model is
+~30 MB and is not committed.
