@@ -11,3 +11,17 @@ python verify.py    # prints PASS/FAIL per check; exit 1 on failure
 ```
 
 Latest run: **52 checks, 52 passed** — see `verification_output.txt`.
+
+## Check groups
+
+| Group | What it proves |
+|---|---|
+| File existence | All pipeline scripts + `face_landmarker.task` present |
+| Row counts | Study-size sanity (20 sessions, ~23 label rows, 324 correlations) |
+| Schema | Required feature groups/columns present; 20 unique PIDs |
+| Anomaly spot-checks | P02 retry, P04 gap, P07 truncation, P15 restart, P05/P06 no-split |
+| Missingness | NaN (not 0) for unobserved phases; no negative values; bounded ranges |
+| Correlations | All 324 rows recompute within ±.02 of committed CSV |
+| Model | Both targets present; selection counts within 19 folds |
+| Artifacts | 6 PNGs valid headers, PDF has `%PDF-` magic |
+| PII | No names/emails/raw media tracked in git |
