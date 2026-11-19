@@ -128,3 +128,18 @@ desktop detection + frame/webcam motion). Writes `out/*_timeline.csv`
 (per-second phase labels), caches `out/*_framesig.csv`, and appends
 `data/session_segments.csv`. Runtime is dominated by video decode;
 re-runs reuse the frame-signature cache.
+
+### Step 3 — `extract_face.py` (ML face analysis)
+
+```bash
+python extract_face.py           # all videos (~3 min each)
+python extract_face.py P08       # or one recording substring
+```
+
+MediaPipe FaceLandmarker on the top-right webcam crop at 1 fps.
+Outputs `out/*_face.csv` (head pose: yaw/pitch/roll, face position,
+width) and `out/*_blend.csv` (16 facial action-unit scores). Each file
+is cached independently — a video needing only the missing half still
+runs one pass. Expect ~1,400–3,500 rows per video; P09's blend/pose
+coverage is near-zero because her webcam overlay was off during the
+app.
