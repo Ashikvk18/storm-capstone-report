@@ -87,9 +87,9 @@ def head_pose(video):
             fw = float((max(p.x for p in lm)
                         - min(p.x for p in lm)) * cam.shape[1])
             rows.append((t, 1, yaw, pitch, roll, cx, cy, fw))
-            if res.facial_blendshapes:
+            if res.face_blendshapes:
                 vals = {c.category_name: c.score
-                        for c in res.facial_blendshapes[0]}
+                        for c in res.face_blendshapes[0]}
                 brows.append((t, 1) + tuple(vals.get(k, 0.0)
                                             for k in BLEND_KEYS))
             else:
