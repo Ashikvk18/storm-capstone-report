@@ -212,3 +212,13 @@ python make_pca.py               # -> figures/pca_*.png (2 files)
 Standardizes a 10-feature behavior subset and projects to 2 PCs
 (PC1≈48 %, PC2≈21 % of variance), plotted twice — colored by
 engagement and by confusion.
+
+### Step 10 — `make_expr_timeline.py` (P02 expression case study)
+
+```bash
+python make_expr_timeline.py     # -> figures/p02_expressions.png
+```
+
+15-second-smoothed facial action units (frown, brow-raise, smile,
+jaw-open) over P02's phase bands, with the scenario-replay and
+failed-navigation windows annotated.
