@@ -9,6 +9,10 @@ https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/
 
 The video decode is shared with segment_sessions.py's cadence (1 fps)
 but must re-read frames since framesig only stores scalars.
+
+Also emits facial blendshape scores (action units: brow raise, jaw
+drop, smile, frown, eye blink, ...) per detected face ->
+out/<name>_blend.csv for expression-dynamics features.
 """
 import glob
 import math
@@ -27,22 +31,38 @@ CAM_X0, CAM_X1 = 0.80, 1.00
 CAM_Y0, CAM_Y1 = 0.00, 0.15
 
 
+# blendshapes worth tracking: brows (confusion/surprise), eyes (blink =
+# drowsiness/effort), mouth (smile/frown/jaw), nose (sneer = negative)
+BLEND_KEYS = [
+    "browInnerUp", "browOuterUpLeft", "browOuterUpRight",
+    "eyeBlinkLeft", "eyeBlinkRight",
+    "jawOpen", "mouthSmileLeft", "mouthSmileRight",
+    "mouthFrownLeft", "mouthFrownRight",
+    "mouthPucker", "noseSneerLeft", "noseSneerRight",
+    "cheekPuff", "mouthStretchLeft", "mouthStretchRight",
+]
+
+
 def head_pose(video):
     name = os.path.splitext(os.path.basename(video))[0]
     cache = f"out/{name}_face.csv"
-    if os.path.exists(cache):
+    bcache = f"out/{name}_blend.csv"
+    need_pose = not os.path.exists(cache)
+    need_blend = not os.path.exists(bcache)
+    if not need_pose and not need_blend:
         return
     fl = vision.FaceLandmarker.create_from_options(
         vision.FaceLandmarkerOptions(
             base_options=BaseOptions(
                 model_asset_path="face_landmarker.task"),
             num_faces=1,
-            output_facial_transformation_matrixes=True))
+            output_facial_transformation_matrixes=True,
+            output_facial_blendshapes=True))
     cap = cv2.VideoCapture(video)
     fps = cap.get(cv2.CAP_PROP_FPS) or 25.0
     n = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
     step = max(1, int(round(fps * SAMPLE_SEC)))
-    rows = []
+    rows, brows = [], []
     idx = 0
     while idx < n:
         cap.set(cv2.CAP_PROP_POS_FRAMES, idx)
@@ -67,14 +87,26 @@ def head_pose(video):
             fw = float((max(p.x for p in lm)
                         - min(p.x for p in lm)) * cam.shape[1])
             rows.append((t, 1, yaw, pitch, roll, cx, cy, fw))
+            if res.facial_blendshapes:
+                vals = {c.category_name: c.score
+                        for c in res.facial_blendshapes[0]}
+                brows.append((t, 1) + tuple(vals.get(k, 0.0)
+                                            for k in BLEND_KEYS))
+            else:
+                brows.append((t, 1) + (0.0,) * len(BLEND_KEYS))
         else:
             rows.append((t, 0, np.nan, np.nan, np.nan,
                          np.nan, np.nan, np.nan))
+            brows.append((t, 0) + (np.nan,) * len(BLEND_KEYS))
         idx += step
     cap.release()
-    pd.DataFrame(rows, columns=["t_sec", "face_found", "yaw", "pitch",
-                                "roll", "face_cx", "face_cy",
-                                "face_w"]).to_csv(cache, index=False)
+    if need_pose:
+        pd.DataFrame(rows, columns=["t_sec", "face_found", "yaw", "pitch",
+                                    "roll", "face_cx", "face_cy",
+                                    "face_w"]).to_csv(cache, index=False)
+    if need_blend:
+        pd.DataFrame(brows, columns=["t_sec", "face_found"]
+                     + BLEND_KEYS).to_csv(bcache, index=False)
     print(f"  {name}: {sum(r[1] for r in rows)}/{len(rows)} faces",
           flush=True)
 
