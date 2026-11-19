@@ -267,3 +267,10 @@ def check_correlation_bounds(d):
            f"{nan_count} NaN rhos (constant inputs)")
 
 
+def check_model_targets(d):
+    """model_coefficients covers both regression targets."""
+    tg = set(d["coefficients"]["target"].unique())
+    expect({"engagement", "confusion"} <= tg,
+           "model targets include engagement + confusion", str(tg))
+
+
