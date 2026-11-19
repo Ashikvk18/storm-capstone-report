@@ -89,3 +89,19 @@ def phase_spans(ph):
     return spans
 
 
+def plot(expr, ph):
+    """Expression traces over phase bands + replay marker."""
+    fig, ax = plt.subplots(figsize=(11, 3.4))
+    sm = smooth(expr)
+    t = expr["t_sec"].to_numpy()
+
+    # phase bands first so traces draw on top
+    for ph_name, a, b in phase_spans(ph):
+        ax.axvspan(a, b, color=PHASE_COLORS[ph_name], alpha=0.12,
+                   lw=0)
+
+    colors = {"frown": "#8e3b46", "brow_raise": "#b5651d",
+              "smile": "#3fa66a", "jaw_open": "#4c6fb3"}
+    for name in SERIES:
+        ax.plot(t, sm[name], label=name, color=colors[name], lw=1.4)
+
