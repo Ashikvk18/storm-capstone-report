@@ -367,3 +367,15 @@ def check_timeline_labels():
            f"unknown: {bad}" if bad else "ok")
 
 
+def print_report():
+    """Print pass/fail summary; returns failure count."""
+    fails = [r for r in RESULTS if not r[1]]
+    print(f"\n{'='*60}\nVERIFICATION: {len(RESULTS)} checks, "
+          f"{len(RESULTS)-len(fails)} passed, {len(fails)} failed\n"
+          f"{'='*60}")
+    for name, ok, detail in RESULTS:
+        print(f"  [{'PASS' if ok else 'FAIL'}] {name}"
+              + (f"  ({detail})" if detail else ""))
+    return len(fails)
+
+
