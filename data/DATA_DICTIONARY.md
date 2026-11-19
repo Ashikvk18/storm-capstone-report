@@ -75,3 +75,10 @@ Left/Right pairs averaged. All values 0–1 activation.
 | `expr_stretch_mean` | mouthStretch Left/Right |
 
 `*_max` columns are single-frame-sensitive — treat as fragile.
+
+### Data-quality flag columns
+
+| Column | Meaning |
+|---|---|
+| `no_transcript` | 1 if the recording has no usable transcript (P07) — all phase features then NaN |
+| `transcript_gap` | 1 if `pre_app` >120 s with zero lesson1 seconds (P04's late-starting transcript) — early phases censored to NaN |
