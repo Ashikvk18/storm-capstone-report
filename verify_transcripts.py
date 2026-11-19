@@ -150,3 +150,13 @@ def print_report():
     return len(fails)
 
 
+def main():
+    """Run transcript-level checks; exit 1 on any failure."""
+    check_counts()
+    transcript_checks()
+    phase_order_checks()
+    survival_call_checks()
+    fails = print_report()
+    raise SystemExit(1 if fails else 0)
+
+
