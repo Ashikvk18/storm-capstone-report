@@ -31,3 +31,10 @@ SERIES = {
     "jaw_open": ("jawOpen",),
 }
 
+# phase bands drawn behind the traces; only app-window phases
+PHASE_COLORS = {
+    "lesson1": "#4c9be0", "quiz1": "#f2c14e", "lesson2": "#3fa66a",
+    "impacts": "#8e6cc9", "survival_call": "#e07b54",
+    "survival_nav": "#c94f4f", "final_quiz": "#f2c14e",
+}
+
