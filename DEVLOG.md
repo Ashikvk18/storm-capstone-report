@@ -83,3 +83,22 @@ local header to just before the next one, minus 12–16 descriptor bytes.
 | `segments()` | Collapses the per-second vector into `(phase, start, end)` runs ≥ `MIN_SEG`. |
 | `main()` | Per video: pick the `.vtt` (two possible suffixes), split cues into app audio (`"audio shared"` in speaker — Zoom's label for the shared app audio) vs. other speakers, compute frames, bound app cues at `desktop_onset`, segment, write `*_timeline.csv` + a summary row to `data/session_segments.csv` (with `pid` extracted from the filename — the raw filename contains names, so only `pid` is stored). |
 
+## extract_face.py — ML features from the webcam overlay
+
+MediaPipe FaceLandmarker (a pre-trained neural net) runs at 1 fps on the
+top-right webcam crop. Two outputs per second: head pose → `*_face.csv`,
+facial blendshapes (action units) → `*_blend.csv`.
+
+| Construct | Why |
+|---|---|
+| `BLEND_KEYS` | The 16 action units worth tracking, chosen by construct: brows (confusion/surprise), blinks (drowsiness/effort), jaw/mouth (smile/frown/pucker/stretch = expression valence), nose sneer + cheek puff (negative affect). MediaPipe emits 52 blendshapes; these are the interpretable subset. |
+| `head_pose()` name is historical | The function now emits both pose and blendshapes — the name predates the blendshape pass. |
+| `need_pose` / `need_blend` cache checks | Each output has its own cache file; a video can need one pass but not the other (e.g., pose CSV exists from before blendshapes were added). Both are skipped independently — this is what lets the blendshape batch re-run only the missing half. |
+| `output_facial_transformation_matrixes=True` | Requests the 4×4 head-pose matrix; without it `facial_transformation_matrixes` is empty. |
+| `output_face_blendshapes=True` | The correct API name (an earlier `output_facial_blendshapes` guess raised `TypeError`). Requests the 52 action-unit scores. |
+| Euler extraction | `yaw = atan2(m[2][0], m[0][0])`, `pitch = asin(-m[2][1])`, `roll = atan2(m[0][1], m[1][1])` — converts the rotation matrix to degrees. These approximate head orientation, **not** gaze. |
+| `cx`, `cy`, `fw` | Face centroid and face width in pixels — proxies for how centered/close the participant sits to the webcam (posture/attention). |
+| `res.face_blendshapes[0]` | Correct result attribute (an earlier `facial_blendshapes` guess raised `AttributeError`). Blendshape scores are 0–1 activations. |
+| `(t, 1) + (0.0,)*len(BLEND_KEYS)` / `(t, 0) + (nan,)*...` | Keeps row length constant whether or not a face was detected — the CSV schema must not change mid-file. Missing frames get NaN (unknown), not 0 (no expression). |
+| `except Exception` in `main()` | P07's MP4 is truncated; a decode error on one video must not kill the batch — it prints and continues. |
+
