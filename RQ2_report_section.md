@@ -122,3 +122,16 @@ majority baseline. **At n≈19 with session-level labels, these features
 do not support multivariate prediction** — a legitimate methods finding
 that motivates per-phase experience sampling and larger cohorts.
 
+### 3.3 Qualitative triangulation
+
+Post-session interviews show participants verbalizing the exact phase
+the timing data flags — navigation/controls difficulty:
+
+| PID | nav_s | Interview evidence |
+|---|---|---|
+| P02 | 633 | "kind of hard to play"; call replayed after ~8.5 min |
+| P04 | 308 | "I didn't know I was playing the game… just staring" |
+| P10 | 128 | "navigation was a little confusing… left and right" |
+| P12 | 122 | "don't play much games, a little confused on navigation" |
+| P08 | 145 | "the instructions were a little bit unclear" |
+
