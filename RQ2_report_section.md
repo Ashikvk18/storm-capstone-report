@@ -80,6 +80,10 @@ cross-validation (nested inner CV for alpha selection), plus L1
 logistic regression for a binary "any confusion" flag — always compared
 against mean/majority baselines.
 
+All committed artifacts are independently audited by
+`verify.py` (52 checks) and `verify_transcripts.py` (62 checks) —
+see `VERIFICATION.md`.
+
 ### 2.5 Labels
 
 Survey composites (`build_labels.py`): knowledge pre/post scores (10
