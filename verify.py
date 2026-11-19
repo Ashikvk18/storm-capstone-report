@@ -220,3 +220,10 @@ def recompute_rho(df, feature, target):
     return r, int(ok.sum())
 
 
+def csv_rho(d, feature, target):
+    """Look up the rho explore.py recorded for a pair."""
+    m = d["correlations"]
+    hit = m[(m["feature"] == feature) & (m["target"] == target)]
+    return float(hit["rho"].iloc[0]) if len(hit) else np.nan
+
+
