@@ -138,3 +138,13 @@ after any pipeline change; all 52 checks must pass.*
 the .vtt transcripts and .mp4 inventory:
 
 - **Counts** — exactly 20 mp4 and 19 vtt (P07 legitimately has none)
+
+### Per-transcript checks (57 checks)
+
+For each of the 19 transcripts:
+
+- at least one `"audio shared"` speaker cue exists (app audio was
+  actually transcribed - 47–93 shared cues per session)
+- at least 3 of 6 landmark phrase hints appear in the text
+- the last cue ends within the recording duration (+60s tolerance)
+- P07 is the ONLY recording allowed to lack a transcript
