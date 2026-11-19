@@ -58,3 +58,20 @@ app_no_transcript_s, interview_s` for everything else.
 | `head_turn_rate` | Mean per-second angular change |
 | `pitch_mean` | Mean head pitch (camera-mount sensitive) |
 | `look_away_ratio` | Fraction of detected seconds deviating >25° yaw or >20° pitch from the participant's own median pose |
+
+### Expression columns (facial action units)
+
+Session aggregates of per-second blendshape scores, symmetric
+Left/Right pairs averaged. All values 0–1 activation.
+
+| Column | Action units averaged |
+|---|---|
+| `expr_smile_mean`, `expr_smile_max` | mouthSmile Left/Right |
+| `expr_frown_mean` | mouthFrown Left/Right |
+| `expr_brow_up_mean`, `expr_brow_up_max` | browInnerUp + browOuterUp L/R |
+| `expr_blink_mean` | eyeBlink Left/Right |
+| `expr_jaw_mean` | jawOpen |
+| `expr_sneer_mean` | noseSneer Left/Right |
+| `expr_stretch_mean` | mouthStretch Left/Right |
+
+`*_max` columns are single-frame-sensitive — treat as fragile.
