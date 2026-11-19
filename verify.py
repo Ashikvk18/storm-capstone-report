@@ -355,3 +355,15 @@ def check_session_bounds(d):
            f"min {f['session_s'].min():.0f}s")
 
 
+def check_timeline_labels():
+    """Sample a timeline file: every label must be a known phase."""
+    p = "out/2026-01-20_StorM_P02_Kamsi Amaeshi_timeline.csv"
+    if not os.path.exists(p):
+        expect(False, "P02 timeline exists", "missing")
+        return
+    tl = pd.read_csv(p)
+    bad = set(tl["phase"].unique()) - EXPECTED_PHASES
+    expect(not bad, "P02 timeline labels all known phases",
+           f"unknown: {bad}" if bad else "ok")
+
+
