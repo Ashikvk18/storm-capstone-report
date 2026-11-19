@@ -63,3 +63,13 @@ development:
 - **P15 `was_restarted` == 1** — app restarted mid-recording
 - **P05/P06 `survival_attempts` == 1** — regression guard for the
   2-second-speech-blip split artifact
+
+## Missingness and value-range checks (4 checks)
+
+- `no_transcript` rows must have **all seven phase durations NaN**
+- No negative durations or counts anywhere
+- Ratio features (`webcam_still_ratio`, `face_detect_ratio`,
+  `look_away_ratio`) within [0,1]
+- All `expr_*` scores within [0,1]; `post_score` within 0–10;
+  `engagement` within 1–7
+- `learning_gain` == `post_score − pre_score` (max diff ~1e-16)
