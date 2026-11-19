@@ -19,3 +19,12 @@ app-session window wherever noted.
 | Column | Meaning |
 |---|---|
 | `participant_id` | PID joined via `participants.csv` |
+
+### Timing columns (dwell per phase)
+
+Seconds labeled with each phase inside the app window:
+`lesson1_s, quiz1_s, lesson2_s, impacts_s, survival_call_s,
+survival_nav_s, final_quiz_s` — the seven scripted content phases —
+plus `pre_app_s, post_app_s, app_idle_s, aborted_s,
+app_no_transcript_s, interview_s` for everything else.
+`session_s` = first app frame → sustained-desktop/interview onset.
