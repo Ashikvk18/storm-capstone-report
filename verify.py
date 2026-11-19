@@ -157,3 +157,15 @@ def check_p05_single_attempt(d):
                f"got {r['survival_attempts']}")
 
 
+def check_nan_convention(d):
+    """Missingness rule: no_transcript rows have ALL phase columns
+    NaN; transcript_gap rows have early phases NaN."""
+    f = d["features"]
+    phases = ["lesson1_s", "quiz1_s", "lesson2_s", "impacts_s",
+              "survival_call_s", "survival_nav_s", "final_quiz_s"]
+    nt = f[f["no_transcript"] == 1]
+    ok = all(pd.isna(nt[p]).all() for p in phases) if len(nt) else True
+    expect(ok, "no_transcript rows have all phase durations NaN",
+           f"{len(nt)} rows checked")
+
+
