@@ -192,3 +192,13 @@ selection, plus L1 logistic regression for `confusion_any`. Reports
 LOO R²/accuracy vs mean/majority baselines and per-feature selection
 frequency. Expected result is the honest null: R² < 0, accuracy at or
 below baseline.
+
+### Step 8 — `make_figures.py` (report figures)
+
+```bash
+python make_figures.py           # -> figures/*.png (3 files)
+```
+
+P02 phase timeline, lesson1-vs-post-score scatter, and
+nav-time-vs-confusion scatter. Participant IDs (not names) are
+annotated so the PNGs are safe to commit.
