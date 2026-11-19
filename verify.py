@@ -336,3 +336,14 @@ def check_labels_join_coverage(d):
            f"unmatched: {missing}" if missing else "all matched")
 
 
+def check_confusion_any_derivation(d):
+    """confusion_any target exists in correlations and its positive
+    rate matches the known floor effect (~13/19 nonzero confusion)."""
+    df = merged_labels(d)
+    rate = (df["confusion"] > 0).mean()
+    has_target = (d["correlations"]["target"] == "confusion_any").any()
+    ok = has_target and 0.3 <= rate <= 0.9
+    expect(ok, "confusion_any target present + positive rate sane",
+           f"rate={rate:.2f}, target={has_target}")
+
+
