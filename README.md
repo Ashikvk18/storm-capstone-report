@@ -131,6 +131,7 @@ Requires Python 3.10+, `opencv-python`, `pandas`, `numpy`, `matplotlib`,
 
 ```bash
 python segment_sessions.py    # ~1s/frame decode, cached to out/
+python extract_face.py       # needs face_landmarker.task -> out/*_face.csv, *_blend.csv
 python extract_features.py    # -> data/features.csv
 python build_labels.py        # -> data/labels.csv (needs survey xlsx)
 python explore.py             # correlations
