@@ -347,3 +347,11 @@ def check_confusion_any_derivation(d):
            f"rate={rate:.2f}, target={has_target}")
 
 
+def check_session_bounds(d):
+    """session_s must be positive for every participant."""
+    f = d["features"]
+    ok = (f["session_s"] > 0).all()
+    expect(ok, "all session_s positive",
+           f"min {f['session_s'].min():.0f}s")
+
+
