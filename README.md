@@ -92,7 +92,18 @@ webcam overlay. Participants whose pose deviated from their own median
 engagement** (ρ=−0.46, p=.055) — a visible-disengagement signal in the
 expected direction.
 
-### 5. Honest null on prediction
+### 5. Facial expression dynamics track confusion
+
+The same FaceLandmarker pass records 16 facial action units per second.
+Session-level aggregates show **frowning** (ρ=+0.57, p=.013) and
+**mouth-stretch** (ρ=+0.54, p=.020) activation co-occurring with
+reported confusion — the expected direction. The largest |ρ| in the
+dataset is brow-raise-max vs perceived complexity (−.76), but it is a
+fragile max-statistic on ~90 px faces and is reported as a hypothesis
+only. Webcam faces are small, so these are noisy proxies, not emotion
+labels.
+
+### 6. Honest null on prediction
 
 At n≈19 with session-level self-report labels, a LASSO model cannot
 predict engagement/confusion better than the mean (LOO R² < 0). The
