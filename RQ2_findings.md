@@ -44,6 +44,13 @@ look-away ratio (pose deviating >20–25° from each participant's own
 median — controls for camera mounting; P05 sits at −25° pitch and P09's
 overlay was off during the app, so raw thresholds would mislead).
 
+**Facial expression dynamics** (same model, `*_blend.csv`): 16 facial
+action units per second (brow raise, eye blink, jaw drop, smile, frown,
+mouth stretch/pucker, nose sneer, cheek puff), aggregated per session
+into 9 interpretable features (mean/max smile, mean frown, mean brow-up,
+blink rate, jaw openness). Faces are ~90 px so these are noisy proxies,
+not emotion labels.
+
 ## 4. Results
 
 ### 4a. Descriptive associations (Spearman, n≈17–19)
