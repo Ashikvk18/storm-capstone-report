@@ -34,3 +34,15 @@ make_pdf.py             -> storm-capstone.pdf           [step 11]
 
 Steps 1–5 must run in order (each consumes the previous step's output).
 Steps 6–11 can run in any order once 1–5 are complete.
+
+## Environment
+
+- **Python 3.10+** (developed on 3.13, Windows)
+- Core: `opencv-python`, `pandas`, `numpy`, `matplotlib`, `scipy`
+- Modeling: `scikit-learn`
+- Face analysis: `mediapipe` (Tasks API)
+- Labels: `openpyxl` (Qualtrics `.xlsx` exports)
+- PDF: `fpdf2`
+
+No GPU required — MediaPipe FaceLandmarker runs on CPU at ~1 fps
+sampling, which keeps the whole face pass at roughly 3 min per recording.
