@@ -167,3 +167,15 @@ facial blendshapes (action units) → `*_blend.csv`.
 | `df.iterrows()` annotation | Each point is labeled with its participant ID — the direct index `i` is required because `Z` rows align with `df`'s positional order after `reset_index`. |
 | two figures (engagement / confusion) | Same embedding, two colorings — shows whether the behavior-space structure aligns with either label. PC1 ≈ 48 % of variance, PC2 ≈ 21 %. |
 
+## make_pdf.py — README -> PDF
+
+| Construct | Why |
+|---|---|
+| `Doc(FPDF)` + `footer()` | fpdf2 is pure Python — no LaTeX/wkhtmltopdf dependency on Windows. Footer adds a page label to every page automatically. |
+| `clean()` | Strips markdown (`**`, backticks) and replaces Unicode the built-in Helvetica can't encode (`→`, `≈`, `ρ`, smart quotes) with ASCII — without this, fpdf2 raises or prints `?`. Latin-1 encoding with `replace` is the final safety net. |
+| `render_table()` | Column widths are computed from actual string widths then scaled to fit `CW` — markdown tables have no width info, so this auto-fits them. Header row gets bold + fill. |
+| the `while` loop dispatch | One pass over README lines handling each markdown element (headings, tables, images, bullets, blockquotes, code blocks) — the README uses a limited subset, so a line-based renderer is sufficient and avoids a markdown dependency. |
+| image handling | `pdf.image(..., w=CW-20)` embeds the committed PNG figures inline — this is what puts the three findings figures in the PDF. |
+
+---
+
