@@ -9,3 +9,13 @@ Conventions used throughout:
   late transcript, face not detected), never "didn't happen."
 - All durations are **seconds**; all timestamps are **seconds into the
   recording**.
+
+## `features.csv` — one row per recorded session (20 rows)
+
+Produced by `extract_features.py` from per-second timelines, frame
+signatures, transcripts, and face/blend caches. Restricted to the
+app-session window wherever noted.
+
+| Column | Meaning |
+|---|---|
+| `participant_id` | PID joined via `participants.csv` |
