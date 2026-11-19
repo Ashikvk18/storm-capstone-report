@@ -202,3 +202,13 @@ python make_figures.py           # -> figures/*.png (3 files)
 P02 phase timeline, lesson1-vs-post-score scatter, and
 nav-time-vs-confusion scatter. Participant IDs (not names) are
 annotated so the PNGs are safe to commit.
+
+### Step 9 — `make_pca.py` (behavior-profile PCA)
+
+```bash
+python make_pca.py               # -> figures/pca_*.png (2 files)
+```
+
+Standardizes a 10-feature behavior subset and projects to 2 PCs
+(PC1≈48 %, PC2≈21 % of variance), plotted twice — colored by
+engagement and by confusion.
