@@ -75,3 +75,10 @@ Two known data-quality cases are expected, not bugs:
   censored to NaN, not zero.
 - **P07** — truncated MP4, no transcript; all phase features are NaN
   and `app_no_transcript_s` carries the usable duration.
+
+### Input detail: `data/participants.csv`
+
+Columns: `participant_id, name, email, recording_file, recording_date,
+notes`. `recording_file` must match the MP4 filename stem in
+`recovered/` (e.g., `2026-01-20_StorM_P02_Kamsi Amaeshi.mp4`). This file
+is the only place real names appear in the pipeline and is gitignored.
