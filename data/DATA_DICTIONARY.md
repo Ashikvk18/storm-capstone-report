@@ -119,3 +119,16 @@ app_idle, aborted, app_no_transcript, desktop, interview,
 participant_speech`. `pid` and `duration_s` (total recording length)
 lead the row. Multiple spans of the same phase are merged into
 first-start/last-end/total-duration.
+
+## `explore_correlations.csv` — correlation screen (~120 rows)
+
+Produced by `explore.py`. One row per feature×target pair with ≥8
+valid observations.
+
+| Column | Meaning |
+|---|---|
+| `target` | Outcome: engagement, confusion, confusion_any, effort, complexity, perceived_learning, guess_full, post_score, learning_gain |
+| `feature` | Behavioral feature name (same names as `features.csv`) |
+| `n` | Valid paired observations (17–19 typical) |
+| `rho` | Spearman rank correlation, rounded to 3 decimals |
+| `p` | Two-sided p-value, rounded to 4 decimals — uncorrected for multiple testing |
