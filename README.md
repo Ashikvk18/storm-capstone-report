@@ -44,6 +44,8 @@ de-identified derived data (PIDs only) are committed.
 | `explore.py` | Feature–label Spearman correlation screen → `data/explore_correlations.csv` |
 | `model_rq2.py` | LASSO + leave-one-out CV; binary logistic for confusion flag → `data/model_coefficients.csv` |
 | `make_figures.py` | Report figures → `figures/` |
+| `make_pca.py` / `make_expr_timeline.py` | PCA profiles + P02 expression timeline → `figures/` |
+| `verify.py` / `verify_transcripts.py` | Independent audits: 52 artifact checks + 62 transcript checks → exit non-zero on failure |
 
 Every session is segmented into:
 
