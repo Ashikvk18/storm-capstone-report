@@ -306,3 +306,13 @@ def check_png_magic():
            f"bad: {bad}" if bad else "ok")
 
 
+def check_pdf():
+    """storm-capstone.pdf must be a real PDF."""
+    p = "storm-capstone.pdf"
+    ok = os.path.exists(p)
+    if ok:
+        with open(p, "rb") as fh:
+            ok = fh.read(5) == b"%PDF-"
+    expect(ok, "storm-capstone.pdf has %PDF- header")
+
+
