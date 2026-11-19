@@ -109,3 +109,13 @@ Includes survey-only respondents (`has_recording`=0) who have no video.
 
 Confusion has a floor effect (6/19 exact zeros); `explore.py` adds a
 binary `confusion_any` target at analysis time.
+
+## `session_segments.csv` — per-phase spans (20 rows)
+
+Produced by `segment_sessions.py`. For every phase label, three
+columns: `<phase>_t_start`, `<phase>_t_end`, `<phase>_t_dur` (seconds).
+Phases include the seven content phases plus `pre_app, post_app,
+app_idle, aborted, app_no_transcript, desktop, interview,
+participant_speech`. `pid` and `duration_s` (total recording length)
+lead the row. Multiple spans of the same phase are merged into
+first-start/last-end/total-duration.
