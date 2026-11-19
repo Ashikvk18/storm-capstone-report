@@ -38,3 +38,13 @@ app_no_transcript_s, interview_s` for everything else.
 | `speech_in_session_s` | Participant utterance seconds inside the session window |
 | `reached_end` | 1 if the session reached final quiz / post-app / interview |
 | `quiz1_correct`, `quiz1_wrong`, `finalq_correct`, `finalq_wrong` | Spoken feedback counts inside each quiz window |
+
+### Webcam and frame motion columns
+
+| Column | Meaning |
+|---|---|
+| `webcam_motion_mean` | Mean per-second pixel change in the webcam corner |
+| `webcam_still_ratio` | Fraction of session seconds below the stillness threshold (1.2) |
+| `webcam_longest_still_s` | Longest continuous still streak |
+| `cam_motion_lessons` / `cam_motion_survival_nav` | Same motion metric split: passive lessons vs. active navigation |
+| `frame_motion_mean` | Whole-frame motion — confounded with scripted animation; excluded from modeling |
