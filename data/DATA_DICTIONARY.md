@@ -48,3 +48,13 @@ app_no_transcript_s, interview_s` for everything else.
 | `webcam_longest_still_s` | Longest continuous still streak |
 | `cam_motion_lessons` / `cam_motion_survival_nav` | Same motion metric split: passive lessons vs. active navigation |
 | `frame_motion_mean` | Whole-frame motion — confounded with scripted animation; excluded from modeling |
+
+### Head-pose columns (MediaPipe FaceLandmarker)
+
+| Column | Meaning |
+|---|---|
+| `face_detect_ratio` | Fraction of session seconds a face was found |
+| `head_yaw_std`, `head_pitch_std` | Spread of head rotation (movement amount) |
+| `head_turn_rate` | Mean per-second angular change |
+| `pitch_mean` | Mean head pitch (camera-mount sensitive) |
+| `look_away_ratio` | Fraction of detected seconds deviating >25° yaw or >20° pitch from the participant's own median pose |
