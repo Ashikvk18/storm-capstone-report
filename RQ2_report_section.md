@@ -50,3 +50,24 @@ Phases: `pre_app → lesson1 → quiz1 → lesson2 → impacts → survival_call
 app restart (P15's aborted first run), late-starting transcript (P04),
 truncated recording (P07), and scenario replay (P02).
 
+### 2.3 Behavioral features
+
+All features are computed **within the app-session window only**, so
+survey-filling and interview time cannot contaminate "in-app behavior":
+
+- **Timing:** session length and dwell per phase.
+- **Retries:** survival-scenario attempt count (call-dialogue clusters
+  merged across <10 s gaps to avoid split artifacts).
+- **Quiz performance:** spoken "correct"/"incorrect" feedback counts.
+- **Speech:** participant utterance seconds inside the session.
+- **Webcam motion:** motion energy, stillness ratio, longest still
+  streak; separate aggregates for passive lessons vs. active navigation.
+- **ML head pose** (`extract_face.py`, MediaPipe FaceLandmarker, 1 fps):
+  face detection ratio, head-turn rate, yaw/pitch variability, and a
+  look-away ratio measured as deviation from each participant's *own*
+  median pose (controls for camera mounting).
+- **Facial expression dynamics** (same model): 16 facial action units
+  per second (brow raise, blink, jaw drop, smile, frown, mouth
+  stretch, sneer) aggregated into 9 session features. Webcam faces are
+  ~90 px, so these are noisy proxies — not emotion labels.
+
