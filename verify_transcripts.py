@@ -55,3 +55,12 @@ def parse_vtt_speakers(path):
     return len(cues), n_shared, first, last, " ".join(blob)
 
 
+def vtt_for(mp4):
+    """Find the transcript paired with an mp4 by filename stem."""
+    stem = mp4[:-4]
+    for cand in (stem + ".transcript.vtt", stem + ".vtt"):
+        if os.path.exists(cand):
+            return cand
+    return None
+
+
