@@ -148,3 +148,12 @@ For each of the 19 transcripts:
 - at least 3 of 6 landmark phrase hints appear in the text
 - the last cue ends within the recording duration (+60s tolerance)
 - P07 is the ONLY recording allowed to lack a transcript
+
+### Segmentation cross-checks (2 checks)
+
+- **Play order** — observed content-phase start times respect
+  lesson1 → quiz1 → lesson2 → impacts → survival → final_quiz in
+  every session
+- **Survival coverage** — every transcripted session contains a
+  nonzero `survival_call` duration (P07 excluded via the
+  `no_transcript` flag in features.csv)
