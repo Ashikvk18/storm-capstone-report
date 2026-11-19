@@ -171,3 +171,29 @@ confusion. The replayed dialogue appears verbatim in the transcript
    mouth-stretch activation co-occur with reported confusion
    (ρ≈.55). Expression proxies warrant replication at larger n.
 
+### 4.2 What it does not support
+
+Session-level self-reports at n≈19 cannot support predictive modeling
+(LOO R² < 0). The associations above are **descriptive and
+hypothesis-generating**, not validated predictors.
+
+### 4.3 Limitations
+
+- n≈19; labels are session-level, not per-lesson or per-phase
+- Confusion scale has a floor effect (6/19 zeros)
+- No eye tracking or headset telemetry; head pose is a coarse attention
+  proxy, and webcam faces are ~90 px — expression features are noisy
+- `expr_*_max` statistics are sensitive to single-frame artifacts; the
+  brow-up/complexity correlation (ρ=−.76) is reported as a hypothesis
+  only
+- Camera mounting/overlay visibility vary by machine (P05's −25° pitch
+  offset; P09's overlay off during the app)
+- ~120 feature×outcome tests; isolated p-values should not be
+  overclaimed
+
+### 4.4 Future work
+
+Per-phase experience sampling (in-VR prompts at phase boundaries),
+larger cohorts, genuine gaze/eye tracking or headset telemetry, and
+re-testing the expression features on higher-resolution face footage.
+
