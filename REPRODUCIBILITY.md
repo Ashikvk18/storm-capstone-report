@@ -167,3 +167,16 @@ Requires the two survey `.xlsx` files present under their expected
 filenames. Prints Cronbach's alpha for the engagement and confusion
 composites (expect ≈.85 and ≈.80). Verify: `learning_gain` =
 `post_score − pre_score`; `has_recording` flags survey-only rows.
+
+### Step 6 — `explore.py` (correlation screen)
+
+```bash
+python explore.py                # -> data/explore_correlations.csv
+```
+
+Inner-joins features + labels (n≈19), adds the binary `confusion_any`
+target, and computes Spearman ρ for every feature×target pair with
+≥8 valid observations. Prints top-10 per target; writes the full table
+(≈120 rows). Expect the headline rows: `look_away_ratio→effort`
+ρ=−.64, `expr_frown_mean→confusion` ρ=+.57, `lesson1_s→post_score`
+ρ=+.51.
