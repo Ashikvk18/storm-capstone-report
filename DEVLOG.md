@@ -38,3 +38,28 @@ local header to just before the next one, minus 12–16 descriptor bytes.
 | last-entry special case in `main()` | There is no "next header" for the final entry, so the end is `zip_size` minus a possible trailing descriptor — checked directly at EOF. |
 | `INDEX_PATH` cache | The 5 GB scan takes minutes; caching offsets to `_zip_index.json` makes re-extraction instant. |
 
+## build_labels.py — survey answers -> outcome scores
+
+| Construct | Why |
+|---|---|
+| `GUESS_MAP` | Maps the GUESS engagement survey's Likert *text* labels to 1–7. Includes `"strongy agree"` — a typo in the actual survey data that would otherwise silently score NaN. |
+| `ENGAGEMENT_ITEMS = {"3","5","6","8","13","14"}` | The six GUESS items that measure focus/engrossment/motivation. Item 8 ("I feel bored") is **reverse-coded** — agreement means *less* engagement, so a high raw score must be flipped or the composite would be backwards. |
+| `GUESS_REVERSED = {"8"}` | Same reverse-coding applied when scoring the full GUESS scale. |
+| `CONFUSION_ITEMS = ["5"–"8"]` | The cognitive-load items asking whether explanations were unclear/ineffective — this composite is the "confusion" label. |
+| `COMPLEXITY_ITEMS`, `PERCEIVED_LEARNING_ITEMS`, `EFFORT_ITEMS` | Other cognitive-load item groups kept as auxiliary outcomes so correlations can be checked against more than one label. |
+| `EXCLUDE_NAMES` | Drops pilot/test rows (`test`, `testing`, `prabeen giri`) — researcher submissions that aren't real participants. |
+| `load_qualtrics()` | `iloc[2:]` skips Qualtrics' two metadata rows (question text + import IDs) that would otherwise be scored as a respondent. |
+| `norm_name()` / `to_pid()` | Survey names have typos vs. the recording list; fuzzy matching (`difflib`, cutoff 0.7) recovers the correct participant instead of dropping the row. |
+| `guess_score()` | `8 - score` implements reverse coding for item 8; returns NaN (not 0) for missing answers so composites use `nanmean` and don't treat "unanswered" as "strongly disagree". |
+| `cl_score()` | Cognitive-load items use anchor labels ("not at all"/"moderately"/"completely") instead of numbers; the prefix check maps them to 0/5/10 before falling back to float parsing. |
+| `mc_correct()` | Substring matching because pre/post survey MC options are lettered differently between the two forms — the *content* is what matters. |
+| `score_matching()` / `score_sequence()` | The drag-drop and re-sequence items are scored as *fraction correct* (of 3 terms / 4 stages), giving partial credit instead of all-or-nothing. |
+| `knowledge_score()` | Combines 8 binary MC items + 2 fractional items = a 10-point knowledge score. `nansum` skips unanswered items rather than failing the whole score. |
+| `MC_KEY` / `POST_COL` | The correct-answer substrings for each MC item, plus the column remap (`K1`→`Q2` etc.) because pre and post surveys number questions differently. |
+| `cronbach_alpha()` | Internal-consistency reliability of the engagement/confusion composites — printed at runtime so we can report whether the labels are trustworthy (printed: engagement α≈.85, confusion α≈.80). |
+| dedupe `pre` by name | Some participants submitted the pre-survey twice; `drop_duplicates(keep="first")` keeps the earliest submission. |
+| `_key` join via `participant_id` | Joins pre and post rows on participant id (falling back to normalized name for survey-only respondents) — tolerates name typos *between* the two surveys. |
+| `has_recording` | Flags survey respondents who have no video (e.g., P17 missing post-survey is handled on the label side). |
+| `learning_gain = post - pre` | The learning outcome for RQ2 context. |
+| dropping `survey_name` from output | PII — names/emails must not be committed; `participants.csv` stays local via `.gitignore`. |
+
