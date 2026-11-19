@@ -227,3 +227,14 @@ def csv_rho(d, feature, target):
     return float(hit["rho"].iloc[0]) if len(hit) else np.nan
 
 
+def check_corr_reproduces(d, feature, target, expected, tol=0.02):
+    """Recomputed rho must match the committed CSV within tolerance."""
+    df = merged_labels(d)
+    r, n = recompute_rho(df, feature, target)
+    csv = csv_rho(d, feature, target)
+    ok = abs(r - csv) < tol and abs(r - expected) < tol
+    expect(ok, f"rho reproduces: {feature}->{target}",
+           f"recomputed {r:.3f} (n={n}) vs csv {csv:.3f} "
+           f"vs expected {expected:.3f}")
+
+
