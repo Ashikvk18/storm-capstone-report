@@ -48,3 +48,18 @@ missing inputs would silently produce empty outputs downstream.
 (`session_s`, `survival_attempts`, `look_away_ratio`,
 `expr_frown_mean`, `no_transcript`, `transcript_gap`), and all 20
 participant IDs must be unique.
+
+## Anomaly spot-checks — the cases that broke earlier versions
+
+These checks exist because each one caught a real bug during
+development:
+
+- **P02 `survival_attempts` == 2** — the genuine replay (call dialogue
+  recurs at t=1097 after ~8.5 min failed navigation)
+- **P02 `survival_nav_s` > 500** — the extreme struggle case (633 s)
+- **P04 `transcript_gap` == 1 + `lesson1_s` NaN** — transcript starts
+  ~4 min in; unobserved ≠ zero
+- **P07 `no_transcript` == 1 + phases NaN** — truncated MP4, no VTT
+- **P15 `was_restarted` == 1** — app restarted mid-recording
+- **P05/P06 `survival_attempts` == 1** — regression guard for the
+  2-second-speech-blip split artifact
