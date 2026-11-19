@@ -195,3 +195,12 @@ def check_value_ranges(d):
            "engagement within 1-7")
 
 
+def check_learning_gain(d):
+    """learning_gain must equal post_score - pre_score exactly."""
+    l = d["labels"].dropna(subset=["learning_gain"])
+    diff = (l["learning_gain"] - (l["post_score"] - l["pre_score"]))
+    expect((diff.abs() < 1e-9).all(),
+           "learning_gain == post_score - pre_score",
+           f"max diff {diff.abs().max():.2e}")
+
+
