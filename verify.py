@@ -40,3 +40,21 @@ def expect(cond, name, detail=""):
     record(name, cond, detail)
 
 
+def load_inputs():
+    """Load every committed CSV once; missing files record failures."""
+    out = {}
+    for key, path in {
+        "features": f"{DATA}/features.csv",
+        "labels": f"{DATA}/labels.csv",
+        "segments": f"{DATA}/session_segments.csv",
+        "correlations": f"{DATA}/explore_correlations.csv",
+        "coefficients": f"{DATA}/model_coefficients.csv",
+    }.items():
+        if os.path.exists(path):
+            out[key] = pd.read_csv(path)
+        else:
+            out[key] = None
+            expect(False, f"file exists: {path}", "missing")
+    return out
+
+
