@@ -232,6 +232,21 @@ python make_pdf.py               # README.md -> storm-capstone.pdf
 Minimal markdown→PDF renderer (fpdf2). Regenerate whenever `README.md`
 changes; it embeds the three `make_figures.py` PNGs inline.
 
+### Step 12 — `verify.py` + `verify_transcripts.py` (verification)
+
+```bash
+python verify.py               # 52 checks on committed CSVs/artifacts
+python verify_transcripts.py   # 62 checks on raw VTT/MP4 inputs
+```
+
+`verify.py` re-checks structure, anomaly spot-values, every correlation,
+model sanity, figure/PDF integrity, and PII hygiene — exits non-zero
+on failure. `verify_transcripts.py` audits the raw transcripts:
+cue counts, landmark presence, duration bounds, phase play-order, and
+survival-call coverage. See `VERIFICATION.md` for the full report and
+`verification_output.txt` / `transcript_verification_output.txt` for
+captured runs.
+
 ## Output artifacts
 
 | Artifact | Producer | Rows / pages | Contents |
