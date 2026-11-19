@@ -222,3 +222,12 @@ python make_expr_timeline.py     # -> figures/p02_expressions.png
 15-second-smoothed facial action units (frown, brow-raise, smile,
 jaw-open) over P02's phase bands, with the scenario-replay and
 failed-navigation windows annotated.
+
+### Step 11 — `make_pdf.py` (report PDF)
+
+```bash
+python make_pdf.py               # README.md -> storm-capstone.pdf
+```
+
+Minimal markdown→PDF renderer (fpdf2). Regenerate whenever `README.md`
+changes; it embeds the three `make_figures.py` PNGs inline.
