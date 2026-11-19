@@ -102,3 +102,27 @@ facial blendshapes (action units) → `*_blend.csv`.
 | `(t, 1) + (0.0,)*len(BLEND_KEYS)` / `(t, 0) + (nan,)*...` | Keeps row length constant whether or not a face was detected — the CSV schema must not change mid-file. Missing frames get NaN (unknown), not 0 (no expression). |
 | `except Exception` in `main()` | P07's MP4 is truncated; a decode error on one video must not kill the batch — it prints and continues. |
 
+## extract_features.py — per-session behavioral features
+
+| Construct | Why |
+|---|---|
+| `STILL_EPS = 1.2` | Mean-abs pixel diff below this counts as "still" webcam. Calibrated so normal breathing/subtle motion stays under it while real movement exceeds it. |
+| `GAP_HEAD_S = 120` | `pre_app` longer than 2 min with zero `lesson1` seconds = the transcript started late (P04's VTT begins ~4 min in). Used to flag `transcript_gap`. |
+| `APP_LABELS` / `PHASES` / `LESSON_PHASES` | `APP_LABELS` = every label meaning "app was on screen" (used to find the session's last second). `PHASES` = the 7 scripted content phases that get per-phase durations. `LESSON_PHASES` = the passive-content subset used for the lessons-vs-navigation motion contrast. |
+| `CORRECT_RE` / `INCORRECT_RE` | Quiz feedback is spoken aloud; these regexes count it. `CORRECT_RE` requires "correct"/"well done" phrasing so narration mentioning the word doesn't count. |
+| `parse_vtt()` | Same VTT parsing as segment_sessions, but keeps only `(start, end, text)` — speaker isn't needed for feedback counting. |
+| `quiz_feedback(cues, t0, t1)` | Counts correct/incorrect cues overlapping a quiz window. Windowed so narration *about* quizzes elsewhere doesn't pollute the count. |
+| `runs(tl, phase, merge_gap=10)` | Counts phase *attempts*. The merge matters: a 2-second `participant_speech` blip inside one survival call was splitting it into two "attempts" (the P05/P06 artifact). Runs separated by <10 s count as one attempt; P02's real retry (~570 s later) still counts as two. |
+| `span(tl, phase)` | First/last second of a phase — used as the quiz-feedback window. |
+| `transcript_gap` / `no_transcript` censoring | If a recording has no transcript (P07) or the transcript starts late (P04), unobserved phase durations are set to **NaN, not 0** — otherwise "we didn't see it" would be indistinguishable from "it didn't happen" and would corrupt every correlation. |
+| session window (`s0`, `s1`) | `s0` = first non-desktop frame; `s1` = earliest of sustained-desktop onset or interview start. All subsequent features are restricted to this window so post-session survey-filling doesn't count as "behavior." |
+| `speech_in_session_s` | Counts `participant_speech` seconds *within* `[s0, s1]` only — earlier versions counted the whole interview as "the participant talking." |
+| `survival_attempts` / `was_restarted` | Attempt count via `runs()`; restart flag from `aborted_s > 0`. |
+| `reached_end` | Whether the session reached the final quiz/post-app/interview — distinguishes "finished" from "abandoned." |
+| quiz NaN handling | If a quiz window was never observed, its counts are NaN rather than 0. |
+| `webcam_motion_mean`, `webcam_still_ratio`, `webcam_longest_still_s` | Motion-energy aggregates over the session window: average movement, fraction of still seconds, and the longest frozen streak (a candidate "checked out" indicator). |
+| `cam_motion_lessons` vs `cam_motion_survival_nav` | Same motion metric computed separately over passive lessons and active navigation — the *contrast* is the signal (fidgeting during a movie vs. during gameplay mean different things). |
+| head-pose block | Reads `*_face.csv`, restricts to `[s0, s1]`. `face_detect_ratio` = how often a face was found (data-quality + presence proxy). Yaw/pitch std = how much the head moved; `head_turn_rate` = mean per-second angular change. **`look_away_ratio` uses deviation from each participant's own median pose** (thresholds 25° yaw / 20° pitch) — camera mounting and hair cause systematic offsets (P05 reads −25° pitch all session), so absolute angles would flag her as "looking away" 100% of the time. Face-miss seconds are excluded — P09's webcam overlay was off during the app, which would otherwise read as constant look-away. The `len(vis) >= 60` guard requires ≥60 s of detected face before trusting the ratio. |
+| blendshape block | Reads `*_blend.csv` within the same window, requires ≥30 detected seconds. Averages symmetric action units (e.g., `(mouthSmileLeft + mouthSmileRight)/2`) and emits interpretable aggregates: smile mean/max, frown, brow-up, blink rate, jaw openness, sneer, mouth stretch. All session-level — per-phase expression analysis is possible later but wasn't needed for the first pass. |
+| `stem_to_pid` | Maps recording filenames to participant IDs via `participants.csv` — filenames contain real names (PII), so only `pid` is written to `features.csv`. |
+
