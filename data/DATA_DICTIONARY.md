@@ -132,3 +132,17 @@ valid observations.
 | `n` | Valid paired observations (17–19 typical) |
 | `rho` | Spearman rank correlation, rounded to 3 decimals |
 | `p` | Two-sided p-value, rounded to 4 decimals — uncorrected for multiple testing |
+
+## `model_coefficients.csv` — LASSO audit trail (~78 rows)
+
+Produced by `model_rq2.py`. One row per feature×regression-target.
+
+| Column | Meaning |
+|---|---|
+| `target` | `engagement` or `confusion` (continuous LASSO targets only) |
+| `feature` | Behavioral feature name |
+| `selected_folds` | In how many of 19 leave-one-out folds the feature's coefficient was non-zero |
+| `median_coef` | Median standardized coefficient across folds |
+
+A feature selected in ≤2 folds is noise; the honest result is that
+almost nothing was selected consistently.
