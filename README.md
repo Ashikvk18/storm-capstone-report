@@ -126,7 +126,8 @@ RQ2_findings.md     detailed analysis write-up
 ## Reproduce
 
 Requires Python 3.10+, `opencv-python`, `pandas`, `numpy`, `matplotlib`,
-`scikit-learn`, `scipy`. Place the MP4/VTT pairs in `recovered/` and a
+`scikit-learn`, `scipy`, `mediapipe`. `extract_face.py` also needs
+`face_landmarker.task` in the repo root (download URL in the script docstring). Place the MP4/VTT pairs in `recovered/` and a
 `data/participants.csv` mapping (`participant_id`, `recording_file`), then:
 
 ```bash
