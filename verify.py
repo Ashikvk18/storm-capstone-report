@@ -204,3 +204,10 @@ def check_learning_gain(d):
            f"max diff {diff.abs().max():.2e}")
 
 
+def merged_labels(d):
+    """Inner-join features+labels with engagement present - the same
+    frame explore.py analyzes."""
+    df = d["features"].merge(d["labels"], on="participant_id")
+    return df[df["engagement"].notna()].reset_index(drop=True)
+
+
