@@ -379,3 +379,50 @@ def print_report():
     return len(fails)
 
 
+def main():
+    """Run every check group and exit non-zero on any failure."""
+    d = load_inputs()
+    check_file_exists("extract_zip.py", "script exists: extract_zip.py")
+    check_file_exists("segment_sessions.py",
+                      "script exists: segment_sessions.py")
+    check_file_exists("extract_features.py",
+                      "script exists: extract_features.py")
+    check_file_exists("extract_face.py", "script exists: extract_face.py")
+    check_file_exists("build_labels.py", "script exists: build_labels.py")
+    check_file_exists("explore.py", "script exists: explore.py")
+    check_file_exists("model_rq2.py", "script exists: model_rq2.py")
+    check_file_exists("face_landmarker.task",
+                      "face_landmarker.task model present")
+    check_row_counts(d)
+    check_feature_columns(d)
+    check_participant_ids(d)
+    check_p02_retry(d)
+    check_p02_nav_long(d)
+    check_p04_gap(d)
+    check_p07_notranscript(d)
+    check_p15_restart(d)
+    check_p05_single_attempt(d)
+    check_nan_convention(d)
+    check_nonnegative(d)
+    check_value_ranges(d)
+    check_learning_gain(d)
+    check_corr_reproduces(d, "look_away_ratio", "effort", -0.64)
+    check_corr_reproduces(d, "expr_frown_mean", "confusion", 0.57)
+    check_corr_reproduces(d, "lesson1_s", "post_score", 0.51)
+    check_corr_reproduces(d, "expr_brow_up_max", "complexity", -0.76)
+    check_all_correlations_reproduce(d)
+    check_correlation_bounds(d)
+    check_model_targets(d)
+    check_model_selection_bounds(d)
+    check_figures_exist()
+    check_png_magic()
+    check_pdf()
+    check_pii_hygiene()
+    check_labels_join_coverage(d)
+    check_confusion_any_derivation(d)
+    check_session_bounds(d)
+    check_timeline_labels()
+    fails = print_report()
+    raise SystemExit(1 if fails else 0)
+
+
