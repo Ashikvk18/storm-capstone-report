@@ -38,3 +38,8 @@ PHASE_COLORS = {
     "survival_nav": "#c94f4f", "final_quiz": "#f2c14e",
 }
 
+SMOOTH_WINDOW = 15  # seconds; blendshapes at 1fps are noisy, so a
+                    # 15-s rolling mean shows sustained expression
+                    # rather than single-frame artifacts
+REPLAY_T = 1097     # second where P02's survival call replayed
+
