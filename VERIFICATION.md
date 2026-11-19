@@ -129,8 +129,9 @@ not an error).
    — a full re-run of steps 1–5 is the deeper check (see
    `REPRODUCIBILITY.md`).
 
-*Verification appendix — Storm capstone, RQ2. Run `python verify.py`
-after any pipeline change; all 52 checks must pass.*
+*Verification appendix — Storm capstone, RQ2. Run `python verify.py` and
+`python verify_transcripts.py` after any pipeline change; all
+52 + 62 checks must pass.*
 
 ## Transcript-level verification (62 checks)
 
