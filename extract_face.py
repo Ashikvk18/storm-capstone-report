@@ -57,7 +57,7 @@ def head_pose(video):
                 model_asset_path="face_landmarker.task"),
             num_faces=1,
             output_facial_transformation_matrixes=True,
-            output_facial_blendshapes=True))
+            output_face_blendshapes=True))
     cap = cv2.VideoCapture(video)
     fps = cap.get(cv2.CAP_PROP_FPS) or 25.0
     n = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
