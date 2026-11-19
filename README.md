@@ -123,6 +123,9 @@ out/         per-second timelines, framesig caches, contact sheets [gitignored]
 *.py         pipeline scripts (table above)
 capstone prop.pdf   original project proposal
 RQ2_findings.md     detailed analysis write-up
+VERIFICATION.md     independent audit report (114 checks)
+REPRODUCIBILITY.md  full reproduction appendix
+data/DATA_DICTIONARY.md  column definitions
 ```
 
 ## Reproduce
