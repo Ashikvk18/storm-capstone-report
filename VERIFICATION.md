@@ -105,3 +105,13 @@ not an error).
 - All 6 figures exist and exceed 5 KB
 - Every PNG starts with the 8-byte PNG signature
 - `storm-capstone.pdf` starts with `%PDF-`
+
+## PII and join hygiene (4 checks)
+
+- `git ls-files` contains no `participants.csv`, `.mp4`, `.vtt`, or
+  `.xlsx` — names/emails/raw media can never leak into the repo
+- Every `features.csv` PID appears in `labels.csv` (all matched)
+- `confusion_any` target exists in the correlation table and the
+  positive rate (0.74) matches the known floor effect
+- All `session_s` values positive (min 681 s)
+- P02's timeline file contains only known phase labels
