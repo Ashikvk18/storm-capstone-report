@@ -99,3 +99,19 @@ Download from:
 Place it in the repo root. `extract_face.py` loads it via
 `BaseOptions(model_asset_path="face_landmarker.task")`. The model is
 ~30 MB and is not committed.
+
+## Step-by-step reproduction
+
+### Step 1 — `extract_zip.py` (archive recovery)
+
+```bash
+python extract_zip.py            # all entries -> recovered/
+python extract_zip.py P08        # or a substring for one file
+```
+
+The central directory of the study archive is corrupt, so this script
+scans raw bytes for `PK\x03\x04` local headers, caches offsets to
+`_zip_index.json`, and copies STORED (uncompressed) entry data while
+stripping 12–16-byte data descriptors. Expect ~39 outputs (20 MP4 + 19
+VTT). P07's MP4 will be truncated — that is the archive's damage, not
+a script failure.
