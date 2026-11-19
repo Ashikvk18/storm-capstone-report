@@ -75,3 +75,28 @@ def check_counts():
            f"got {len(vtts)}")
 
 
+def transcript_checks():
+    """Per-transcript sanity: shared-audio cues, landmarks, bounds."""
+    seg = pd.read_csv("data/session_segments.csv").set_index("pid")
+    for mp4 in sorted(glob.glob("recovered/*.mp4")):
+        name = os.path.basename(mp4)[:-4]
+        import re as _re
+        m = _re.search(r"P\d+", name)
+        pid = m.group(0) if m else name
+        vtt = vtt_for(mp4)
+        if vtt is None:
+            record(f"{pid}: no transcript (expected only P07)",
+                   pid == "P07", name)
+            continue
+        n_cues, n_shared, first, last, blob = parse_vtt_speakers(vtt)
+        dur = seg.loc[pid, "duration_s"] if pid in seg.index else None
+        record(f"{pid}: has audio-shared cues",
+               n_shared > 0, f"{n_shared}/{n_cues} cues")
+        hits = [h for h in LANDMARK_HINTS if h in blob]
+        record(f"{pid}: landmark phrases present",
+               len(hits) >= 3, f"{len(hits)}/6 hints")
+        if dur is not None and last is not None:
+            record(f"{pid}: last cue within duration",
+                   last <= dur + 60, f"last={last:.0f} dur={dur}")
+
+
