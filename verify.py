@@ -211,3 +211,12 @@ def merged_labels(d):
     return df[df["engagement"].notna()].reset_index(drop=True)
 
 
+def recompute_rho(df, feature, target):
+    """Independent Spearman recompute for one feature-target pair."""
+    ok = df[feature].notna() & df[target].notna()
+    if ok.sum() < 3:
+        return np.nan, 0
+    r, p = spearmanr(df.loc[ok, feature], df.loc[ok, target])
+    return r, int(ok.sum())
+
+
