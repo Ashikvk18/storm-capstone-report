@@ -82,3 +82,15 @@ Left/Right pairs averaged. All values 0–1 activation.
 |---|---|
 | `no_transcript` | 1 if the recording has no usable transcript (P07) — all phase features then NaN |
 | `transcript_gap` | 1 if `pre_app` >120 s with zero lesson1 seconds (P04's late-starting transcript) — early phases censored to NaN |
+
+## `labels.csv` — survey-derived outcomes (~22 rows)
+
+Produced by `build_labels.py` from the pre/post Qualtrics exports.
+Includes survey-only respondents (`has_recording`=0) who have no video.
+
+### Knowledge scores
+
+| Column | Meaning |
+|---|---|
+| `pre_score`, `post_score` | 10-point tornado-knowledge scores (8 binary MC + drag-drop matching + sequencing, partial credit) |
+| `learning_gain` | `post_score − pre_score` |
