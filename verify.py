@@ -292,3 +292,17 @@ def check_figures_exist():
                else "MISSING")
 
 
+def check_png_magic():
+    """PNG files must start with the 8-byte PNG signature."""
+    sig = b"\x89PNG\r\n\x1a\n"
+    bad = []
+    for fn in FIGURE_FILES:
+        p = os.path.join(FIGS, fn)
+        if os.path.exists(p):
+            with open(p, "rb") as fh:
+                if fh.read(8) != sig:
+                    bad.append(fn)
+    expect(not bad, "all figures have valid PNG headers",
+           f"bad: {bad}" if bad else "ok")
+
+
