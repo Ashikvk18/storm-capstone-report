@@ -136,3 +136,16 @@ facial blendshapes (action units) → `*_blend.csv`.
 | Spearman (not Pearson) | Features are skewed (e.g., `survival_nav_s` ranges 70–633 s) and several outcomes are ordinal composites — rank correlation is robust to both. |
 | no multiple-testing correction | Deliberate: this is hypothesis-*generating* at n=19. The script prints raw p-values with the caveat in the docstring; `RQ2_findings.md` interprets them conservatively. |
 
+## model_rq2.py — honest small-sample modeling
+
+| Construct | Why |
+|---|---|
+| Feature exclusions | `frame_motion_mean` dropped (it's a proxy for time-in-animated-scenes, not a behavior); flag columns dropped; `was_restarted` dropped because it's positive for exactly 1/19 participants — nothing to learn from. |
+| `ALPHAS = logspace(-2, 1.5, 40)` | LASSO penalty grid; wide enough to go from "keep everything" to "keep nothing." |
+| `lasso_loo()` | Leave-one-out CV: for each held-out participant, pick alpha by *inner* 5-fold CV on the remaining 18, fit, predict. Nested CV is required — picking alpha on the full data then doing LOO would leak. |
+| `selected` / `coefs` tracking | Counts in how many folds each feature was non-zero and the median coefficient — **stability across folds matters more than the point estimate** at n=19; a feature selected in 2/19 folds is noise. |
+| `report_regression()` | Prints LOO R² vs. the mean-predictor baseline (R²=0). Features beating baseline = real signal; the actual result was R²<0 for both targets — reported honestly as a null. |
+| `report_binary()` | L1 logistic regression for `confusion_any`, same LOO scheme, accuracy vs. majority-class baseline (0.74 — the model matched it exactly, i.e., learned nothing). |
+| median imputation | `X_df.fillna(X_df.median())` — only P07's transcript-less row has NaNs; median imputation keeps her in the analysis for the features she does have. |
+| `data/model_coefficients.csv` | Per-feature selection frequency + median coefficient — the audit trail behind "LASSO selected nothing." |
+
