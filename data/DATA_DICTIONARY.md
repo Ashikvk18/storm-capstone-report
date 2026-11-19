@@ -133,6 +133,9 @@ valid observations.
 | `rho` | Spearman rank correlation, rounded to 3 decimals |
 | `p` | Two-sided p-value, rounded to 4 decimals — uncorrected for multiple testing |
 
+Note: 9 rows have empty `rho`/`p` — `quiz1_correct` is
+constant across participants, so Spearman is undefined for it.
+
 ## `model_coefficients.csv` — LASSO audit trail (~78 rows)
 
 Produced by `model_rq2.py`. One row per feature×regression-target.
