@@ -115,3 +115,16 @@ scans raw bytes for `PK\x03\x04` local headers, caches offsets to
 stripping 12–16-byte data descriptors. Expect ~39 outputs (20 MP4 + 19
 VTT). P07's MP4 will be truncated — that is the archive's damage, not
 a script failure.
+
+### Step 2 — `segment_sessions.py` (phase segmentation)
+
+```bash
+python segment_sessions.py       # all videos (~minutes; cached)
+python segment_sessions.py P02   # or one recording substring
+```
+
+Fuses VTT narration landmarks with 1-fps frame signatures (white-pixel
+desktop detection + frame/webcam motion). Writes `out/*_timeline.csv`
+(per-second phase labels), caches `out/*_framesig.csv`, and appends
+`data/session_segments.csv`. Runtime is dominated by video decode;
+re-runs reuse the frame-signature cache.
