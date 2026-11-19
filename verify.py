@@ -64,3 +64,19 @@ def check_file_exists(path, name):
            else "MISSING")
 
 
+def check_row_counts(d):
+    """Row counts must match the known study size."""
+    expect(len(d["features"]) == 20, "features.csv has 20 rows",
+           f"got {len(d['features'])}")
+    expect(19 <= len(d["labels"]) <= 25, "labels.csv row count sane",
+           f"got {len(d['labels'])}")
+    expect(len(d["segments"]) == 20, "session_segments.csv 20 rows",
+           f"got {len(d['segments'])}")
+    expect(250 <= len(d["correlations"]) <= 400,
+           "explore_correlations.csv row count sane",
+           f"got {len(d['correlations'])}")
+    expect(len(d["coefficients"]) > 0,
+           "model_coefficients.csv non-empty",
+           f"got {len(d['coefficients'])}")
+
+
