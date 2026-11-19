@@ -131,3 +131,10 @@ not an error).
 
 *Verification appendix — Storm capstone, RQ2. Run `python verify.py`
 after any pipeline change; all 52 checks must pass.*
+
+## Transcript-level verification (62 checks)
+
+`verify_transcripts.py` audits the RAW inputs `verify.py` cannot see -
+the .vtt transcripts and .mp4 inventory:
+
+- **Counts** — exactly 20 mp4 and 19 vtt (P07 legitimately has none)
