@@ -41,3 +41,10 @@ missing inputs would silently produce empty outputs downstream.
 - `explore_correlations.csv` — 324 rows (36 features × 9 targets,
   minus pairs dropped for n<8)
 - `model_coefficients.csv` — non-empty
+
+## Schema checks (2 checks)
+
+`features.csv` must contain columns from every feature group
+(`session_s`, `survival_attempts`, `look_away_ratio`,
+`expr_frown_mean`, `no_transcript`, `transcript_gap`), and all 20
+participant IDs must be unique.
