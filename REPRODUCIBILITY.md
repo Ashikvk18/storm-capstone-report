@@ -180,3 +180,15 @@ target, and computes Spearman ρ for every feature×target pair with
 (≈120 rows). Expect the headline rows: `look_away_ratio→effort`
 ρ=−.64, `expr_frown_mean→confusion` ρ=+.57, `lesson1_s→post_score`
 ρ=+.51.
+
+### Step 7 — `model_rq2.py` (LASSO + LOO-CV)
+
+```bash
+python model_rq2.py              # -> data/model_coefficients.csv
+```
+
+Standardized LASSO with leave-one-out CV and inner 5-fold alpha
+selection, plus L1 logistic regression for `confusion_any`. Reports
+LOO R²/accuracy vs mean/majority baselines and per-feature selection
+frequency. Expected result is the honest null: R² < 0, accuracy at or
+below baseline.
