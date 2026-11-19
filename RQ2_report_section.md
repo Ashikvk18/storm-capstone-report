@@ -34,3 +34,19 @@ labels.
   engagement, confusion, perceived learning, effort, complexity,
   learning gain).
 
+### 2.2 Phase segmentation
+
+Each session was cut into per-second phases by fusing two signals
+(`segment_sessions.py`):
+
+1. **Transcript landmarks** — scripted narration phrases (e.g.,
+   "welcome to the tornado formation lesson") mark phase boundaries.
+2. **Frame signatures** — 1 fps sampling measures white-pixel fraction
+   (desktop vs. app) and frame/webcam motion; sustained desktop onset
+   bounds the session window.
+
+Phases: `pre_app → lesson1 → quiz1 → lesson2 → impacts → survival_call
+→ survival_nav → final_quiz → post_app → interview`. Edge cases handled:
+app restart (P15's aborted first run), late-starting transcript (P04),
+truncated recording (P07), and scenario replay (P02).
+
