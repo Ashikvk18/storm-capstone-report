@@ -82,3 +82,11 @@ Columns: `participant_id, name, email, recording_file, recording_date,
 notes`. `recording_file` must match the MP4 filename stem in
 `recovered/` (e.g., `2026-01-20_StorM_P02_Kamsi Amaeshi.mp4`). This file
 is the only place real names appear in the pipeline and is gitignored.
+
+### Input detail: survey exports
+
+Two Qualtrics `.xlsx` files (pre and post). `build_labels.py` expects
+the exact filenames at the top of the script — rename or edit the
+constants if your exports differ. The script drops Qualtrics' two
+metadata rows, dedupes repeat pre-survey submissions, excludes
+pilot/test rows by name, and fuzzy-matches survey names to PIDs.
