@@ -142,5 +142,9 @@ is visible verbatim in the transcript (mom-call dialogue replays at t=1097).
    rate) correlate with engagement/effort scales in the expected
    direction (ρ ≈ −0.5 to −0.65) — the strongest behavioral signal in
    the dataset after lesson-1 dwell.
-5. Session-level self-reports at n≈20 cannot support predictive modeling;
+5. Facial action-unit dynamics (frown, mouth-stretch) correlate
+   with reported confusion in the expected direction (rho ~ 0.55) —
+   preliminary evidence that expression proxies carry signal, pending
+   replication at larger n.
+6. Session-level self-reports at n≈20 cannot support predictive modeling;
    per-phase experience sampling is needed.
