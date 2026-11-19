@@ -64,3 +64,14 @@ def vtt_for(mp4):
     return None
 
 
+def check_counts():
+    """Expect 20 mp4 and 19 vtt (P07 has no transcript)."""
+    mp4s = glob.glob("recovered/*.mp4")
+    # "*.vtt" already matches both "X.vtt" and "X.transcript.vtt"
+    vtts = glob.glob("recovered/*.vtt")
+    record("20 mp4 recordings found", len(mp4s) == 20,
+           f"got {len(mp4s)}")
+    record("19 transcripts found", len(vtts) == 19,
+           f"got {len(vtts)}")
+
+
