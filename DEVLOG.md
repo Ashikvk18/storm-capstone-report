@@ -126,3 +126,13 @@ facial blendshapes (action units) → `*_blend.csv`.
 | blendshape block | Reads `*_blend.csv` within the same window, requires ≥30 detected seconds. Averages symmetric action units (e.g., `(mouthSmileLeft + mouthSmileRight)/2`) and emits interpretable aggregates: smile mean/max, frown, brow-up, blink rate, jaw openness, sneer, mouth stretch. All session-level — per-phase expression analysis is possible later but wasn't needed for the first pass. |
 | `stem_to_pid` | Maps recording filenames to participant IDs via `participants.csv` — filenames contain real names (PII), so only `pid` is written to `features.csv`. |
 
+## explore.py — correlation screen
+
+| Construct | Why |
+|---|---|
+| `FEATURES` / `TARGETS` | The explicit feature and outcome lists — keeps the screen reproducible and makes it obvious which columns were tested (multiple-testing burden is ~84 tests at n≈19). |
+| `confusion_any = (confusion > 0)` | The confusion composite has a floor effect (many exact zeros); the binary "any confusion" flag is a cleaner secondary target. |
+| `ok.sum() < 8` guard | Skips feature×target pairs with fewer than 8 valid observations — a correlation on 5 points is meaningless. This is also why P07's all-NaN features silently drop out instead of corrupting results. |
+| Spearman (not Pearson) | Features are skewed (e.g., `survival_nav_s` ranges 70–633 s) and several outcomes are ordinal composites — rank correlation is robust to both. |
+| no multiple-testing correction | Deliberate: this is hypothesis-*generating* at n=19. The script prints raw p-values with the caveat in the docstring; `RQ2_findings.md` interprets them conservatively. |
+
