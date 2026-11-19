@@ -91,3 +91,11 @@ Then **all 324 rows** of `explore_correlations.csv` are recomputed —
 9 rows have NaN ρ because `quiz1_correct` is constant across
 participants (a correlation is undefined on constant input — expected,
 not an error).
+
+## Model sanity (2 checks)
+
+- `model_coefficients.csv` covers both regression targets
+  (engagement, confusion)
+- `selected_folds` ∈ [0,19] — cannot exceed the 19 leave-one-out folds
+  (observed max: 6, i.e., no feature was stably selected — consistent
+  with the reported null result)
