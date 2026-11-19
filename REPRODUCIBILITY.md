@@ -246,3 +246,20 @@ changes; it embeds the three `make_figures.py` PNGs inline.
 | `out/*_timeline.csv` | segment_sessions | per-second | phase label per second (cached) |
 | `out/*_framesig.csv` | segment_sessions | per-second | desktop flag + motion (cached) |
 | `out/*_face.csv` / `*_blend.csv` | extract_face | per-second | head pose / action units (cached) |
+
+## Verification checklist
+
+After a full run, confirm:
+
+1. **Counts** — `features.csv` has 20 rows; `labels.csv` has ~22 rows
+   (includes survey-only respondents); `explore_correlations.csv` has
+   ~120 rows.
+2. **Spot checks** — P02 `survival_attempts` = 2; P04 lesson phases are
+   NaN (not 0); P07 `no_transcript` = 1; P15 `was_restarted` = 1.
+3. **Headline correlations reproduce** — `look_away_ratio→effort`
+   ρ ≈ −.64; `expr_frown_mean→confusion` ρ ≈ +.57;
+   `lesson1_s→post_score` ρ ≈ +.51.
+4. **Model null reproduces** — engagement LOO R² ≈ −.20, confusion
+   R² ≈ −.13, `confusion_any` accuracy ≈ .63 < .74 baseline.
+5. **Figures regenerate** — all six PNGs and the 4-page PDF produce
+   without error.
