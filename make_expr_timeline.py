@@ -19,3 +19,15 @@ BLEND_CSV = f"out/{STEM}_blend.csv"
 TIMELINE_CSV = f"out/{STEM}_timeline.csv"
 OUT_PNG = "figures/p02_expressions.png"
 
+# action units to plot: name -> blendshape columns to average.
+# symmetric pairs are mean-combined; jawOpen stands alone.
+# chosen for interpretability: frown/brow = confusion-adjacent,
+# smile = positive affect, jaw = surprise/speech proxy
+SERIES = {
+    "frown": ("mouthFrownLeft", "mouthFrownRight"),
+    "brow_raise": ("browInnerUp", "browOuterUpLeft",
+                   "browOuterUpRight"),
+    "smile": ("mouthSmileLeft", "mouthSmileRight"),
+    "jaw_open": ("jawOpen",),
+}
+
