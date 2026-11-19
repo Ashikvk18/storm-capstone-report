@@ -156,3 +156,14 @@ row per participant: phase durations, retries, quiz counts, speech,
 webcam/frame motion, head pose, and expression aggregates. Missing
 data stays NaN. Verify: 20 rows; P02 `survival_attempts`=2; P04 phase
 columns NaN; P07 `no_transcript`=1.
+
+### Step 5 — `build_labels.py` (survey labels)
+
+```bash
+python build_labels.py           # -> data/labels.csv
+```
+
+Requires the two survey `.xlsx` files present under their expected
+filenames. Prints Cronbach's alpha for the engagement and confusion
+composites (expect ≈.85 and ≈.80). Verify: `learning_gain` =
+`post_score − pre_score`; `has_recording` flags survey-only rows.
