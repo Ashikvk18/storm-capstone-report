@@ -76,3 +76,16 @@ def smooth(expr):
         SMOOTH_WINDOW, center=True, min_periods=1).mean()
 
 
+def phase_spans(ph):
+    """Contiguous (phase, start, end) runs for background bands."""
+    spans = []
+    start = ph["t_sec"].iloc[0]
+    cur = ph["phase"].iloc[0]
+    for _, r in ph.iloc[1:].iterrows():
+        if r["phase"] != cur:
+            spans.append((cur, start, r["t_sec"]))
+            cur, start = r["phase"], r["t_sec"]
+    spans.append((cur, start, ph["t_sec"].iloc[-1] + 1))
+    return spans
+
+
