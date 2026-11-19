@@ -140,3 +140,10 @@ def check_p07_notranscript(d):
            f"flag={r['no_transcript']}")
 
 
+def check_p15_restart(d):
+    """P15 restarted the app mid-recording: aborted seconds exist."""
+    r = row_of(d["features"], "P15")
+    expect(r is not None and r["was_restarted"] == 1,
+           "P15 was_restarted == 1", f"got {r['was_restarted']}")
+
+
