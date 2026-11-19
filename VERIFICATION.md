@@ -128,3 +128,6 @@ not an error).
 3. **Verification checks the committed artifacts, not the raw videos**
    — a full re-run of steps 1–5 is the deeper check (see
    `REPRODUCIBILITY.md`).
+
+*Verification appendix — Storm capstone, RQ2. Run `python verify.py`
+after any pipeline change; all 52 checks must pass.*
