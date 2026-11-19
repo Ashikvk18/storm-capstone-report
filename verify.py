@@ -112,3 +112,10 @@ def check_p02_retry(d):
            f"got {r['survival_attempts'] if r is not None else 'NA'}")
 
 
+def check_p02_nav_long(d):
+    """P02's navigation should be the extreme struggle case."""
+    r = row_of(d["features"], "P02")
+    expect(r is not None and r["survival_nav_s"] > 500,
+           "P02 survival_nav_s > 500s", f"got {r['survival_nav_s']}")
+
+
