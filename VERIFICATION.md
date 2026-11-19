@@ -73,3 +73,21 @@ development:
 - All `expr_*` scores within [0,1]; `post_score` within 0–10;
   `engagement` within 1–7
 - `learning_gain` == `post_score − pre_score` (max diff ~1e-16)
+
+## Correlation reproduction (6 checks)
+
+The four headline associations are recomputed independently and must
+match both the committed CSV and the reported values:
+
+| Feature → Target | Recomputed ρ | CSV ρ |
+|---|---|---|
+| look_away_ratio → effort | −.635 | −.635 |
+| expr_frown_mean → confusion | +.573 | +.573 |
+| lesson1_s → post_score | +.505 | +.505 |
+| expr_brow_up_max → complexity | −.764 | −.764 |
+
+Then **all 324 rows** of `explore_correlations.csv` are recomputed —
+0 mismatches beyond ±.02. Bounds check: ρ ∈ [−1,1], n ∈ [8,25];
+9 rows have NaN ρ because `quiz1_correct` is constant across
+participants (a correlation is undefined on constant input — expected,
+not an error).
