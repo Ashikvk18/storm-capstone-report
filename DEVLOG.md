@@ -149,3 +149,12 @@ facial blendshapes (action units) → `*_blend.csv`.
 | median imputation | `X_df.fillna(X_df.median())` — only P07's transcript-less row has NaNs; median imputation keeps her in the analysis for the features she does have. |
 | `data/model_coefficients.csv` | Per-feature selection frequency + median coefficient — the audit trail behind "LASSO selected nothing." |
 
+## make_figures.py — report visuals
+
+| Construct | Why |
+|---|---|
+| `PHASE_ORDER` / `COLORS` | Fixed phase order and color map shared by the timeline figure and legend — keeps figures visually consistent. |
+| `fig_p02()` | Draws P02's per-second phase labels as a single stacked bar (contiguous runs of identical labels merged). `desktop`/`interview` runs are skipped so the bar shows only the app window; the dashed line at t=1097 marks where the survival call replayed — the visual proof of the retry. Censored at the session end so the post-session tail doesn't stretch the axis. |
+| `scatter()` | Generic feature-vs-outcome scatter with participant-ID labels and a trend line — used for the lesson1→post-score and nav→confusion figures. Participant IDs (not names) are annotated because the figures are committed. |
+| `import numpy`/`os` mid-file | Placed just before first use — the file grew organically; functionally fine, stylistically imperfect. |
+
