@@ -28,3 +28,8 @@ PHASE_ORDER = ["pre_app", "lesson1", "quiz1", "lesson2", "impacts",
 RESULTS = []
 
 
+def record(name, ok, detail=""):
+    """Append one check result."""
+    RESULTS.append((name, bool(ok), detail))
+
+
