@@ -123,3 +123,7 @@ def plot(expr, ph):
     print(f"wrote {OUT_PNG}")
 
 
+if __name__ == "__main__":
+    expr = load_expressions()
+    ph = load_phases()
+    plot(expr, ph)
