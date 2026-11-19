@@ -169,3 +169,11 @@ def check_nan_convention(d):
            f"{len(nt)} rows checked")
 
 
+def check_nonnegative(d):
+    """Durations and counts cannot be negative."""
+    f = d["features"]
+    dur_cols = [c for c in f.columns if c.endswith("_s")]
+    bad = (f[dur_cols].dropna() < 0).sum().sum()
+    expect(bad == 0, "no negative duration/count values", f"{bad} bad")
+
+
