@@ -255,3 +255,15 @@ def check_all_correlations_reproduce(d):
            f"{bad} mismatches")
 
 
+def check_correlation_bounds(d):
+    """rho must be in [-1,1] where defined; constant inputs yield NaN
+    (e.g. quiz1_correct is identical for everyone). n in [8,25]."""
+    c = d["correlations"]
+    rho_ok = c["rho"].dropna().between(-1, 1).all()
+    n_ok = c["n"].between(8, 25).all()
+    nan_count = int(c["rho"].isna().sum())
+    expect(rho_ok and n_ok,
+           "correlation rho/n within valid ranges",
+           f"{nan_count} NaN rhos (constant inputs)")
+
+
