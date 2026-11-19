@@ -234,6 +234,38 @@ def extract_one(video, pid):
             feat["look_away_ratio"] = float(away.mean())
         else:
             feat["look_away_ratio"] = np.nan
+    # facial expression dynamics (extract_face.py blend pass),
+    # session-window aggregates of interpretable action units
+    blend_path = f"out/{name}_blend.csv"
+    if os.path.exists(blend_path) and not np.isnan(s1):
+        bc = pd.read_csv(blend_path)
+        bw = bc[(bc["t_sec"] >= s0) & (bc["t_sec"] <= s1)
+                & (bc["face_found"] == 1)]
+        if len(bw) >= 30:
+            sm = (bw["mouthSmileLeft"] + bw["mouthSmileRight"]) / 2
+            fr = (bw["mouthFrownLeft"] + bw["mouthFrownRight"]) / 2
+            br = (bw["browOuterUpLeft"] + bw["browOuterUpRight"]) / 2
+            sn = (bw["noseSneerLeft"] + bw["noseSneerRight"]) / 2
+            bl = (bw["eyeBlinkLeft"] + bw["eyeBlinkRight"]) / 2
+            st = (bw["mouthStretchLeft"] + bw["mouthStretchRight"]) / 2
+            feat["expr_smile_mean"] = float(sm.mean())
+            feat["expr_smile_max"] = float(sm.max())
+            feat["expr_frown_mean"] = float(fr.mean())
+            feat["expr_brow_up_mean"] = float(
+                (bw["browInnerUp"] + br).mean() / 2)
+            feat["expr_brow_up_max"] = float(
+                (bw["browInnerUp"] + br).max() / 2)
+            feat["expr_blink_mean"] = float(bl.mean())
+            feat["expr_jaw_mean"] = float(bw["jawOpen"].mean())
+            feat["expr_sneer_mean"] = float(sn.mean())
+            feat["expr_stretch_mean"] = float(st.mean())
+        else:
+            for k in ("expr_smile_mean", "expr_smile_max",
+                      "expr_frown_mean", "expr_brow_up_mean",
+                      "expr_brow_up_max", "expr_blink_mean",
+                      "expr_jaw_mean", "expr_sneer_mean",
+                      "expr_stretch_mean"):
+                feat[k] = np.nan
     return feat
 
 

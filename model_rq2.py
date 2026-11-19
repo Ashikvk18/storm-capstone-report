@@ -24,6 +24,9 @@ FEATURES = [
     "cam_motion_lessons", "cam_motion_survival_nav",
     "face_detect_ratio", "head_yaw_std", "head_pitch_std",
     "head_turn_rate", "pitch_mean", "look_away_ratio",
+    "expr_smile_mean", "expr_smile_max", "expr_frown_mean",
+    "expr_brow_up_mean", "expr_brow_up_max", "expr_blink_mean",
+    "expr_jaw_mean", "expr_sneer_mean", "expr_stretch_mean",
 ]
 ALPHAS = np.logspace(-2, 1.5, 40)
 
