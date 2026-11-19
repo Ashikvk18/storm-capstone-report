@@ -120,3 +120,21 @@ def phase_order_checks():
            f"out-of-order: {bad}" if bad else "ok")
 
 
+def survival_call_checks():
+    """Every transcripted session should contain survival_call."""
+    seg = pd.read_csv("data/session_segments.csv")
+    # no_transcript flag lives in features.csv, not session_segments
+    feat = pd.read_csv("data/features.csv")
+    no_tr = set(feat.loc[feat["no_transcript"] == 1,
+                         "participant_id"].astype(str))
+    missing = []
+    for _, row in seg.iterrows():
+        if str(row["pid"]) in no_tr:
+            continue
+        dur = row.get("survival_call_t_dur", 0)
+        if not (isinstance(dur, (int, float)) and dur > 0):
+            missing.append(row["pid"])
+    record("all transcripted sessions have survival_call",
+           not missing, f"missing: {missing}" if missing else "ok")
+
+
