@@ -65,3 +65,14 @@ def load_phases():
     return tl.loc[keep, ["t_sec", "phase"]]
 
 
+def smooth(expr):
+    """Rolling mean over SMOOTH_WINDOW seconds.
+
+    Raw 1-fps blendshape scores flicker frame to frame; smoothing
+    surfaces sustained expression (e.g., a frown held through a
+    navigation struggle) instead of detection noise.
+    """
+    return expr[list(SERIES)].rolling(
+        SMOOTH_WINDOW, center=True, min_periods=1).mean()
+
+
