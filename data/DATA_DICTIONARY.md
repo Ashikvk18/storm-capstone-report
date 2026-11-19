@@ -94,3 +94,18 @@ Includes survey-only respondents (`has_recording`=0) who have no video.
 |---|---|
 | `pre_score`, `post_score` | 10-point tornado-knowledge scores (8 binary MC + drag-drop matching + sequencing, partial credit) |
 | `learning_gain` | `post_score − pre_score` |
+
+### Self-report composites (post-survey only)
+
+| Column | Meaning | Scale |
+|---|---|---|
+| `engagement` | Six GUESS items (focus/engrossment/motivation; "bored" reverse-coded), α≈.85 | 1–7 |
+| `confusion` | Four cognitive-load items on unclear/ineffective explanations, α≈.80 | 0–10 |
+| `perceived_learning` | Four cognitive-load items on perceived learning | 0–10 |
+| `effort` | Two cognitive-load items on invested effort | 0–10 |
+| `complexity` | Three cognitive-load items on content complexity | 0–10 |
+| `guess_full` | All 18 GUESS items, one reverse-coded | 1–7 |
+| `has_recording` | 1 if a session recording exists for this participant | 0/1 |
+
+Confusion has a floor effect (6/19 exact zeros); `explore.py` adds a
+binary `confusion_any` target at analysis time.
