@@ -316,3 +316,14 @@ def check_pdf():
     expect(ok, "storm-capstone.pdf has %PDF- header")
 
 
+def check_pii_hygiene():
+    """PII files must never be tracked by git."""
+    tracked = subprocess.run(
+        ["git", "ls-files"], capture_output=True, text=True).stdout
+    bad = [f for f in tracked.splitlines()
+           if "participants.csv" in f or f.endswith(".mp4")
+           or f.endswith(".vtt") or f.endswith(".xlsx")]
+    expect(not bad, "no PII/raw-media files tracked in git",
+           f"bad: {bad}" if bad else "ok")
+
+
