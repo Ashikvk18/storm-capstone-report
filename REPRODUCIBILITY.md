@@ -143,3 +143,16 @@ is cached independently — a video needing only the missing half still
 runs one pass. Expect ~1,400–3,500 rows per video; P09's blend/pose
 coverage is near-zero because her webcam overlay was off during the
 app.
+
+### Step 4 — `extract_features.py` (behavioral features)
+
+```bash
+python extract_features.py       # -> data/features.csv (20 rows)
+python extract_features.py P04   # or one recording substring
+```
+
+Joins timeline + framesig + transcript + face/blend caches into one
+row per participant: phase durations, retries, quiz counts, speech,
+webcam/frame motion, head pose, and expression aggregates. Missing
+data stays NaN. Verify: 20 rows; P02 `survival_attempts`=2; P04 phase
+columns NaN; P07 `no_transcript`=1.
