@@ -105,3 +105,21 @@ def plot(expr, ph):
     for name in SERIES:
         ax.plot(t, sm[name], label=name, color=colors[name], lw=1.4)
 
+    ax.axvline(REPLAY_T, color="k", ls="--", lw=1)
+    ax.annotate("call replays\n(scenario retry)", (REPLAY_T + 8, 0.92),
+                fontsize=8, va="top")
+    ax.annotate("~8.5 min failed navigation", (830, 0.92),
+                ha="center", fontsize=8, color="#c94f4f")
+
+    ax.set_xlim(t.min(), t.max())
+    ax.set_ylim(0, 1)
+    ax.set_xlabel("seconds into recording")
+    ax.set_ylabel("action-unit activation (15s avg)")
+    ax.set_title("P02 facial expressions across session phases")
+    ax.legend(ncol=4, fontsize=8, loc="lower left", frameon=False)
+    fig.tight_layout()
+    fig.savefig(OUT_PNG, dpi=160)
+    plt.close(fig)
+    print(f"wrote {OUT_PNG}")
+
+
