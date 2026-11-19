@@ -80,3 +80,13 @@ def check_row_counts(d):
            f"got {len(d['coefficients'])}")
 
 
+def check_feature_columns(d):
+    """Every feature group must be present as columns."""
+    need = ["participant_id", "session_s", "survival_attempts",
+            "look_away_ratio", "expr_frown_mean",
+            "no_transcript", "transcript_gap"]
+    missing = [c for c in need if c not in d["features"].columns]
+    expect(not missing, "features.csv has all feature groups",
+           f"missing: {missing}" if missing else "ok")
+
+
