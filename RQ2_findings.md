@@ -19,6 +19,10 @@ segmentation) → `extract_features.py` (behavioral features) →
 `build_labels.py` (survey composites) → `explore.py` / `model_rq2.py`
 (analysis).
 
+All committed outputs are independently re-checked by
+`verify.py` / `verify_transcripts.py` (114 checks total; see
+`VERIFICATION.md`).
+
 **Segmentation** fuses two signals: VTT narration cues (phase landmarks like
 "welcome to the tornado formation lesson") and 1-fps frame signatures
 (sustained white-desktop detection for session end). Phases:
