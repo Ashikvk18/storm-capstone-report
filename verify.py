@@ -147,3 +147,13 @@ def check_p15_restart(d):
            "P15 was_restarted == 1", f"got {r['was_restarted']}")
 
 
+def check_p05_single_attempt(d):
+    """Regression guard for the P05/P06 split artifact: a 2s speech
+    blip must not inflate survival_attempts."""
+    for pid in ("P05", "P06"):
+        r = row_of(d["features"], pid)
+        expect(r is not None and r["survival_attempts"] == 1,
+               f"{pid} survival_attempts == 1 (no split artifact)",
+               f"got {r['survival_attempts']}")
+
+
