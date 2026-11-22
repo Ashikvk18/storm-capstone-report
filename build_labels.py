@@ -246,6 +246,10 @@ def main():
     df["participant_id"] = df["participant_id"].fillna(
         df["participant_id_post"])
     df = df.drop(columns=["_key", "participant_id_post"])
+    for pid, vals in MANUAL_POST_SCORES.items():
+        m = (df["participant_id"] == pid) & df["post_score"].isna()
+        for col, val in vals.items():
+            df.loc[m, col] = val
     df["has_recording"] = df["participant_id"].notna()
     df["learning_gain"] = df["post_score"] - df["pre_score"]
     df = df.sort_values("participant_id", na_position="last")
