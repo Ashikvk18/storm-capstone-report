@@ -21,7 +21,7 @@ engagement,face_detect_ratio,0,0.0
 engagement,head_yaw_std,0,0.0
 engagement,head_pitch_std,0,0.0
 engagement,head_turn_rate,0,0.0
-engagement,pitch_mean,5,0.0
+engagement,pitch_mean,2,0.0
 engagement,look_away_ratio,0,0.0
 engagement,expr_smile_mean,0,0.0
 engagement,expr_smile_max,0,0.0
