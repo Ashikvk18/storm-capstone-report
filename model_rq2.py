@@ -1,6 +1,6 @@
 """Step 7: interpretable models for RQ2.
 
-n=19 -> keep it honest: standardized LASSO with leave-one-out CV for the
+n=20 -> keep it honest: standardized LASSO with leave-one-out CV for the
 continuous outcomes, L1 logistic for the binary confusion flag.
 Reports:
   - LOO R^2 / accuracy vs a predict-the-mean/majority baseline
