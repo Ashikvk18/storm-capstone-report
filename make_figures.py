@@ -86,7 +86,7 @@ import os
 os.makedirs("figures", exist_ok=True)
 fig_p02()
 scatter("lesson1_s", "post_score", "lesson1_vs_post.png",
-        "Lesson-1 dwell vs post-test score (rho=0.51, p=.026)",
+        "Lesson-1 dwell vs post-test score",
         "seconds in lesson 1", "post-test score (0-10)")
 scatter("survival_nav_s", "confusion", "nav_vs_confusion.png",
         "Survival navigation time vs reported confusion",
