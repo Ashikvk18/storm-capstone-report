@@ -112,7 +112,7 @@ not an error).
   `.xlsx` — names/emails/raw media can never leak into the repo
 - Every `features.csv` PID appears in `labels.csv` (all matched)
 - `confusion_any` target exists in the correlation table and the
-  positive rate (0.74) matches the known floor effect
+  positive rate (0.75) matches the known floor effect
 - All `session_s` values positive (min 681 s)
 - P02's timeline file contains only known phase labels
 
