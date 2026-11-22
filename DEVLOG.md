@@ -198,7 +198,7 @@ facial blendshapes (action units) → `*_blend.csv`.
   video) produce NaN features, never 0 — "unobserved" must not masquerade as
   "didn't happen."
 - **Names stay local.** `participants.csv` and survey exports contain PII and
-  are `.gitignore`d; every committed artifact uses `participant_id` (P01–P20).
+  are `.gitignore`d; every committed artifact uses `participant_id` (PIDs only).
 - **Caches are versioned by content.** `*_framesig.csv` recomputes when the
   `cam_motion` column is absent; `*_face.csv`/`*_blend.csv` are skipped
   independently — re-running a stage never redoes finished work.
