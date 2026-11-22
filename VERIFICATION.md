@@ -96,8 +96,8 @@ not an error).
 
 - `model_coefficients.csv` covers both regression targets
   (engagement, confusion)
-- `selected_folds` ∈ [0,19] — cannot exceed the 19 leave-one-out folds
-  (observed max: 6, i.e., no feature was stably selected — consistent
+- `selected_folds` ∈ [0,20] — cannot exceed the 20 leave-one-out folds
+  (observed max: 4, i.e., no feature was stably selected — consistent
   with the reported null result)
 
 ## Artifact integrity (3 checks)
