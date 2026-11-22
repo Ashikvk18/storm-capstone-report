@@ -275,10 +275,11 @@ def check_model_targets(d):
 
 
 def check_model_selection_bounds(d):
-    """selected_folds cannot exceed the 19 LOO folds."""
+    """selected_folds cannot exceed the LOO fold count."""
     sf = d["coefficients"]["selected_folds"]
-    expect(sf.between(0, 19).all(),
-           "selected_folds within [0,19]",
+    max_folds = len(merged_labels(d))
+    expect(sf.between(0, max_folds).all(),
+           f"selected_folds within [0,{max_folds}]",
            f"max {sf.max()}")
 
 
