@@ -71,7 +71,7 @@ def report_regression(name, X, y, fnames):
     print(f"LOO R^2 = {r2:.3f}   MAE = {mae:.3f}   "
           f"(mean-baseline R^2 = {base_r2:.3f})")
     order = np.argsort(-selected)
-    print("feature                 selected/19  median_coef")
+    print(f"feature                 selected/{len(y)}  median_coef")
     for j in order:
         if selected[j] == 0:
             continue
