@@ -98,16 +98,20 @@ NaN, never zero.
 
 | Feature → Outcome | ρ | p | Reading |
 |---|---|---|---|
-| lesson1_s → post_score | +.51 | .039 | Deliberate pacing → higher knowledge |
-| finalq_wrong → post_score | −.48 | .042 | Internal validity check |
-| session_s → GUESS / perceived_learning | +.49 / +.48 | .033 / .040 | Longer app time → higher engagement |
-| look_away_ratio → effort | **−.64** | **.005** | Strongest behavioral association |
-| look_away_ratio → engagement | −.46 | .055 | Same direction |
-| head_pitch_std → effort | −.53 | .020 | Less head-nod variance → higher effort |
-| expr_frown_mean → confusion | +.57 | .013 | Frowning co-occurs with confusion |
-| expr_stretch_mean → confusion | +.54 | .020 | Grimace-like activation, same direction |
-| expr_brow_up_max → complexity | −.76 | .0002 | Largest ρ — fragile max-statistic, hypothesis only |
-| survival_nav_s → confusion | +.35 | .15 | Direction matches interviews, weak at n |
+| lesson1_s → post_score | +.47 | .050 | Deliberate pacing → higher knowledge |
+| finalq_wrong → post_score | −.49 | .034 | Internal validity check |
+| session_s → GUESS / perceived_learning | +.44 / +.48 | .050 / .032 | Longer app time → higher engagement |
+| look_away_ratio → effort | **−.62** | **.005** | Strongest behavioral association |
+| look_away_ratio → engagement | −.47 | .045 | Same direction |
+| head_pitch_std → effort | −.50 | .025 | Less head-nod variance → higher effort |
+| expr_frown_mean → confusion | +.57 | .011 | Frowning co-occurs with confusion |
+| expr_stretch_mean → confusion | +.54 | .018 | Grimace-like activation, same direction |
+| expr_brow_up_max → complexity | −.74 | .0003 | Largest ρ — fragile max-statistic, hypothesis only |
+| survival_nav_s → confusion | +.27 | .270 | Direction matches interviews, weak at n |
+
+`frame_motion_mean` shows comparable correlations but is excluded from
+modeling because it tracks time in animated scenes, not participant
+behavior.
 
 **Lesson-1 dwell is bimodal** (~68 s vs ~130 s): the extra ~70 s is time
 on "Next →" interstitial screens, not different app builds (same
