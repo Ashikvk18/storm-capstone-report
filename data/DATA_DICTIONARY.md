@@ -120,7 +120,7 @@ participant_speech`. `pid` and `duration_s` (total recording length)
 lead the row. Multiple spans of the same phase are merged into
 first-start/last-end/total-duration.
 
-## `explore_correlations.csv` — correlation screen (~120 rows)
+## `explore_correlations.csv` — correlation screen (324 rows)
 
 Produced by `explore.py`. One row per feature×target pair with ≥8
 valid observations.
