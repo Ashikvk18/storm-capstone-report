@@ -171,7 +171,7 @@ confusion. The replayed dialogue appears verbatim in the transcript
    participants most often describe as confusing — convergent
    quantitative + qualitative evidence.
 4. **Attention proxies carry signal.** Head-pose-derived look-away
-   ratio correlates with effort (ρ=−.64) and engagement (ρ=−.46) in the
+   ratio correlates with effort (ρ=−.62) and engagement (ρ=−.47) in the
    expected direction — the strongest behavioral associations after
    lesson-1 dwell.
 5. **Facial action units add preliminary signal.** Frown and
