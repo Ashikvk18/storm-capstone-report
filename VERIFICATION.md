@@ -22,7 +22,7 @@ Latest run: **52 checks, 52 passed** — see `verification_output.txt`.
 | Anomaly spot-checks | P02 retry, P04 gap, P07 truncation, P15 restart, P05/P06 no-split |
 | Missingness | NaN (not 0) for unobserved phases; no negative values; bounded ranges |
 | Correlations | All 324 rows recompute within ±.02 of committed CSV |
-| Model | Both targets present; selection counts within 19 folds |
+| Model | Both targets present; selection counts within LOO folds |
 | Artifacts | 6 PNGs valid headers, PDF has `%PDF-` magic |
 | PII | No names/emails/raw media tracked in git |
 
