@@ -36,8 +36,7 @@ def main():
     df = df[df["engagement"].notna()]
     df["confusion_any"] = (df["confusion"] > 0).astype(int)
     print(f"joined: {len(df)} participants with features + labels")
-    print("(excluded: P17 no post-survey; P07 keeps row but phase "
-          "features are NaN)\n")
+    print("(P07 keeps row but phase features are NaN)\n")
 
     rows = []
     for tgt in TARGETS:
