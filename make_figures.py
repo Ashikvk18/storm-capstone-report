@@ -74,7 +74,7 @@ def scatter(xcol, ycol, fname, title, xlabel, ylabel):
     ax.plot(xs, np.polyval(cf, xs), "r--", lw=1)
     ax.set_xlabel(xlabel)
     ax.set_ylabel(ylabel)
-    ax.set_title(title)
+    ax.set_title(f"{title} (rho={rho:.2f}, p={p:.3f})")
     fig.tight_layout()
     fig.savefig(f"figures/{fname}", dpi=160)
     plt.close(fig)
