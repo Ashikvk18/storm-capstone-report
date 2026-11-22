@@ -24,8 +24,8 @@ auto-transcripts (.vtt) of the app narration and post-session interviews.
 | Post-survey 1 | same 10 knowledge items + GUESS game-experience scale + cognitive-load scale |
 | Post-surveys 2a/2b | interviewer rapport + AI-interviewer trust |
 
-**19 participants** have both a recording and post-survey labels (P17 lacks
-a post-survey; P07's recording is truncated mid-session with no transcript).
+**20 participants** have both a recording and post-survey labels (P07's
+recording is truncated mid-session with no transcript).
 
 Raw recordings, survey exports, and the participant name map are **not in
 this repository** — they contain PII and participant faces. Only code and
