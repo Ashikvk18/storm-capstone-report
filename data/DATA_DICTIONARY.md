@@ -129,7 +129,7 @@ valid observations.
 |---|---|
 | `target` | Outcome: engagement, confusion, confusion_any, effort, complexity, perceived_learning, guess_full, post_score, learning_gain |
 | `feature` | Behavioral feature name (same names as `features.csv`) |
-| `n` | Valid paired observations (17–19 typical) |
+| `n` | Valid paired observations (18–20 typical) |
 | `rho` | Spearman rank correlation, rounded to 3 decimals |
 | `p` | Two-sided p-value, rounded to 4 decimals — uncorrected for multiple testing |
 
