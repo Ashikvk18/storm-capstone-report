@@ -107,7 +107,7 @@ Includes survey-only respondents (`has_recording`=0) who have no video.
 | `guess_full` | All 18 GUESS items, one reverse-coded | 1–7 |
 | `has_recording` | 1 if a session recording exists for this participant | 0/1 |
 
-Confusion has a floor effect (6/19 exact zeros); `explore.py` adds a
+Confusion has a floor effect (5/20 exact zeros); `explore.py` adds a
 binary `confusion_any` target at analysis time.
 
 ## `session_segments.csv` — per-phase spans (20 rows)
