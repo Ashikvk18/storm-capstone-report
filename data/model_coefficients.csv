@@ -2,12 +2,12 @@ target,feature,selected_folds,median_coef
 engagement,session_s,0,0.0
 engagement,pre_app_s,0,0.0
 engagement,lesson1_s,0,0.0
-engagement,quiz1_s,1,0.0
+engagement,quiz1_s,0,0.0
 engagement,lesson2_s,0,0.0
 engagement,survival_call_s,0,0.0
 engagement,survival_nav_s,0,0.0
 engagement,final_quiz_s,0,0.0
-engagement,survival_attempts,1,0.0
+engagement,survival_attempts,0,0.0
 engagement,speech_in_session_s,0,0.0
 engagement,quiz1_correct,0,0.0
 engagement,finalq_correct,0,0.0
