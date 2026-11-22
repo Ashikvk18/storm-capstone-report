@@ -63,6 +63,7 @@ def scatter(xcol, ycol, fname, title, xlabel, ylabel):
     df = pd.read_csv("data/features.csv").merge(
         pd.read_csv("data/labels.csv"), on="participant_id")
     df = df.dropna(subset=[xcol, ycol])
+    rho, p = spearmanr(df[xcol], df[ycol])
     fig, ax = plt.subplots(figsize=(5, 4))
     ax.scatter(df[xcol], df[ycol], s=40, zorder=3)
     for _, r in df.iterrows():
