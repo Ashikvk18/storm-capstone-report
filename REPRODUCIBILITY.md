@@ -164,7 +164,8 @@ python build_labels.py           # -> data/labels.csv
 ```
 
 Requires the two survey `.xlsx` files present under their expected
-filenames. Prints Cronbach's alpha for the engagement and confusion
+filenames. P17's post-survey composites are supplied separately and
+applied via `MANUAL_POST_SCORES` in `build_labels.py`. Prints Cronbach's alpha for the engagement and confusion
 composites (expect ≈.85 and ≈.80). Verify: `learning_gain` =
 `post_score − pre_score`; `has_recording` flags survey-only rows.
 
