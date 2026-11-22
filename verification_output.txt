@@ -1,5 +1,3 @@
-C:\Users\ashik\Desktop\Capstone\verify.py:219: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
-  r, p = spearmanr(df.loc[ok, feature], df.loc[ok, target])
 
 ============================================================
 VERIFICATION: 52 checks, 52 passed, 0 failed
