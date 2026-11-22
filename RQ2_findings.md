@@ -9,8 +9,8 @@
 - Each recording: fullscreen Unity app + webcam overlay (top-right) +
   Zoom auto-transcript (.vtt) of app narration and post-session interviews.
 - **No in-app telemetry exists.** All behavioral measures are video-derived.
-- **19 participants** usable for labeled analysis (P17 lacks post-survey;
-  P07's recording is truncated mid-session with no transcript).
+- **20 participants** usable for labeled analysis (P07's recording is
+  truncated mid-session with no transcript).
 
 ## 2. Pipeline
 
