@@ -60,8 +60,8 @@ pre_app → lesson1 → quiz1 → lesson2 → impacts → survival_call
 
 Lesson-1 duration is bimodal (~68s vs ~130s). The extra ~70s is time
 participants spent on "Next →" transition screens — deliberate pacing, not
-different app builds. Participants who lingered scored ~0.9 points higher
-on the post-test (Spearman ρ=0.51, p=.039, n=17).
+different app builds. Participants who lingered scored ~0.8 points higher
+on the post-test (Spearman ρ=0.47, p=.050, n=18).
 
 ![Lesson-1 dwell vs post-test score](figures/lesson1_vs_post.png)
 
