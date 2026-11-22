@@ -25,6 +25,17 @@ POST_FILE = "Tornado_PostSurvey1_KnowledgeandMore_for BOTH_May 19, 2026_20.02.xl
 PARTICIPANTS = "data/participants.csv"
 OUT_FILE = "data/labels.csv"
 
+# P17's post-survey composites were supplied separately (not in the
+# Qualtrics export); applied after the survey join so learning_gain
+# stays consistent.
+MANUAL_POST_SCORES = {
+    "P17": {
+        "post_score": 7.85, "engagement": 4.85, "confusion": 1.25,
+        "perceived_learning": 7.68, "effort": 3.15, "complexity": 2.03,
+        "guess_full": 4.85,
+    }
+}
+
 GUESS_MAP = {
     "strongly disagree": 1, "disagree": 2, "somewhat disagree": 3,
     "neither disagree nor agree": 4, "somewhat agree": 5, "agree": 6,
