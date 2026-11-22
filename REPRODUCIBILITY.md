@@ -175,12 +175,12 @@ composites (expect ≈.85 and ≈.80). Verify: `learning_gain` =
 python explore.py                # -> data/explore_correlations.csv
 ```
 
-Inner-joins features + labels (n≈19), adds the binary `confusion_any`
+Inner-joins features + labels (n≈20), adds the binary `confusion_any`
 target, and computes Spearman ρ for every feature×target pair with
 ≥8 valid observations. Prints top-10 per target; writes the full table
-(≈120 rows). Expect the headline rows: `look_away_ratio→effort`
-ρ=−.64, `expr_frown_mean→confusion` ρ=+.57, `lesson1_s→post_score`
-ρ=+.51.
+(324 rows). Expect the headline rows: `look_away_ratio→effort`
+ρ=−.62, `expr_frown_mean→confusion` ρ=+.57, `lesson1_s→post_score`
+ρ=+.47.
 
 ### Step 7 — `model_rq2.py` (LASSO + LOO-CV)
 
