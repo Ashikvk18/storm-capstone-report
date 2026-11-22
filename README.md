@@ -107,7 +107,7 @@ labels.
 
 ### 6. Honest null on prediction
 
-At n≈19 with session-level self-report labels, a LASSO model cannot
+At n=20 with session-level self-report labels, a LASSO model cannot
 predict engagement/confusion better than the mean (LOO R² < 0). The
 associations above are descriptive and hypothesis-generating — a finding
 that argues for per-phase experience sampling and larger cohorts in
