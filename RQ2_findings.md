@@ -57,31 +57,35 @@ not emotion labels.
 
 ## 4. Results
 
-### 4a. Descriptive associations (Spearman, n≈17–19)
+### 4a. Descriptive associations (Spearman, n≈18–20)
 
 | Feature → Outcome | ρ | p | Interpretation |
 |---|---|---|---|
-| lesson1_s → post_score | +0.51 | .039 | **Strongest finding.** Lesson-1 time is bimodal (~68s vs ~130s): the extra ~70s is dwell on "Next →" interstitial screens. Deliberate pacing → higher knowledge score. |
-| finalq_wrong → post_score | −0.48 | .042 | Internal validity check: wrong answers → lower score. |
-| session_s → GUESS full | +0.49 | .033 | Longer app time → higher reported engagement. |
-| session_s → perceived_learning | +0.48 | .040 | Same direction. |
-| webcam_longest_still_s → complexity | −0.54 | .017 | Longer stillness → lower perceived complexity (focused vs lost — ambiguous). |
-| **look_away_ratio → effort** | **−0.64** | **.005** | **Strongest single association.** Participants whose head pose deviated from their own median more often reported less effort — a visible-disengagement signal. |
-| look_away_ratio → engagement | −0.46 | .055 | Same direction: looking away → lower reported engagement. |
-| head_pitch_std → effort | −0.53 | .020 | Less nod-pitch variability → higher effort ratings. |
-| head_turn_rate → GUESS | +0.41 | .086 | More head scanning → higher game-experience scores. |
-| expr_frown_mean → confusion | +0.57 | .013 | Frowning action units co-occur with reported confusion — direction matches the construct. |
-| expr_stretch_mean → confusion | +0.54 | .020 | Mouth-stretch (grimace-like) activation, same direction. |
-| **expr_brow_up_max → complexity** | **−.76** | **.0002** | **Largest |rho| in the dataset** — but fragile: a max-statistic over 1-fps blendshapes is sensitive to single-frame artifacts, the direction is counterintuitive, and it does not survive as a predictor. Hypothesis only. |
-| expr_jaw_mean → learning_gain | −.48 | .045 | Jaw-drop activation vs knowledge gain — weak, exploratory. |
-| survival_nav_s → confusion | +0.35 | .15 | Direction matches interviews but weak at this n. |
+| lesson1_s → post_score | +0.47 | .050 | **Strongest finding.** Lesson-1 time is bimodal (~68s vs ~130s): the extra ~70s is dwell on "Next →" interstitial screens. Deliberate pacing → higher knowledge score. |
+| finalq_wrong → post_score | −0.49 | .034 | Internal validity check: wrong answers → lower score. |
+| session_s → GUESS full | +0.44 | .050 | Longer app time → higher reported engagement. |
+| session_s → perceived_learning | +0.48 | .032 | Same direction. |
+| webcam_longest_still_s → complexity | −0.51 | .023 | Longer stillness → lower perceived complexity (focused vs lost — ambiguous). |
+| **look_away_ratio → effort** | **−0.62** | **.005** | **Strongest single association.** Participants whose head pose deviated from their own median more often reported less effort — a visible-disengagement signal. |
+| look_away_ratio → engagement | −0.47 | .045 | Same direction: looking away → lower reported engagement. |
+| head_pitch_std → effort | −0.50 | .025 | Less nod-pitch variability → higher effort ratings. |
+| head_turn_rate → GUESS | +0.40 | .084 | More head scanning → higher game-experience scores. |
+| expr_frown_mean → confusion | +0.57 | .011 | Frowning action units co-occur with reported confusion — direction matches the construct. |
+| expr_stretch_mean → confusion | +0.54 | .018 | Mouth-stretch (grimace-like) activation, same direction. |
+| **expr_brow_up_max → complexity** | **−.74** | **.0003** | **Largest |rho| in the dataset** — but fragile: a max-statistic over 1-fps blendshapes is sensitive to single-frame artifacts, the direction is counterintuitive, and it does not survive as a predictor. Hypothesis only. |
+| expr_jaw_mean → learning_gain | −.53 | .019 | Jaw-drop activation vs knowledge gain — weak, exploratory. |
+| survival_nav_s → confusion | +0.27 | .270 | Direction matches interviews but weak at this n. |
+
+`frame_motion_mean` shows larger correlations (engagement −.54, confusion
++.59) but is excluded from modeling because it tracks time in animated
+scenes rather than participant behavior.
 
 ### 4b. Predictive modeling (LASSO, leave-one-out CV)
 
-- Engagement: LOO R² = −0.21; Confusion: R² = −0.13 — **worse than
-  predicting the mean.** Binary confusion: 0.63 acc < 0.74 majority
+- Engagement: LOO R² = −0.12; Confusion: R² = −0.13 — **worse than
+  predicting the mean.** Binary confusion: 0.65 acc < 0.75 majority
   baseline (with head-pose features included).
-- **Honest null:** at n=19 with session-level labels and floor-compressed
+- **Honest null:** at n=20 with session-level labels and floor-compressed
   scales, these features do not support multivariate prediction. This is a
   legitimate methods finding: argues for per-phase labels and larger
   samples in future work.
