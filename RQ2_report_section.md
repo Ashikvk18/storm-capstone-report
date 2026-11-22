@@ -26,9 +26,8 @@ labels.
 - **20 session recordings** (MP4 + VTT transcript), Jan–Apr 2026,
   recovered from a damaged ~5 GB ZIP via stream-level extraction
   (`extract_zip.py`).
-- **19 participants** usable for labeled analysis: P17 lacked a
-  post-survey; P07's recording was truncated mid-session with no
-  transcript (kept as missing data, not zeros).
+- **20 participants** usable for labeled analysis: P07's recording was
+  truncated mid-session with no transcript (kept as missing data, not zeros).
 - Survey instruments: pre/post 10-item tornado-knowledge tests, a GUESS
   game-experience scale, and a cognitive-load scale (composites:
   engagement, confusion, perceived learning, effort, complexity,
