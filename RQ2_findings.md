@@ -120,8 +120,8 @@ is visible verbatim in the transcript (mom-call dialogue replays at t=1097).
 
 ## 5. Limitations
 
-- n≈19 usable sessions; survey labels are **session-level**, not per-lesson
-- Confusion scale has floor effect (6/19 zeros → binary target used too)
+- n≈20 usable sessions; survey labels are **session-level**, not per-lesson
+- Confusion scale has floor effect (5/20 zeros → binary target used too)
 - No eye tracking, gaze, or headset telemetry; head pose and webcam
   motion are coarse proxies (camera mounting/overlay visibility vary by
   machine; P09's self-view was off during the app → look_away NaN)
