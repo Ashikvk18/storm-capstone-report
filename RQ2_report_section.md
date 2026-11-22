@@ -73,7 +73,7 @@ survey-filling and interview time cannot contaminate "in-app behavior":
 ### 2.4 Analysis
 
 Spearman rank correlations screened every feature against every outcome
-(n≈17–19; hypothesis-generating, no multiple-testing correction).
+(n≈18–20; hypothesis-generating, no multiple-testing correction).
 Prediction was tested with standardized LASSO under leave-one-out
 cross-validation (nested inner CV for alpha selection), plus L1
 logistic regression for a binary "any confusion" flag — always compared
