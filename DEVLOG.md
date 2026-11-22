@@ -206,7 +206,7 @@ facial blendshapes (action units) → `*_blend.csv`.
   `[s0, s1]` (first app frame → sustained desktop/interview) so survey-filling
   and interview time can't contaminate "in-app behavior."
 - **Honest nulls are results.** The LASSO/LOO models report R²<0 and
-  majority-baseline accuracy — that null is a finding about n=19 +
+  majority-baseline accuracy — that null is a finding about n=20 +
   session-level labels, documented rather than hidden.
 - **Verify before trusting.** The P05/P06 retry artifact and the P02 real
   retry were both caught by checking transcripts against features — any
