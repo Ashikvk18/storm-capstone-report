@@ -59,7 +59,7 @@ local header to just before the next one, minus 12–16 descriptor bytes.
 | `cronbach_alpha()` | Internal-consistency reliability of the engagement/confusion composites — printed at runtime so we can report whether the labels are trustworthy (printed: engagement α≈.85, confusion α≈.80). |
 | dedupe `pre` by name | Some participants submitted the pre-survey twice; `drop_duplicates(keep="first")` keeps the earliest submission. |
 | `_key` join via `participant_id` | Joins pre and post rows on participant id (falling back to normalized name for survey-only respondents) — tolerates name typos *between* the two surveys. |
-| `has_recording` | Flags survey respondents who have no video (e.g., P17 missing post-survey is handled on the label side). |
+| `has_recording` | Flags survey respondents who have no video (survey-only respondents get `has_recording=False`). |
 | `learning_gain = post - pre` | The learning outcome for RQ2 context. |
 | dropping `survey_name` from output | PII — names/emails must not be committed; `participants.csv` stays local via `.gitignore`. |
 
