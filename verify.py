@@ -339,7 +339,7 @@ def check_labels_join_coverage(d):
 
 def check_confusion_any_derivation(d):
     """confusion_any target exists in correlations and its positive
-    rate matches the known floor effect (~13/19 nonzero confusion)."""
+    rate matches the known floor effect (~15/20 nonzero confusion)."""
     df = merged_labels(d)
     rate = (df["confusion"] > 0).mean()
     has_target = (d["correlations"]["target"] == "confusion_any").any()
