@@ -29,14 +29,14 @@ engagement,expr_frown_mean,0,0.0
 engagement,expr_brow_up_mean,0,0.0
 engagement,expr_brow_up_max,0,0.0
 engagement,expr_blink_mean,0,0.0
-engagement,expr_jaw_mean,1,0.0
+engagement,expr_jaw_mean,0,0.0
 engagement,expr_sneer_mean,0,0.0
 engagement,expr_stretch_mean,0,0.0
 confusion,session_s,0,0.0
 confusion,pre_app_s,0,0.0
-confusion,lesson1_s,0,0.0
+confusion,lesson1_s,1,0.0
 confusion,quiz1_s,0,0.0
-confusion,lesson2_s,6,0.0
+confusion,lesson2_s,4,0.0
 confusion,survival_call_s,0,0.0
 confusion,survival_nav_s,0,0.0
 confusion,final_quiz_s,0,0.0
