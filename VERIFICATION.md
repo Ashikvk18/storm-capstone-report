@@ -81,10 +81,10 @@ match both the committed CSV and the reported values:
 
 | Feature → Target | Recomputed ρ | CSV ρ |
 |---|---|---|
-| look_away_ratio → effort | −.635 | −.635 |
-| expr_frown_mean → confusion | +.573 | +.573 |
-| lesson1_s → post_score | +.505 | +.505 |
-| expr_brow_up_max → complexity | −.764 | −.764 |
+| look_away_ratio → effort | −.616 | −.616 |
+| expr_frown_mean → confusion | +.568 | +.568 |
+| lesson1_s → post_score | +.469 | +.469 |
+| expr_brow_up_max → complexity | −.739 | −.739 |
 
 Then **all 324 rows** of `explore_correlations.csv` are recomputed —
 0 mismatches beyond ±.02. Bounds check: ρ ∈ [−1,1], n ∈ [8,25];
