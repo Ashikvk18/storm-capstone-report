@@ -36,7 +36,7 @@ missing inputs would silently produce empty outputs downstream.
 ## Row counts (5 checks)
 
 - `features.csv` — exactly 20 rows (one per recording)
-- `labels.csv` — 23 rows (19 labeled participants + survey-only rows)
+- `labels.csv` — 23 rows (20 recorded participants + 3 survey-only rows)
 - `session_segments.csv` — 20 rows
 - `explore_correlations.csv` — 324 rows (36 features × 9 targets,
   minus pairs dropped for n<8)
