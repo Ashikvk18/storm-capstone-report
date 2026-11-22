@@ -123,9 +123,9 @@ every other scripted phase is near-constant).
 
 ### 3.2 Predictive modeling — honest null
 
-LASSO/LOO-CV: engagement R² = −0.20, confusion R² = −0.13 (worse than
-predicting the mean); binary confusion accuracy 0.63 vs. 0.74
-majority baseline. **At n≈19 with session-level labels, these features
+LASSO/LOO-CV: engagement R² = −0.12, confusion R² = −0.13 (worse than
+predicting the mean); binary confusion accuracy 0.65 vs. 0.75
+majority baseline. **At n=20 with session-level labels, these features
 do not support multivariate prediction** — a legitimate methods finding
 that motivates per-phase experience sampling and larger cohorts.
 
