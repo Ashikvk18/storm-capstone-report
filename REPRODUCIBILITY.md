@@ -211,7 +211,7 @@ python make_pca.py               # -> figures/pca_*.png (2 files)
 ```
 
 Standardizes a 10-feature behavior subset and projects to 2 PCs
-(PC1≈48 %, PC2≈21 % of variance), plotted twice — colored by
+(PC1≈45 %, PC2≈23 % of variance), plotted twice — colored by
 engagement and by confusion.
 
 ### Step 10 — `make_expr_timeline.py` (P02 expression case study)
