@@ -14,7 +14,7 @@ from sklearn.metrics import accuracy_score, r2_score
 from sklearn.preprocessing import StandardScaler
 
 # drop frame_motion_mean (composite proxy), flag cols, and the
-# single-positive indicators (was_restarted) - nothing to learn from 1/19
+# single-positive indicators (was_restarted) - nothing to learn from 1/20
 FEATURES = [
     "session_s", "pre_app_s", "lesson1_s", "quiz1_s", "lesson2_s",
     "survival_call_s", "survival_nav_s", "final_quiz_s",
