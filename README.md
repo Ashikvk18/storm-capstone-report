@@ -90,15 +90,15 @@ the transcript.
 
 MediaPipe FaceLandmarker estimates head yaw/pitch per second from the
 webcam overlay. Participants whose pose deviated from their own median
-(looking away) reported **less effort** (ρ=−0.64, p=.005) and **less
-engagement** (ρ=−0.46, p=.055) — a visible-disengagement signal in the
+(looking away) reported **less effort** (ρ=−0.62, p=.005) and **less
+engagement** (ρ=−0.47, p=.045) — a visible-disengagement signal in the
 expected direction.
 
 ### 5. Facial expression dynamics track confusion
 
 The same FaceLandmarker pass records 16 facial action units per second.
-Session-level aggregates show **frowning** (ρ=+0.57, p=.013) and
-**mouth-stretch** (ρ=+0.54, p=.020) activation co-occurring with
+Session-level aggregates show **frowning** (ρ=+0.57, p=.011) and
+**mouth-stretch** (ρ=+0.54, p=.018) activation co-occurring with
 reported confusion — the expected direction. The largest |ρ| in the
 dataset is brow-raise-max vs perceived complexity (−.76), but it is a
 fragile max-statistic on ~90 px faces and is reported as a hypothesis
