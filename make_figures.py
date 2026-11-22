@@ -9,6 +9,7 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import pandas as pd
+from scipy.stats import spearmanr
 
 PHASE_ORDER = ["pre_app", "lesson1", "quiz1", "lesson2", "impacts",
                "survival_call", "survival_nav", "final_quiz", "post_app"]
