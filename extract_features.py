@@ -37,6 +37,33 @@ PHASES = ["lesson1", "quiz1", "lesson2", "impacts",
           "survival_call", "survival_nav", "final_quiz"]
 LESSON_PHASES = ["lesson1", "lesson2", "impacts"]
 
+# P01: professor-supplied aggregate features (the video was too large to
+# share locally). Values are used exactly as provided; there is no local
+# MP4/VTT/timeline for this participant.
+MANUAL_FEATURE_ROWS = {
+    "P01": {
+        "lesson1_s": 106, "quiz1_s": 18, "lesson2_s": 201,
+        "impacts_s": 95, "survival_call_s": 99, "survival_nav_s": 145,
+        "final_quiz_s": 44, "pre_app_s": 34, "post_app_s": 59,
+        "app_idle_s": 3, "aborted_s": 0, "app_no_transcript_s": 66,
+        "interview_s": 1130, "no_transcript": 0, "transcript_gap": 0,
+        "session_s": 816, "speech_in_session_s": 4.2,
+        "survival_attempts": 1, "was_restarted": 0, "reached_end": 1,
+        "quiz1_correct": 1, "quiz1_wrong": 0, "finalq_correct": 3,
+        "finalq_wrong": 1, "webcam_motion_mean": 4.12,
+        "webcam_still_ratio": 0.34, "webcam_longest_still_s": 23.1,
+        "frame_motion_mean": 8.52, "cam_motion_lessons": 3.76,
+        "cam_motion_survival_nav": 3.81, "face_detect_ratio": 0.91,
+        "head_yaw_std": 4.41, "head_pitch_std": 4.19,
+        "head_turn_rate": 3.18, "pitch_mean": -2.65,
+        "look_away_ratio": 0.02, "expr_smile_mean": 0.03,
+        "expr_smile_max": 0.49, "expr_frown_mean": 0.02,
+        "expr_brow_up_mean": 0.23, "expr_brow_up_max": 0.69,
+        "expr_blink_mean": 0.21, "expr_jaw_mean": 0.01,
+        "expr_sneer_mean": 0.0, "expr_stretch_mean": 0.02,
+    },
+}
+
 CORRECT_RE = re.compile(
     r"\b(that is (absolutely )?correct|correct\.|well done)", re.I)
 INCORRECT_RE = re.compile(r"\bincorrect\b", re.I)
@@ -284,6 +311,13 @@ def main():
         print(f"features <- {name}", flush=True)
         rows.append(extract_one(v, stem_to_pid.get(name)))
     df = pd.DataFrame(rows).sort_values("participant_id")
+    have = set(df["participant_id"])
+    manual = [pd.DataFrame([{"participant_id": pid, **vals}])
+              for pid, vals in MANUAL_FEATURE_ROWS.items()
+              if pid not in have]
+    if manual:
+        df = pd.concat([df, *manual], ignore_index=True)
+        df = df.sort_values("participant_id").reset_index(drop=True)
     df.to_csv("data/features.csv", index=False)
     print(f"\nwrote data/features.csv ({len(df)} sessions)")
     print(df.to_string(index=False))
