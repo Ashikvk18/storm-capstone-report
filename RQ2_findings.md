@@ -4,13 +4,15 @@
 
 ## 1. Data
 
-- **20 Zoom screen recordings** of Storm VR sessions (Jan–Apr 2026), recovered
+- **20 local Zoom screen recordings** of Storm VR sessions (Jan–Apr 2026), recovered
   from a damaged ZIP archive via stream-level extraction.
 - Each recording: fullscreen Unity app + webcam overlay (top-right) +
   Zoom auto-transcript (.vtt) of app narration and post-session interviews.
 - **No in-app telemetry exists.** All behavioral measures are video-derived.
-- **20 participants** usable for labeled analysis (P07's recording is
-  truncated mid-session with no transcript).
+- **21 participants** usable for labeled analysis: the 20 local recordings
+  plus P01 (professor-supplied aggregates; video too large to share, so
+  no local MP4/VTT). P07's recording is truncated mid-session with no
+  transcript.
 
 ## 2. Pipeline
 
@@ -57,35 +59,35 @@ not emotion labels.
 
 ## 4. Results
 
-### 4a. Descriptive associations (Spearman, n≈18–20)
+### 4a. Descriptive associations (Spearman, n≈19–21)
 
 | Feature → Outcome | ρ | p | Interpretation |
 |---|---|---|---|
-| lesson1_s → post_score | +0.47 | .050 | **Strongest finding.** Lesson-1 time is bimodal (~68s vs ~130s): the extra ~70s is dwell on "Next →" interstitial screens. Deliberate pacing → higher knowledge score. |
-| finalq_wrong → post_score | −0.49 | .034 | Internal validity check: wrong answers → lower score. |
-| session_s → GUESS full | +0.44 | .050 | Longer app time → higher reported engagement. |
-| session_s → perceived_learning | +0.48 | .032 | Same direction. |
-| webcam_longest_still_s → complexity | −0.51 | .023 | Longer stillness → lower perceived complexity (focused vs lost — ambiguous). |
-| **look_away_ratio → effort** | **−0.62** | **.005** | **Strongest single association.** Participants whose head pose deviated from their own median more often reported less effort — a visible-disengagement signal. |
-| look_away_ratio → engagement | −0.47 | .045 | Same direction: looking away → lower reported engagement. |
-| head_pitch_std → effort | −0.50 | .025 | Less nod-pitch variability → higher effort ratings. |
-| head_turn_rate → GUESS | +0.40 | .084 | More head scanning → higher game-experience scores. |
-| expr_frown_mean → confusion | +0.57 | .011 | Frowning action units co-occur with reported confusion — direction matches the construct. |
-| expr_stretch_mean → confusion | +0.54 | .018 | Mouth-stretch (grimace-like) activation, same direction. |
-| **expr_brow_up_max → complexity** | **−.74** | **.0003** | **Largest |rho| in the dataset** — but fragile: a max-statistic over 1-fps blendshapes is sensitive to single-frame artifacts, the direction is counterintuitive, and it does not survive as a predictor. Hypothesis only. |
-| expr_jaw_mean → learning_gain | −.53 | .019 | Jaw-drop activation vs knowledge gain — weak, exploratory. |
-| survival_nav_s → confusion | +0.27 | .270 | Direction matches interviews but weak at this n. |
+| lesson1_s → post_score | +0.47 | .044 | **Strongest finding.** Lesson-1 time is bimodal (~68s vs ~130s): the extra ~70s is dwell on "Next →" interstitial screens. Deliberate pacing → higher knowledge score. |
+| finalq_wrong → post_score | −0.49 | .028 | Internal validity check: wrong answers → lower score. |
+| session_s → GUESS full | +0.47 | .030 | Longer app time → higher reported engagement. |
+| session_s → perceived_learning | +0.45 | .039 | Same direction. |
+| webcam_longest_still_s → complexity | −0.49 | .025 | Longer stillness → lower perceived complexity (focused vs lost — ambiguous). |
+| **look_away_ratio → effort** | **−0.57** | **.008** | **Strongest single association.** Participants whose head pose deviated from their own median more often reported less effort — a visible-disengagement signal. |
+| look_away_ratio → engagement | −0.40 | .085 | Same direction as effort but weaker at n=21. |
+| head_pitch_std → effort | −0.48 | .027 | Less nod-pitch variability → higher effort ratings. |
+| head_turn_rate → GUESS | +0.38 | .092 | More head scanning → higher game-experience scores. |
+| expr_frown_mean → confusion | +0.56 | .010 | Frowning action units co-occur with reported confusion — direction matches the construct. |
+| expr_stretch_mean → confusion | +0.52 | .018 | Mouth-stretch (grimace-like) activation, same direction. |
+| **expr_brow_up_max → complexity** | **−.75** | **.0002** | **Largest |rho| in the dataset** — but fragile: a max-statistic over 1-fps blendshapes is sensitive to single-frame artifacts, the direction is counterintuitive, and it does not survive as a predictor. Hypothesis only. |
+| expr_jaw_mean → learning_gain | −.53 | .017 | Jaw-drop activation vs knowledge gain — weak, exploratory. |
+| survival_nav_s → confusion | +0.25 | .296 | Direction matches interviews but weak at this n. |
 
-`frame_motion_mean` shows larger correlations (engagement −.54, confusion
-+.59) but is excluded from modeling because it tracks time in animated
+`frame_motion_mean` shows larger correlations (engagement −.51, confusion
++.57) but is excluded from modeling because it tracks time in animated
 scenes rather than participant behavior.
 
 ### 4b. Predictive modeling (LASSO, leave-one-out CV)
 
-- Engagement: LOO R² = −0.12; Confusion: R² = −0.13 — **worse than
-  predicting the mean.** Binary confusion: 0.65 acc < 0.75 majority
+- Engagement: LOO R² = −0.17; Confusion: R² = −0.11 — **worse than
+  predicting the mean.** Binary confusion: 0.67 acc < 0.76 majority
   baseline (with head-pose features included).
-- **Honest null:** at n=20 with session-level labels and floor-compressed
+- **Honest null:** at n=21 with session-level labels and floor-compressed
   scales, these features do not support multivariate prediction. This is a
   legitimate methods finding: argues for per-phase labels and larger
   samples in future work.
@@ -120,8 +122,11 @@ is visible verbatim in the transcript (mom-call dialogue replays at t=1097).
 
 ## 5. Limitations
 
-- n≈20 usable sessions; survey labels are **session-level**, not per-lesson
-- Confusion scale has floor effect (5/20 zeros → binary target used too)
+- n≈21 usable sessions; survey labels are **session-level**, not per-lesson
+- P01's features/survey are professor-supplied aggregates (no local
+  video/transcript), so segmentation/face caches cannot be regenerated
+  from media for that row
+- Confusion scale has floor effect (5/21 zeros → binary target used too)
 - No eye tracking, gaze, or headset telemetry; head pose and webcam
   motion are coarse proxies (camera mounting/overlay visibility vary by
   machine; P09's self-view was off during the app → look_away NaN)
@@ -148,11 +153,11 @@ is visible verbatim in the transcript (mom-call dialogue replays at t=1097).
    confusion indicator for future instrumented studies.
 4. Head-pose-derived attention features (look-away ratio, head-turn
    rate) correlate with engagement/effort scales in the expected
-   direction (ρ ≈ −0.5 to −0.65) — the strongest behavioral signal in
+   direction (ρ ≈ −0.4 to −0.6) — the strongest behavioral signal in
    the dataset after lesson-1 dwell.
 5. Facial action-unit dynamics (frown, mouth-stretch) correlate
    with reported confusion in the expected direction (rho ~ 0.55) —
    preliminary evidence that expression proxies carry signal, pending
    replication at larger n.
-6. Session-level self-reports at n≈20 cannot support predictive modeling;
+6. Session-level self-reports at n≈21 cannot support predictive modeling;
    per-phase experience sampling is needed.
