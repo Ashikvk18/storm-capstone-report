@@ -23,11 +23,13 @@ labels.
 
 ### 2.1 Data
 
-- **20 session recordings** (MP4 + VTT transcript), Jan–Apr 2026,
+- **20 local session recordings** (MP4 + VTT transcript), Jan–Apr 2026,
   recovered from a damaged ~5 GB ZIP via stream-level extraction
-  (`extract_zip.py`).
-- **20 participants** usable for labeled analysis: P07's recording was
-  truncated mid-session with no transcript (kept as missing data, not zeros).
+  (`extract_zip.py`), plus **P01** whose features/survey were supplied by
+  the professor as aggregates (video too large to share; no local media).
+- **21 participants** usable for labeled analysis: P07's local recording
+  was truncated mid-session with no transcript (kept as missing data,
+  not zeros).
 - Survey instruments: pre/post 10-item tornado-knowledge tests, a GUESS
   game-experience scale, and a cognitive-load scale (composites:
   engagement, confusion, perceived learning, effort, complexity,
@@ -73,7 +75,7 @@ survey-filling and interview time cannot contaminate "in-app behavior":
 ### 2.4 Analysis
 
 Spearman rank correlations screened every feature against every outcome
-(n≈18–20; hypothesis-generating, no multiple-testing correction).
+(n≈19–21; hypothesis-generating, no multiple-testing correction).
 Prediction was tested with standardized LASSO under leave-one-out
 cross-validation (nested inner CV for alpha selection), plus L1
 logistic regression for a binary "any confusion" flag — always compared
@@ -98,18 +100,19 @@ NaN, never zero.
 
 | Feature → Outcome | ρ | p | Reading |
 |---|---|---|---|
-| lesson1_s → post_score | +.47 | .050 | Deliberate pacing → higher knowledge |
-| finalq_wrong → post_score | −.49 | .034 | Internal validity check |
-| session_s → GUESS / perceived_learning | +.44 / +.48 | .050 / .032 | Longer app time → higher engagement |
-| look_away_ratio → effort | **−.62** | **.005** | Strongest behavioral association |
-| look_away_ratio → engagement | −.47 | .045 | Same direction |
-| head_pitch_std → effort | −.50 | .025 | Less head-nod variance → higher effort |
-| expr_frown_mean → confusion | +.57 | .011 | Frowning co-occurs with confusion |
-| expr_stretch_mean → confusion | +.54 | .018 | Grimace-like activation, same direction |
-| expr_brow_up_max → complexity | −.74 | .0003 | Largest ρ — fragile max-statistic, hypothesis only |
-| survival_nav_s → confusion | +.27 | .270 | Direction matches interviews, weak at n |
+| lesson1_s → post_score | +.47 | .044 | Deliberate pacing → higher knowledge |
+| finalq_wrong → post_score | −.49 | .028 | Internal validity check |
+| session_s → GUESS / perceived_learning | +.47 / +.45 | .030 / .039 | Longer app time → higher engagement |
+| look_away_ratio → effort | **−.57** | **.008** | Strongest behavioral association |
+| look_away_ratio → engagement | −.40 | .085 | Same direction, weaker at n=21 |
+| head_pitch_std → effort | −.48 | .027 | Less head-nod variance → higher effort |
+| expr_frown_mean → confusion | +.56 | .010 | Frowning co-occurs with confusion |
+| expr_stretch_mean → confusion | +.52 | .018 | Grimace-like activation, same direction |
+| expr_brow_up_max → complexity | −.75 | .0002 | Largest ρ — fragile max-statistic, hypothesis only |
+| survival_nav_s → confusion | +.25 | .296 | Direction matches interviews, weak at n |
 
-`frame_motion_mean` shows comparable correlations but is excluded from
+`frame_motion_mean` shows comparable correlations (−.51 engagement,
++.57 confusion) but is excluded from
 modeling because it tracks time in animated scenes, not participant
 behavior.
 
@@ -123,9 +126,9 @@ every other scripted phase is near-constant).
 
 ### 3.2 Predictive modeling — honest null
 
-LASSO/LOO-CV: engagement R² = −0.12, confusion R² = −0.13 (worse than
-predicting the mean); binary confusion accuracy 0.65 vs. 0.75
-majority baseline. **At n=20 with session-level labels, these features
+LASSO/LOO-CV: engagement R² = −0.17, confusion R² = −0.11 (worse than
+predicting the mean); binary confusion accuracy 0.67 vs. 0.76
+majority baseline. **At n=21 with session-level labels, these features
 do not support multivariate prediction** — a legitimate methods finding
 that motivates per-phase experience sampling and larger cohorts.
 
@@ -160,8 +163,9 @@ confusion. The replayed dialogue appears verbatim in the transcript
 
 1. **Video observation is a viable behavioral-data source** when
    in-app logging is absent. Scripted narration + frame signatures
-   produced reliable per-second phase labels across 20 heterogeneous
-   recordings, including restarts, gaps, and a truncated file.
+   produced reliable per-second phase labels across 20 local
+   heterogeneous recordings (plus one professor-supplied aggregate row),
+   including restarts, gaps, and a truncated file.
 2. **Dwell time on lesson transitions predicts knowledge gain**
    (ρ≈.5). The bimodal lesson-1 durations reflect deliberate pacing on
    interstitial screens — a behavioral signature of engagement with
@@ -171,7 +175,7 @@ confusion. The replayed dialogue appears verbatim in the transcript
    participants most often describe as confusing — convergent
    quantitative + qualitative evidence.
 4. **Attention proxies carry signal.** Head-pose-derived look-away
-   ratio correlates with effort (ρ=−.62) and engagement (ρ=−.47) in the
+   ratio correlates with effort (ρ=−.57) and engagement (ρ=−.40) in the
    expected direction — the strongest behavioral associations after
    lesson-1 dwell.
 5. **Facial action units add preliminary signal.** Frown and
@@ -180,18 +184,21 @@ confusion. The replayed dialogue appears verbatim in the transcript
 
 ### 4.2 What it does not support
 
-Session-level self-reports at n=20 cannot support predictive modeling
+Session-level self-reports at n=21 cannot support predictive modeling
 (LOO R² < 0). The associations above are **descriptive and
 hypothesis-generating**, not validated predictors.
 
 ### 4.3 Limitations
 
-- n=20; labels are session-level, not per-lesson or per-phase
-- Confusion scale has a floor effect (5/20 zeros)
+- n=21; labels are session-level, not per-lesson or per-phase
+- P01's features/survey are professor-supplied aggregates (no local
+  video/transcript), so segmentation/face caches cannot be regenerated
+  from media for that row
+- Confusion scale has a floor effect (5/21 zeros)
 - No eye tracking or headset telemetry; head pose is a coarse attention
   proxy, and webcam faces are ~90 px — expression features are noisy
 - `expr_*_max` statistics are sensitive to single-frame artifacts; the
-  brow-up/complexity correlation (ρ=−.74) is reported as a hypothesis
+  brow-up/complexity correlation (ρ=−.75) is reported as a hypothesis
   only
 - Whole-frame motion is confounded with scripted animation and is
   excluded from modeling
