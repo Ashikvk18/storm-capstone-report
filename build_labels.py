@@ -36,6 +36,16 @@ MANUAL_POST_SCORES = {
     }
 }
 
+# P01's full survey row was supplied by the professor (not present in the
+# Qualtrics exports); injected after the survey join.
+MANUAL_LABEL_ROWS = {
+    "P01": {
+        "pre_score": 6.0, "post_score": 8.0, "engagement": 5.0,
+        "confusion": 1.0, "perceived_learning": 8.0, "effort": 3.0,
+        "complexity": 2.0, "guess_full": 5.0,
+    }
+}
+
 GUESS_MAP = {
     "strongly disagree": 1, "disagree": 2, "somewhat disagree": 3,
     "neither disagree nor agree": 4, "somewhat agree": 5, "agree": 6,
@@ -250,6 +260,13 @@ def main():
         m = (df["participant_id"] == pid) & df["post_score"].isna()
         for col, val in vals.items():
             df.loc[m, col] = val
+    have = set(df["participant_id"])
+    for pid, vals in MANUAL_LABEL_ROWS.items():
+        if pid in have:
+            continue
+        df = pd.concat(
+            [df, pd.DataFrame([{"participant_id": pid, **vals}])],
+            ignore_index=True)
     df["has_recording"] = df["participant_id"].notna()
     df["learning_gain"] = df["post_score"] - df["pre_score"]
     df = df.sort_values("participant_id", na_position="last")
