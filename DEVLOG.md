@@ -61,6 +61,7 @@ local header to just before the next one, minus 12–16 descriptor bytes.
 | `_key` join via `participant_id` | Joins pre and post rows on participant id (falling back to normalized name for survey-only respondents) — tolerates name typos *between* the two surveys. |
 | `has_recording` | Flags survey respondents who have no video (survey-only respondents get `has_recording=False`). |
 | `learning_gain = post - pre` | The learning outcome for RQ2 context. |
+| `MANUAL_POST_SCORES` / `MANUAL_LABEL_ROWS` | P17's post composites and P01's full survey row were supplied outside the Qualtrics exports; injected after the survey join so `learning_gain` stays consistent and no names are needed. |
 | dropping `survey_name` from output | PII — names/emails must not be committed; `participants.csv` stays local via `.gitignore`. |
 
 ## segment_sessions.py — cutting videos into phases
@@ -125,27 +126,28 @@ facial blendshapes (action units) → `*_blend.csv`.
 | head-pose block | Reads `*_face.csv`, restricts to `[s0, s1]`. `face_detect_ratio` = how often a face was found (data-quality + presence proxy). Yaw/pitch std = how much the head moved; `head_turn_rate` = mean per-second angular change. **`look_away_ratio` uses deviation from each participant's own median pose** (thresholds 25° yaw / 20° pitch) — camera mounting and hair cause systematic offsets (P05 reads −25° pitch all session), so absolute angles would flag her as "looking away" 100% of the time. Face-miss seconds are excluded — P09's webcam overlay was off during the app, which would otherwise read as constant look-away. The `len(vis) >= 60` guard requires ≥60 s of detected face before trusting the ratio. |
 | blendshape block | Reads `*_blend.csv` within the same window, requires ≥30 detected seconds. Averages symmetric action units (e.g., `(mouthSmileLeft + mouthSmileRight)/2`) and emits interpretable aggregates: smile mean/max, frown, brow-up, blink rate, jaw openness, sneer, mouth stretch. All session-level — per-phase expression analysis is possible later but wasn't needed for the first pass. |
 | `stem_to_pid` | Maps recording filenames to participant IDs via `participants.csv` — filenames contain real names (PII), so only `pid` is written to `features.csv`. |
+| `MANUAL_FEATURE_ROWS` | P01's aggregate features were supplied by the professor (video too large to share); appended verbatim so `features.csv` stays reproducible without local media. |
 
 ## explore.py — correlation screen
 
 | Construct | Why |
 |---|---|
-| `FEATURES` / `TARGETS` | The explicit feature and outcome lists — keeps the screen reproducible and makes it obvious which columns were tested (multiple-testing burden is ~324 tests at n≈20). |
+| `FEATURES` / `TARGETS` | The explicit feature and outcome lists — keeps the screen reproducible and makes it obvious which columns were tested (multiple-testing burden is ~324 tests at n≈21). |
 | `confusion_any = (confusion > 0)` | The confusion composite has a floor effect (many exact zeros); the binary "any confusion" flag is a cleaner secondary target. |
 | `ok.sum() < 8` guard | Skips feature×target pairs with fewer than 8 valid observations — a correlation on 5 points is meaningless. This is also why P07's all-NaN features silently drop out instead of corrupting results. |
 | Spearman (not Pearson) | Features are skewed (e.g., `survival_nav_s` ranges 70–633 s) and several outcomes are ordinal composites — rank correlation is robust to both. |
-| no multiple-testing correction | Deliberate: this is hypothesis-*generating* at n=20. The script prints raw p-values with the caveat in the docstring; `RQ2_findings.md` interprets them conservatively. |
+| no multiple-testing correction | Deliberate: this is hypothesis-*generating* at n=21. The script prints raw p-values with the caveat in the docstring; `RQ2_findings.md` interprets them conservatively. |
 
 ## model_rq2.py — honest small-sample modeling
 
 | Construct | Why |
 |---|---|
-| Feature exclusions | `frame_motion_mean` dropped (it's a proxy for time-in-animated-scenes, not a behavior); flag columns dropped; `was_restarted` dropped because it's positive for exactly 1/20 participants — nothing to learn from. |
+| Feature exclusions | `frame_motion_mean` dropped (it's a proxy for time-in-animated-scenes, not a behavior); flag columns dropped; `was_restarted` dropped because it's positive for exactly 1/21 participants — nothing to learn from. |
 | `ALPHAS = logspace(-2, 1.5, 40)` | LASSO penalty grid; wide enough to go from "keep everything" to "keep nothing." |
-| `lasso_loo()` | Leave-one-out CV: for each held-out participant, pick alpha by *inner* 5-fold CV on the remaining 19, fit, predict. Nested CV is required — picking alpha on the full data then doing LOO would leak. |
-| `selected` / `coefs` tracking | Counts in how many folds each feature was non-zero and the median coefficient — **stability across folds matters more than the point estimate** at n=20; a feature selected in 2/20 folds is noise. |
+| `lasso_loo()` | Leave-one-out CV: for each held-out participant, pick alpha by *inner* 5-fold CV on the remaining 20, fit, predict. Nested CV is required — picking alpha on the full data then doing LOO would leak. |
+| `selected` / `coefs` tracking | Counts in how many folds each feature was non-zero and the median coefficient — **stability across folds matters more than the point estimate** at n=21; a feature selected in only a few folds is noise. |
 | `report_regression()` | Prints LOO R² vs. the mean-predictor baseline (R²=0). Features beating baseline = real signal; the actual result was R²<0 for both targets — reported honestly as a null. |
-| `report_binary()` | L1 logistic regression for `confusion_any`, same LOO scheme, accuracy vs. majority-class baseline (0.75 — accuracy was 0.65, below baseline). |
+| `report_binary()` | L1 logistic regression for `confusion_any`, same LOO scheme, accuracy vs. majority-class baseline (0.76 — accuracy was 0.67, below baseline). |
 | median imputation | `X_df.fillna(X_df.median())` — only P07's transcript-less row has NaNs; median imputation keeps her in the analysis for the features she does have. |
 | `data/model_coefficients.csv` | Per-feature selection frequency + median coefficient — the audit trail behind "LASSO selected nothing." |
 
@@ -165,7 +167,7 @@ facial blendshapes (action units) → `*_blend.csv`.
 | `FEATS` | A curated 10-feature subset (timing + stillness + head-pose + motion contrast) — deliberately excludes redundant/quasi-constant columns so PCs reflect behavior, not noise. |
 | `StandardScaler` + `PCA(n_components=2)` | Features are on wildly different scales (seconds vs. ratios); standardizing is required before PCA or `session_s` would dominate PC1 purely by magnitude. |
 | `df.iterrows()` annotation | Each point is labeled with its participant ID — the direct index `i` is required because `Z` rows align with `df`'s positional order after `reset_index`. |
-| two figures (engagement / confusion) | Same embedding, two colorings — shows whether the behavior-space structure aligns with either label. PC1 ≈ 45 % of variance, PC2 ≈ 23 %. |
+| two figures (engagement / confusion) | Same embedding, two colorings — shows whether the behavior-space structure aligns with either label. PC1 ≈ 44 % of variance, PC2 ≈ 23 %. |
 
 ## make_pdf.py — README -> PDF
 
@@ -206,7 +208,7 @@ facial blendshapes (action units) → `*_blend.csv`.
   `[s0, s1]` (first app frame → sustained desktop/interview) so survey-filling
   and interview time can't contaminate "in-app behavior."
 - **Honest nulls are results.** The LASSO/LOO models report R²<0 and
-  majority-baseline accuracy — that null is a finding about n=20 +
+  majority-baseline accuracy — that null is a finding about n=21 +
   session-level labels, documented rather than hidden.
 - **Verify before trusting.** The P05/P06 retry artifact and the P02 real
   retry were both caught by checking transcripts against features — any
