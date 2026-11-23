@@ -66,11 +66,12 @@ def check_file_exists(path, name):
 
 def check_row_counts(d):
     """Row counts must match the known study size."""
-    expect(len(d["features"]) == 20, "features.csv has 20 rows",
+    expect(len(d["features"]) == 21, "features.csv has 21 rows",
            f"got {len(d['features'])}")
     expect(19 <= len(d["labels"]) <= 25, "labels.csv row count sane",
            f"got {len(d['labels'])}")
-    expect(len(d["segments"]) == 20, "session_segments.csv 20 rows",
+    expect(len(d["segments"]) == 20,
+           "session_segments.csv 20 local rows",
            f"got {len(d['segments'])}")
     expect(250 <= len(d["correlations"]) <= 400,
            "explore_correlations.csv row count sane",
@@ -91,10 +92,10 @@ def check_feature_columns(d):
 
 
 def check_participant_ids(d):
-    """All 20 PIDs present exactly once, sorted."""
+    """All 21 PIDs present exactly once, sorted."""
     pids = sorted(d["features"]["participant_id"].astype(str))
-    expect(len(pids) == len(set(pids)) == 20,
-           "features.csv has 20 unique participant_ids", str(pids))
+    expect(len(pids) == len(set(pids)) == 21,
+           "features.csv has 21 unique participant_ids", str(pids))
 
 
 def row_of(df, pid):
@@ -339,7 +340,7 @@ def check_labels_join_coverage(d):
 
 def check_confusion_any_derivation(d):
     """confusion_any target exists in correlations and its positive
-    rate matches the known floor effect (~15/20 nonzero confusion)."""
+    rate matches the known floor effect (~16/21 nonzero confusion)."""
     df = merged_labels(d)
     rate = (df["confusion"] > 0).mean()
     has_target = (d["correlations"]["target"] == "confusion_any").any()
@@ -407,10 +408,10 @@ def main():
     check_nonnegative(d)
     check_value_ranges(d)
     check_learning_gain(d)
-    check_corr_reproduces(d, "look_away_ratio", "effort", -0.616)
-    check_corr_reproduces(d, "expr_frown_mean", "confusion", 0.568)
-    check_corr_reproduces(d, "lesson1_s", "post_score", 0.469)
-    check_corr_reproduces(d, "expr_brow_up_max", "complexity", -0.739)
+    check_corr_reproduces(d, "look_away_ratio", "effort", -0.573)
+    check_corr_reproduces(d, "expr_frown_mean", "confusion", 0.559)
+    check_corr_reproduces(d, "lesson1_s", "post_score", 0.467)
+    check_corr_reproduces(d, "expr_brow_up_max", "complexity", -0.745)
     check_all_correlations_reproduce(d)
     check_correlation_bounds(d)
     check_model_targets(d)
