@@ -147,15 +147,16 @@ app.
 ### Step 4 — `extract_features.py` (behavioral features)
 
 ```bash
-python extract_features.py       # -> data/features.csv (20 rows)
+python extract_features.py       # -> data/features.csv (21 rows)
 python extract_features.py P04   # or one recording substring
 ```
 
 Joins timeline + framesig + transcript + face/blend caches into one
 row per participant: phase durations, retries, quiz counts, speech,
 webcam/frame motion, head pose, and expression aggregates. Missing
-data stays NaN. Verify: 20 rows; P02 `survival_attempts`=2; P04 phase
-columns NaN; P07 `no_transcript`=1.
+data stays NaN. P01 is appended from `MANUAL_FEATURE_ROWS` (professor-
+supplied aggregates; no local MP4/VTT). Verify: 21 rows; P02
+`survival_attempts`=2; P04 phase columns NaN; P07 `no_transcript`=1.
 
 ### Step 5 — `build_labels.py` (survey labels)
 
@@ -165,7 +166,8 @@ python build_labels.py           # -> data/labels.csv
 
 Requires the two survey `.xlsx` files present under their expected
 filenames. P17's post-survey composites are supplied separately and
-applied via `MANUAL_POST_SCORES` in `build_labels.py`. Prints Cronbach's alpha for the engagement and confusion
+applied via `MANUAL_POST_SCORES`; P01's full survey row is supplied via
+`MANUAL_LABEL_ROWS` in `build_labels.py`. Prints Cronbach's alpha for the engagement and confusion
 composites (expect ≈.85 and ≈.80). Verify: `learning_gain` =
 `post_score − pre_score`; `has_recording` flags survey-only rows.
 
@@ -175,11 +177,11 @@ composites (expect ≈.85 and ≈.80). Verify: `learning_gain` =
 python explore.py                # -> data/explore_correlations.csv
 ```
 
-Inner-joins features + labels (n≈20), adds the binary `confusion_any`
+Inner-joins features + labels (n≈21), adds the binary `confusion_any`
 target, and computes Spearman ρ for every feature×target pair with
 ≥8 valid observations. Prints top-10 per target; writes the full table
 (324 rows). Expect the headline rows: `look_away_ratio→effort`
-ρ=−.62, `expr_frown_mean→confusion` ρ=+.57, `lesson1_s→post_score`
+ρ=−.57, `expr_frown_mean→confusion` ρ=+.56, `lesson1_s→post_score`
 ρ=+.47.
 
 ### Step 7 — `model_rq2.py` (LASSO + LOO-CV)
@@ -191,8 +193,8 @@ python model_rq2.py              # -> data/model_coefficients.csv
 Standardized LASSO with leave-one-out CV and inner 5-fold alpha
 selection, plus L1 logistic regression for `confusion_any`. Reports
 LOO R²/accuracy vs mean/majority baselines and per-feature selection
-frequency. Expected result is the honest null: R² < 0, accuracy at or
-below baseline.
+frequency. Expected result is the honest null: engagement LOO R²≈−.17,
+confusion R²≈−.11, `confusion_any` accuracy≈.67 < .76 baseline.
 
 ### Step 8 — `make_figures.py` (report figures)
 
@@ -211,7 +213,7 @@ python make_pca.py               # -> figures/pca_*.png (2 files)
 ```
 
 Standardizes a 10-feature behavior subset and projects to 2 PCs
-(PC1≈45 %, PC2≈23 % of variance), plotted twice — colored by
+(PC1≈44 %, PC2≈23 % of variance), plotted twice — colored by
 engagement and by confusion.
 
 ### Step 10 — `make_expr_timeline.py` (P02 expression case study)
@@ -252,11 +254,11 @@ captured runs.
 
 | Artifact | Producer | Rows / pages | Contents |
 |---|---|---|---|
-| `data/session_segments.csv` | segment_sessions | 20 | per-phase start/end/duration per session |
-| `data/features.csv` | extract_features | 20 × ~46 | all behavioral features (see `data/DATA_DICTIONARY.md`) |
-| `data/labels.csv` | build_labels | ~22 | survey composites + knowledge scores |
+| `data/session_segments.csv` | segment_sessions | 20 local | per-phase start/end/duration per local session (P01 not segmented) |
+| `data/features.csv` | extract_features | 21 × ~46 | all behavioral features + P01 manual row (see `data/DATA_DICTIONARY.md`) |
+| `data/labels.csv` | build_labels | 24 | survey composites + knowledge scores (incl. P01 manual + survey-only) |
 | `data/explore_correlations.csv` | explore | 324 | every feature×target Spearman result |
-| `data/model_coefficients.csv` | model_rq2 | ~78 | LASSO selection frequency + median coef |
+| `data/model_coefficients.csv` | model_rq2 | 66 | LASSO selection frequency + median coef |
 | `figures/*.png` | make_figures / make_pca / make_expr_timeline | 6 | report visuals |
 | `storm-capstone.pdf` | make_pdf | 4 pages | README rendered with figures |
 | `verification_output.txt` | verify.py | 52 checks | captured PASS/FAIL run |
@@ -269,16 +271,17 @@ captured runs.
 
 After a full run, confirm:
 
-1. **Counts** — `features.csv` has 20 rows; `labels.csv` has 23 rows
-   (includes survey-only respondents); `explore_correlations.csv` has
-   324 rows.
+1. **Counts** — `features.csv` has 21 rows (20 local + P01 manual);
+   `session_segments.csv` has 20 local rows; `labels.csv` has 24 rows
+   (includes P01 manual + survey-only respondents);
+   `explore_correlations.csv` has 324 rows.
 2. **Spot checks** — P02 `survival_attempts` = 2; P04 lesson phases are
    NaN (not 0); P07 `no_transcript` = 1; P15 `was_restarted` = 1.
 3. **Headline correlations reproduce** — `look_away_ratio→effort`
-   ρ ≈ −.62; `expr_frown_mean→confusion` ρ ≈ +.57;
+   ρ ≈ −.57; `expr_frown_mean→confusion` ρ ≈ +.56;
    `lesson1_s→post_score` ρ ≈ +.47.
-4. **Model null reproduces** — engagement LOO R² ≈ −.12, confusion
-   R² ≈ −.13, `confusion_any` accuracy ≈ .65 < .75 baseline.
+4. **Model null reproduces** — engagement LOO R² ≈ −.17, confusion
+   R² ≈ −.11, `confusion_any` accuracy ≈ .67 < .76 baseline.
 5. **Figures regenerate** — all six PNGs and the 4-page PDF produce
    without error.
 
