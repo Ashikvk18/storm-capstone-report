@@ -10,11 +10,12 @@ Conventions used throughout:
 - All durations are **seconds**; all timestamps are **seconds into the
   recording**.
 
-## `features.csv` — one row per recorded session (20 rows)
+## `features.csv` — one row per analysis session (21 rows)
 
 Produced by `extract_features.py` from per-second timelines, frame
-signatures, transcripts, and face/blend caches. Restricted to the
-app-session window wherever noted.
+signatures, transcripts, and face/blend caches, plus one
+professor-supplied aggregate row for P01 (no local MP4/VTT). Restricted
+to the app-session window wherever noted.
 
 | Column | Meaning |
 |---|---|
@@ -83,10 +84,11 @@ Left/Right pairs averaged. All values 0–1 activation.
 | `no_transcript` | 1 if the recording has no usable transcript (P07) — all phase features then NaN |
 | `transcript_gap` | 1 if `pre_app` >120 s with zero lesson1 seconds (P04's late-starting transcript) — early phases censored to NaN |
 
-## `labels.csv` — survey-derived outcomes (~22 rows)
+## `labels.csv` — survey-derived outcomes (24 rows)
 
-Produced by `build_labels.py` from the pre/post Qualtrics exports.
-Includes survey-only respondents (`has_recording`=0) who have no video.
+Produced by `build_labels.py` from the pre/post Qualtrics exports, with
+P01's row supplied separately via `MANUAL_LABEL_ROWS`. Includes
+survey-only respondents (`has_recording`=0) who have no video.
 
 ### Knowledge scores
 
@@ -107,12 +109,13 @@ Includes survey-only respondents (`has_recording`=0) who have no video.
 | `guess_full` | All 18 GUESS items, one reverse-coded | 1–7 |
 | `has_recording` | 1 if a session recording exists for this participant | 0/1 |
 
-Confusion has a floor effect (5/20 exact zeros); `explore.py` adds a
+Confusion has a floor effect (5/21 exact zeros); `explore.py` adds a
 binary `confusion_any` target at analysis time.
 
-## `session_segments.csv` — per-phase spans (20 rows)
+## `session_segments.csv` — per-phase spans (20 local rows)
 
-Produced by `segment_sessions.py`. For every phase label, three
+Produced by `segment_sessions.py` for the 20 local recordings only; P01
+has no local segmentation. For every phase label, three
 columns: `<phase>_t_start`, `<phase>_t_end`, `<phase>_t_dur` (seconds).
 Phases include the seven content phases plus `pre_app, post_app,
 app_idle, aborted, app_no_transcript, desktop, interview,
@@ -129,14 +132,14 @@ valid observations.
 |---|---|
 | `target` | Outcome: engagement, confusion, confusion_any, effort, complexity, perceived_learning, guess_full, post_score, learning_gain |
 | `feature` | Behavioral feature name (same names as `features.csv`) |
-| `n` | Valid paired observations (18–20 typical) |
+| `n` | Valid paired observations (19–21 typical) |
 | `rho` | Spearman rank correlation, rounded to 3 decimals |
 | `p` | Two-sided p-value, rounded to 4 decimals — uncorrected for multiple testing |
 
 Note: 9 rows have empty `rho`/`p` — `quiz1_correct` is
 constant across participants, so Spearman is undefined for it.
 
-## `model_coefficients.csv` — LASSO audit trail (~78 rows)
+## `model_coefficients.csv` — LASSO audit trail (66 rows)
 
 Produced by `model_rq2.py`. One row per feature×regression-target.
 
@@ -144,8 +147,8 @@ Produced by `model_rq2.py`. One row per feature×regression-target.
 |---|---|
 | `target` | `engagement` or `confusion` (continuous LASSO targets only) |
 | `feature` | Behavioral feature name |
-| `selected_folds` | In how many of 19 leave-one-out folds the feature's coefficient was non-zero |
+| `selected_folds` | In how many of 21 leave-one-out folds the feature's coefficient was non-zero |
 | `median_coef` | Median standardized coefficient across folds |
 
-A feature selected in ≤2 folds is noise; the honest result is that
+A feature selected in only a few folds is noise; the honest result is that
 almost nothing was selected consistently.
