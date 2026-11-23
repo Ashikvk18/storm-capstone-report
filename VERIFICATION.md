@@ -17,8 +17,8 @@ Latest run: **52 checks, 52 passed** — see `verification_output.txt`.
 | Group | What it proves |
 |---|---|
 | File existence | All pipeline scripts + `face_landmarker.task` present |
-| Row counts | Study-size sanity (20 sessions, ~23 label rows, 324 correlations) |
-| Schema | Required feature groups/columns present; 20 unique PIDs |
+| Row counts | Study-size sanity (20 local sessions + P01 manual, 24 label rows, 324 correlations) |
+| Schema | Required feature groups/columns present; 21 unique PIDs |
 | Anomaly spot-checks | P02 retry, P04 gap, P07 truncation, P15 restart, P05/P06 no-split |
 | Missingness | NaN (not 0) for unobserved phases; no negative values; bounded ranges |
 | Correlations | All 324 rows recompute within ±.02 of committed CSV |
@@ -35,9 +35,9 @@ missing inputs would silently produce empty outputs downstream.
 
 ## Row counts (5 checks)
 
-- `features.csv` — exactly 20 rows (one per recording)
-- `labels.csv` — 23 rows (20 recorded participants + 3 survey-only rows)
-- `session_segments.csv` — 20 rows
+- `features.csv` — exactly 21 rows (20 local recordings + P01 manual row)
+- `labels.csv` — 24 rows (21 analysis participants + 3 survey-only rows)
+- `session_segments.csv` — 20 local rows (P01 has no local segmentation)
 - `explore_correlations.csv` — 324 rows (36 features × 9 targets,
   minus pairs dropped for n<8)
 - `model_coefficients.csv` — non-empty
@@ -46,7 +46,7 @@ missing inputs would silently produce empty outputs downstream.
 
 `features.csv` must contain columns from every feature group
 (`session_s`, `survival_attempts`, `look_away_ratio`,
-`expr_frown_mean`, `no_transcript`, `transcript_gap`), and all 20
+`expr_frown_mean`, `no_transcript`, `transcript_gap`), and all 21
 participant IDs must be unique.
 
 ## Anomaly spot-checks — the cases that broke earlier versions
@@ -81,10 +81,10 @@ match both the committed CSV and the reported values:
 
 | Feature → Target | Recomputed ρ | CSV ρ |
 |---|---|---|
-| look_away_ratio → effort | −.616 | −.616 |
-| expr_frown_mean → confusion | +.568 | +.568 |
-| lesson1_s → post_score | +.469 | +.469 |
-| expr_brow_up_max → complexity | −.739 | −.739 |
+| look_away_ratio → effort | −.573 | −.573 |
+| expr_frown_mean → confusion | +.559 | +.559 |
+| lesson1_s → post_score | +.467 | +.467 |
+| expr_brow_up_max → complexity | −.745 | −.745 |
 
 Then **all 324 rows** of `explore_correlations.csv` are recomputed —
 0 mismatches beyond ±.02. Bounds check: ρ ∈ [−1,1], n ∈ [8,25];
@@ -96,8 +96,8 @@ not an error).
 
 - `model_coefficients.csv` covers both regression targets
   (engagement, confusion)
-- `selected_folds` ∈ [0,20] — cannot exceed the 20 leave-one-out folds
-  (observed max: 4, i.e., no feature was stably selected — consistent
+- `selected_folds` ∈ [0,21] — cannot exceed the 21 leave-one-out folds
+  (observed max: 7, i.e., no feature was stably selected — consistent
   with the reported null result)
 
 ## Artifact integrity (3 checks)
@@ -112,7 +112,7 @@ not an error).
   `.xlsx` — names/emails/raw media can never leak into the repo
 - Every `features.csv` PID appears in `labels.csv` (all matched)
 - `confusion_any` target exists in the correlation table and the
-  positive rate (0.75) matches the known floor effect
+  positive rate (0.76) matches the known floor effect
 - All `session_s` values positive (min 681 s)
 - P02's timeline file contains only known phase labels
 
@@ -138,7 +138,8 @@ not an error).
 `verify_transcripts.py` audits the RAW inputs `verify.py` cannot see -
 the .vtt transcripts and .mp4 inventory:
 
-- **Counts** — exactly 20 mp4 and 19 vtt (P07 legitimately has none)
+- **Counts** — exactly 20 local mp4 and 19 local vtt (P07 legitimately
+  has none; P01 has no local files)
 
 ### Per-transcript checks (57 checks)
 
