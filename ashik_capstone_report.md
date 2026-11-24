@@ -72,4 +72,4 @@ The analysis used a computer to process MP4 screen recordings and available VTT 
 
 ## 5. Communication Skills I Used
 
-Communication was important because my project combined software development and research. I needed to explain what the extracted features represented, how the analysis worked, and why certain results were limited. I documented the pipeline, feature definitions, and verification procedures so
+Communication was important because my project combined software development and research. I needed to explain what the extracted features represented, how the analysis worked, and why certain results were limited. I documented the pipeline, feature definitions, and verification procedures so that another person could understand
