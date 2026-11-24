@@ -104,4 +104,4 @@ The experience did not turn out exactly as I expected. I originally thought I wo
 
 *Project repository: https://github.com/Ashikvk18/storm-capstone*
 
-*Analysis note: The study size is 21 participants and 21 recordings, as confirmed by the project author. The quantitative results and figures
+*Analysis note: The study size is 21 participants and 21 recordings, as confirmed by the project author. The quantitative results and figures above summarize the existing repository
