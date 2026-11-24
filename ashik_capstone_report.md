@@ -10,4 +10,4 @@ For my capstone project, I worked on STORM, an interactive learning program deve
 
 *Figure 1. STORM geography lesson showing the interactive map of the United States.*
 
-I worked with my project partner, Shalin Bhattarai, and we
+I worked with my project partner, Shalin Bhattarai, and we focused on different research questions.
