@@ -31,4 +31,4 @@ including where each figure, graph, and screenshot was placed.
 5. **Added figures.** Copied the two analysis graphs used in the report
    into `report_figures/` and embedded them; then extracted session frames
    from many different participant recordings with OpenCV — not just one
-   video — and
+   video — and embedded a six-participant phase gallery plus the P02 case
