@@ -21,4 +21,4 @@ including where each figure and screenshot was placed.
    verification harness.
 
 3. **Drafted the report.** Wrote the full first-person draft covering all
-   11 required
+   11 required sections (~2,300 words), keeping the friend's plain,
