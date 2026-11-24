@@ -8,4 +8,4 @@ For my capstone project, I worked on STORM, an interactive learning program deve
 
 ![STORM geography lesson showing the interactive map of the United States](report_figures/session_p14_lesson2.png)
 
-*Figure 1.
+*Figure 1. STORM geography lesson showing the
