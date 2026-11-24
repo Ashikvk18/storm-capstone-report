@@ -28,4 +28,4 @@ Finally, because the whole pipeline was built from scratch under time pressure, 
 
 ![PCA of session behavior profiles, colored by reported confusion](figures/pca_confusion.png)
 
-## 2.
+## 2. Physical, Social, and Development Environment
