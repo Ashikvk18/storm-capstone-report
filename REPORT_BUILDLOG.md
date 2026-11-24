@@ -7,4 +7,4 @@ including where each figure and screenshot was placed.
 
 1. **Studied the target format.** Extracted text from the friend's capstone
    report PDF (`Capstone report of Enyetullah.pdf`) with `pdftotext` and
-   mirrored its
+   mirrored its structure: a title, then 11 numbered first-person sections
