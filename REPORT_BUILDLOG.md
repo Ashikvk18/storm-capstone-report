@@ -46,4 +46,4 @@ including where each figure and screenshot was placed.
 |---|---|---|---|
 | `figures/nav_vs_confusion.png` | Scatter: survival navigation time vs reported confusion | Between the damaged-archive recovery paragraph and the "Once the recordings were recovered" segmentation paragraph | Early in the detailed description, bridging data recovery and analysis |
 | `report_figures/lesson1_tornado_formation.png` | Video screenshot: Storm lesson 1 tornado-formation simulation (P08, t=70s, with webcam overlay) | After the segmentation paragraph ending "...rather than averaged away." | Illustrates what a lesson phase looks like in the recordings |
-| `report_figures/survival_phone_call.png` | Video screenshot:
+| `report_figures/survival_phone_call.png` | Video screenshot: survival scenario phone call (P08,
