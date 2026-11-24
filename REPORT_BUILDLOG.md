@@ -61,3 +61,4 @@ different participant recordings**:
 | `report_figures/session_p14_lesson2.png` | P14 | lesson2 | 291 s |
 | `report_figures/session_p10_impacts.png` | P10 | impacts | 389 s |
 | `report_figures/session_p05_quiz1.png` | P05 | quiz1 | 169 s |
+| `report_figures/session_p11_survival_call.png` | P11 | survival_call | 475 s |
