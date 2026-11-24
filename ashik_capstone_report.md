@@ -32,4 +32,4 @@ Another important part of my project was computer vision. I used MediaPipe FaceL
 
 The facial features included brow movement, blinking, frowning, mouth stretching, and jaw movement. These were numerical estimates rather than direct measurements of emotions. Because the webcam images were small and sometimes unavailable, I treated facial measurements as noisy behavioral indicators. A frown alone does not prove that someone is confused, and head orientation is not the same as eye tracking.
 
-To examine how these signals
+To examine how these signals changed over time, I compared
