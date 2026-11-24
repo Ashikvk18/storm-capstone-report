@@ -81,3 +81,4 @@ All images live in Section 1 ("Detailed Description of My Capstone
 Experience"):
 
 1. `nav_vs_confusion.png` — after the damaged-ZIP paragraph.
+2. **Phase gallery** — after the segmentation paragraph ("...rather than
