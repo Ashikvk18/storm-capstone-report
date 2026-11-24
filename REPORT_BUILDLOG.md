@@ -80,3 +80,4 @@ different participant recordings**:
 
 Earlier single-video frames kept as spares (not embedded):
 `lesson1_tornado_formation.png` (P08), `impacts_lesson.png` (P08),
+`survival_phone_call.png` (P08).
