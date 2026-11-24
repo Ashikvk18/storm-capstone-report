@@ -10,4 +10,4 @@ The project started from a written proposal that assumed the Storm app would pro
 
 That discovery changed the whole shape of my project. Instead of analyzing clean event logs, I had to treat twenty screen recordings as my dataset. Each recording was roughly an hour of compressed video, and the behavioral signals I wanted — how long someone spent in each lesson, whether they looked away, how still they sat, whether they were frowning — were all locked inside pixels. My job became building a pipeline that could recover those signals from video and transcripts, join them to survey-based labels of engagement and confusion, and then ask honestly what the data could and could not support.
 
-The first major obstacle was the data itself. All the recordings had been shared as one large ZIP
+The first major obstacle was the data itself. All the recordings had been shared as one large ZIP archive of about five gigabytes,
