@@ -39,3 +39,5 @@ including where each figure and screenshot was placed.
 
 7. **Verified and pushed.** Ran `verify.py` (all checks pass), then pushed
    all commits to `origin/master`.
+
+## Figures and where they appear
