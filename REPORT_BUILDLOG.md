@@ -28,4 +28,4 @@ including where each figure and screenshot was placed.
    one fragment per commit, messages tagged by section — per the project's
    granular-commit preference.
 
-5. **Added figures.** Copied the
+5. **Added figures.** Copied the two analysis graphs used in the report
