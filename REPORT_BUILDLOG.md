@@ -53,4 +53,4 @@ including where each figure, graph, and screenshot was placed.
 |---|---|---|---|
 | `figures/nav_vs_confusion.png` | Scatter: survival navigation time vs reported confusion | Between the damaged-archive recovery paragraph and the "Once the recordings were recovered" segmentation paragraph | Early in the detailed description, bridging data recovery and analysis |
 | `figures/pca_confusion.png` | PCA of session behavior profiles, colored by confusion | After the "Finally, ... verification" paragraph — last image in Section 1 | Closes the detailed description alongside the findings discussion |
-| `figures/expr_across_sessions.png` | Small multiples: four action units across six sessions with phase bands | After the
+| `figures/expr_across_sessions.png` | Small multiples: four action units across six sessions with phase bands | After the behavioral-features paragraph, before the analysis paragraph
