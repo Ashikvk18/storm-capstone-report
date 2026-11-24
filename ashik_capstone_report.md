@@ -56,4 +56,4 @@ For the machine learning portion, I used LASSO regression and logistic regressio
 
 I also used principal component analysis (PCA) to visualize similarities and differences among participant behavior profiles. Figure 6 shows that the profiles do not form clearly separated confusion groups; P02 is a notable outlier. This visualization is exploratory and does not establish a reliable classifier.
 
-I also developed verification scripts to check data formats, participant identifiers, missing values, numerical ranges, and the reproducibility of the reported correlations. The repository records 114 successful
+I also developed verification scripts to check data formats, participant identifiers, missing values, numerical ranges, and the reproducibility of the reported correlations. The repository records 114 successful artifact and transcript checks.
