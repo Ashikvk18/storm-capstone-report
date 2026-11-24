@@ -38,3 +38,4 @@ including where each figure and screenshot was placed.
    numbered lists — into `ashik_capstone_report.pdf` (7 pages).
 
 7. **Verified and pushed.** Ran `verify.py` (all checks pass), then pushed
+   all commits
