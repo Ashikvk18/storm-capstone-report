@@ -64,3 +64,4 @@ intended phase:
 
 `impacts_lesson.png` (P08, t=370s) was also extracted into
 `report_figures/` but is not embedded in the report — it is kept as a
+spare figure.
