@@ -69,3 +69,4 @@ different participant recordings**:
 | `report_figures/session_p03_impacts.png` | P03 | impacts | 441 s |
 | `report_figures/session_p21_lesson1.png` | P21 | lesson1 | 85 s |
 | `report_figures/session_p08_lesson2.png` | P08 | lesson2 | 221 s |
+| `report_figures/survival_navigation_struggle.png` | P02 | survival_nav
