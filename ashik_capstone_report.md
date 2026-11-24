@@ -16,4 +16,4 @@ I worked with my project partner, Shalin Bhattarai, and we focused on different 
 
 *Figure 2. Example of an in-app multiple-choice knowledge question.*
 
-The study involved 21 participants and 21 video recordings.
+The study involved 21 participants and 21 video recordings. The recordings provided the basis
