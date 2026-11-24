@@ -42,4 +42,4 @@ The analysis ran on a Windows PC with a standard webcam used only inside the rec
 
 ## 5. Communication Skills I Used
 
-I used communication skills constantly, mostly written. I documented the pipeline in a devlog explaining why each function and non-obvious condition existed, kept a data dictionary so collaborators could interpret the CSVs, and wrote the findings document
+I used communication skills constantly, mostly written. I documented the pipeline in a devlog explaining why each function and non-obvious condition existed, kept a data dictionary so collaborators could interpret the CSVs, and wrote the findings document that this report summarizes.
