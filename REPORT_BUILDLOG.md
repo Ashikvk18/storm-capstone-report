@@ -103,3 +103,4 @@ Experience"):
 5. `pca_confusion.png` — final image of Section 1.
 
 The remaining six session frames (`p13`, `p16`, `p19`, `p03`, `p21`,
+`p08`) are extracted and committed in `report_figures/` as alternates —
