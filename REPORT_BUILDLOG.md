@@ -49,3 +49,5 @@ including where each figure, graph, and screenshot was placed.
 | `figures/pca_confusion.png` | PCA of session behavior profiles, colored by confusion | After the "Finally, ... verification" paragraph — last image in Section 1 | Closes the detailed description alongside the findings discussion |
 
 ## Session screenshots — extraction details
+
+Frames were pulled from `recovered/*.mp4` with OpenCV at the **median
