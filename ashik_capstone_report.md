@@ -25,3 +25,5 @@ The phases above are not hypothetical — every recording walks through the same
 ![P10 during the impacts lesson](report_figures/session_p10_impacts.png)
 
 ![P05 during quiz 1](report_figures/session_p05_quiz1.png)
+
+![P11 during the survival phone call](report_figures/session_p11_survival_call.png)
