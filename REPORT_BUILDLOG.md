@@ -39,3 +39,4 @@ including where each figure, graph, and screenshot was placed.
    into `ashik_capstone_report.pdf`.
 
 7. **Verified and pushed.** Ran `verify.py` (all checks pass), then pushed
+   all commits to `origin/master`.
