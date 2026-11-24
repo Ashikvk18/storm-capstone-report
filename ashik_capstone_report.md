@@ -30,4 +30,4 @@ The phases above are not hypothetical — every recording walks through the same
 
 ![P09 during survival navigation](report_figures/session_p09_survival_nav.png)
 
-For labels, I processed three survey exports. The pre-survey gave a ten-item knowledge score.
+For labels, I processed three survey exports. The pre-survey gave a ten-item knowledge score. The post-surveys gave the same
