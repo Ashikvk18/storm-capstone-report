@@ -36,3 +36,4 @@ including where each figure, graph, and screenshot was placed.
 
 6. **Rendered the PDF.** `make_report_pdf.py` (adapted from `make_pdf.py`,
    fpdf2-based) renders the markdown — headings, images, numbered lists —
+   into `ashik_capstone_report.pdf`.
