@@ -54,3 +54,4 @@ including where each figure and screenshot was placed.
 
 Frames were pulled from `recovered/*.mp4` with OpenCV at timestamps chosen
 from `out/*_timeline.csv` phase boundaries, so each frame lands inside the
+intended phase:
