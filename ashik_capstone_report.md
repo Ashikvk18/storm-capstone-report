@@ -53,3 +53,5 @@ Data Structures and Algorithms mattered more than I expected: the ZIP extractor 
 Psychology and human-factors readings shaped how I defined engagement and confusion as measurable constructs and how I interpreted ambiguous signals like stillness — is a motionless participant focused or lost? Technical and scientific writing courses made the report and documentation legible to non-specialists. Interdisciplinary research-methods exposure helped me think about triangulating quantitative and qualitative evidence, which ended up being the strongest part of the analysis. Basic statistics — correlation, significance, multiple comparisons — was essential for not fooling myself with twenty features tested against nine outcomes.
 
 ## 8. Three Things I Learned
+
+1. I learned that "no
