@@ -46,4 +46,4 @@ Finally, because the whole pipeline was built from scratch under time pressure, 
 
 ## 2. Physical, Social, and Development Environment
 
-I worked mainly on my personal Windows computer at home, with occasional work in the university lab and meetings with my faculty supervisor. The environment was quiet, which mattered because the pipeline decoded hundreds of gigabytes of video and ran per-second face-landmark inference. Most of my collaborators were asynchronous: my partner Shalin on the shared system, the professor
+I worked mainly on my personal Windows computer at home, with occasional work in the university lab and meetings with my faculty supervisor. The environment was quiet, which mattered because the pipeline decoded hundreds of gigabytes of video and ran per-second face-landmark inference. Most of my collaborators were asynchronous: my partner Shalin on the shared system, the professor who supplied one participant's aggregate
