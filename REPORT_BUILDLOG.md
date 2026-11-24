@@ -89,4 +89,4 @@ Experience"):
 
 1. `nav_vs_confusion.png` — after the damaged-ZIP paragraph.
 2. **Phase gallery** — after the segmentation paragraph ("...rather than
-   averaged away."), introduced
+   averaged away."), introduced by a sentence explaining that the frames
