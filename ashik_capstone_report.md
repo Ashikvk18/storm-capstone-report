@@ -70,4 +70,4 @@ Psychology and human-factors readings shaped how I defined engagement and confus
 
 ## 8. Three Things I Learned
 
-1. I learned that "no data" is a research problem, not just an engineering one. When the expected telemetry did
+1. I learned that "no data" is a research problem, not just an engineering one. When the expected telemetry did not exist, the honest move
