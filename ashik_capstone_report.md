@@ -65,3 +65,5 @@ I used communication skills constantly, mostly written. I documented the pipelin
 Data Structures and Algorithms mattered more than I expected: the ZIP extractor is essentially a scanner over a byte stream with careful boundary handling, and the segmentation logic is a state machine over timestamped cues. My machine-learning course gave me the regression, regularization, and cross-validation vocabulary needed for the LASSO/LOO-CV analysis and, just as importantly, the skepticism to report a null result honestly. Computer vision concepts — landmarks, keypoints, coordinate normalization — made MediaPipe's outputs interpretable rather than magic. Databases and file-format knowledge helped with the survey exports and the corrupted-archive problem. Python and object-oriented programming carried the entire pipeline.
 
 ## 7. Non-CS Courses or Topics That Were Useful
+
+Psychology and human-factors readings shaped
