@@ -4,4 +4,4 @@
 
 ## 1. Detailed Description of My Capstone Experience
 
-For my capstone project, I worked on Storm, an interactive Unity virtual-reality program that teaches
+For my capstone project, I worked on Storm, an interactive Unity virtual-reality program that teaches how tornadoes form, where they
