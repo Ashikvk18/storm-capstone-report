@@ -53,3 +53,5 @@ For the machine learning portion, I used LASSO regression and logistic regressio
 ![Original project PCA plot, colored by reported confusion. The first two components explain 67% of the variance](figures/pca_confusion.png)
 
 *Figure 6. Original project PCA plot, colored by reported confusion. The first two components explain 67% of the variance.*
+
+I also used principal component
