@@ -4,4 +4,4 @@
 
 ## 1. Detailed Description of My Capstone Experience
 
-For my capstone project, I worked on Storm, an interactive Unity virtual-reality program that teaches how tornadoes form, where they happen, and how to stay safe. Storm was a joint capstone with my partner Shalin
+For my capstone project, I worked on Storm, an interactive Unity virtual-reality program that teaches how tornadoes form, where they happen, and how to stay safe. Storm was a joint capstone with my partner Shalin Bhattarai. We shared the same
