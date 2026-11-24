@@ -45,4 +45,4 @@ including where each figure, graph, and screenshot was placed.
 
 | File | Type | Placed in report | Location in Section 1 |
 |---|---|---|---|
-| `figures/nav_vs_confusion.png` | Scatter:
+| `figures/nav_vs_confusion.png` | Scatter: survival navigation time vs reported confusion
