@@ -44,4 +44,4 @@ including where each figure and screenshot was placed.
 
 | File | Type | Placed in report | Location in Section 1 |
 |---|---|---|---|
-| `figures/nav_vs_confusion.png` | Scatter: survival navigation time vs reported confusion | Between the damaged-archive recovery paragraph and the "Once the recordings were recovered" segmentation paragraph | Early in the
+| `figures/nav_vs_confusion.png` | Scatter: survival navigation time vs reported confusion | Between the damaged-archive recovery paragraph and the "Once the recordings were recovered" segmentation paragraph | Early in the detailed description, bridging data recovery and analysis |
