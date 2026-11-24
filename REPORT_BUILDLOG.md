@@ -29,3 +29,4 @@ including where each figure and screenshot was placed.
    granular-commit preference.
 
 5. **Added figures.** Copied the two analysis graphs used in the report
+   into `report_figures/`
