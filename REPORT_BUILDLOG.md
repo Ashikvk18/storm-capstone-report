@@ -56,3 +56,5 @@ including where each figure, graph, and screenshot was placed.
 | `figures/expr_across_sessions.png` | Small multiples: four action units across six sessions with phase bands | After the behavioral-features paragraph, before the analysis paragraph | Illustrates the facial-expression features described in the text |
 
 ## Session screenshots — extraction details
+
+Frames were pulled from `recovered/*.mp4` with OpenCV at the **median
