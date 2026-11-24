@@ -50,4 +50,4 @@ Data Structures and Algorithms mattered more than I expected: the ZIP extractor 
 
 ## 7. Non-CS Courses or Topics That Were Useful
 
-Psychology and human-factors readings shaped how I defined engagement and confusion as measurable constructs and how I interpreted ambiguous signals like stillness — is a motionless participant focused or lost? Technical and scientific writing courses made the report and documentation legible to non-specialists. Interdisciplinary research-methods exposure helped me
+Psychology and human-factors readings shaped how I defined engagement and confusion as measurable constructs and how I interpreted ambiguous signals like stillness — is a motionless participant focused or lost? Technical and scientific writing courses made the report and documentation legible to non-specialists. Interdisciplinary research-methods exposure helped me think about triangulating quantitative and
