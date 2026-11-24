@@ -23,3 +23,5 @@ The phases above are not hypothetical — every recording walks through the same
 ![P14 during lesson 2 — tornado geography](report_figures/session_p14_lesson2.png)
 
 ![P10 during the impacts lesson](report_figures/session_p10_impacts.png)
+
+![P05 during quiz 1](report_figures/session_p05_quiz1.png)
