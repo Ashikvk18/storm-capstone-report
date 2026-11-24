@@ -58,3 +58,4 @@ different participant recordings**:
 | File | Participant | Phase | Timestamp |
 |---|---|---|---|
 | `report_figures/session_p12_lesson1.png` | P12 | lesson1 | 70 s |
+| `report_figures/session_p14_lesson2.png` | P14 | lesson2 | 291 s |
