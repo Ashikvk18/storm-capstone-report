@@ -14,4 +14,4 @@ The first major obstacle was the data itself. All the recordings had been shared
 
 ![Session navigation time vs reported confusion](figures/nav_vs_confusion.png)
 
-Once the recordings were recovered, the next step was turning them into structured data. Zoom's auto-transcripts contain narration cues
+Once the recordings were recovered, the next step was turning them into structured data. Zoom's auto-transcripts contain narration cues with timestamps, and phrases like
