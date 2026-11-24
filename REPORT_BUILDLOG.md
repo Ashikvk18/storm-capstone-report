@@ -27,3 +27,5 @@ including where each figure and screenshot was placed.
 4. **Committed granularly.** Built the file up in ~480 small commits —
    one fragment per commit, messages tagged by section — per the project's
    granular-commit preference.
+
+5. **Added figures.** Copied the
