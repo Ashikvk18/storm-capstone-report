@@ -9,3 +9,4 @@ including where each figure and screenshot was placed.
    report PDF (`Capstone report of Enyetullah.pdf`) with `pdftotext` and
    mirrored its structure: a title, then 11 numbered first-person sections
    (detailed description, environment, collaboration, hardware/software,
+   communication, CS
