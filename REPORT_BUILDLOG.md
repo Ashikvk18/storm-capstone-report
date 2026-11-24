@@ -63,3 +63,4 @@ intended phase:
 | `survival_navigation_struggle.png` | P02 recording | 800 s | survival_nav struggle window |
 
 `impacts_lesson.png` (P08, t=370s) was also extracted into
+`report_figures/` but is not embedded
