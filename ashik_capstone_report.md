@@ -34,4 +34,4 @@ I worked mainly on my personal Windows computer at home, with occasional work in
 
 ## 3. How Much I Worked With Other People
 
-This was genuinely a team
+This was genuinely a team project wearing a single-author-analysis hat.
