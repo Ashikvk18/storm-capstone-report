@@ -39,4 +39,4 @@ including where each figure, graph, and screenshot was placed.
    into `ashik_capstone_report.pdf`.
 
 7. **Fixed cropped figures.** The first PDF render showed clipped titles
-   and labels:
+   and labels: every `savefig` call lacked `bbox_inches="tight"`. Patched
