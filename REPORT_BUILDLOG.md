@@ -93,4 +93,4 @@ Experience"):
 
 The remaining six session frames (`p13`, `p16`, `p19`, `p03`, `p21`,
 `p08`) are extracted and committed in `report_figures/` as alternates —
-swap any gallery image by changing
+swap any gallery image by changing its `![]()` path in the report.
