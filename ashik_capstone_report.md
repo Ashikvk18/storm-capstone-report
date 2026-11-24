@@ -94,4 +94,4 @@ I learned that a machine learning model does not need to produce high accuracy f
 
 One of the biggest problems was the absence of application telemetry. Without interaction logs, I could not directly measure how long participants spent in each activity or how often they struggled with a task. To solve this, I combined transcript timestamps with visual cues from the recordings and developed a segmentation pipeline. I also used computer vision to extract behavioral measurements from the webcam overlay. When information was incomplete, I marked the affected values as missing instead of treating them as observed behavior. This approach allowed me to continue the research despite the limitations of the original data collection process.
 
-## 10.
+## 10. Something I Wish I Had Known Earlier
