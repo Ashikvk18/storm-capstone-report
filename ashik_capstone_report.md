@@ -28,4 +28,4 @@ Once the sessions were segmented, I extracted features that represented differen
 
 *Figure 3. Shelter-seeking task with on-screen navigation signs and controls.*
 
-Another important part of my project was computer vision. I used MediaPipe FaceLandmarker to estimate head orientation and facial action units from the webcam overlay. Head orientation included yaw, pitch, and roll. I calculated how often a participant's head position deviated from their own typical position as
+Another important part of my project was computer vision. I used MediaPipe FaceLandmarker to estimate head orientation and facial action units from the webcam overlay. Head orientation included yaw, pitch, and roll. I calculated how often a participant's head position deviated from their own typical position as an approximate measure of looking
