@@ -60,3 +60,4 @@ intended phase:
 |---|---|---|---|
 | `lesson1_tornado_formation.png` | `0217_P8.mp4` | 70 s | lesson1 (35–102 s) |
 | `survival_phone_call.png` | `0217_P8.mp4` | 470 s | survival_call (426–524 s) |
+| `survival_navigation_struggle.png` | P02 recording
