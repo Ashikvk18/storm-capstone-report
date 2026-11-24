@@ -80,4 +80,4 @@ Artificial intelligence, machine learning, algorithms, data structures, programm
 
 ## 7. Non-CS Courses or Topics That Were Useful
 
-Statistics helped me understand correlations, sample size, variability, and the limitations of exploratory analysis. Topics in psychology and education helped me think about engagement, confusion, and how people learn through interactive experiences. Academic writing was useful when organizing the findings and communicating uncertainty. Research ethics was also relevant because the recordings contained participant information, and the analysis needed to protect privacy by
+Statistics helped me understand correlations, sample size, variability, and the limitations of exploratory analysis. Topics in psychology and education helped me think about engagement, confusion, and how people learn through interactive experiences. Academic writing was useful when organizing the findings and communicating uncertainty. Research ethics was also relevant because the recordings contained participant information, and the analysis needed to protect privacy by using de-identified records.
