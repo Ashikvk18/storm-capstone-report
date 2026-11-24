@@ -100,4 +100,4 @@ I wish I had understood the importance of planning the data collection system be
 
 ## 11. Did the Experience Turn Out as Expected?
 
-The experience did not turn out exactly as I expected.
+The experience did not turn out exactly as I expected. I originally thought I would
