@@ -55,7 +55,8 @@ def fig_p02():
               loc="upper center", bbox_to_anchor=(0.5, -0.25),
               frameon=False)
     fig.tight_layout()
-    fig.savefig("figures/p02_timeline.png", dpi=160)
+    fig.savefig("figures/p02_timeline.png", dpi=160,
+                bbox_inches="tight", pad_inches=0.15)
     plt.close(fig)
 
 
@@ -76,7 +77,8 @@ def scatter(xcol, ycol, fname, title, xlabel, ylabel):
     ax.set_ylabel(ylabel)
     ax.set_title(f"{title} (rho={rho:.2f}, p={p:.3f})")
     fig.tight_layout()
-    fig.savefig(f"figures/{fname}", dpi=160)
+    fig.savefig(f"figures/{fname}", dpi=160,
+                bbox_inches="tight", pad_inches=0.15)
     plt.close(fig)
 
 
