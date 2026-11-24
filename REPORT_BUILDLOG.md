@@ -101,3 +101,5 @@ Experience"):
    P05, P08, P12, P14, P21 with phase bands), placed right after the
    behavioral-features paragraph and before the analysis paragraph.
 5. `pca_confusion.png` — final image of Section 1.
+
+The remaining six session frames (`p13`, `p16`, `p19`, `p03`, `p21`,
