@@ -40,4 +40,4 @@ What rescued the analysis was triangulation. I went back to the interview transc
 
 ![P02 during the failed survival-navigation attempt — the phase the timing data flagged as most variable](report_figures/survival_navigation_struggle.png)
 
-Finally, because the whole pipeline was built from scratch under
+Finally, because the whole pipeline was built from scratch under time pressure, I wrote two
