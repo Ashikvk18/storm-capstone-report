@@ -16,3 +16,4 @@ including where each figure, graph, and screenshot was placed.
 2. **Gathered source material.** Read `RQ2_findings.md`, `VERIFICATION.md`,
    `REPRODUCIBILITY.md`, `README.md`, `DEVLOG.md`, and the proposal PDF
    (`capstone prop.pdf`) to ground every claim in the actual pipeline:
+   Zoom-recording recovery, survey labels, phase segmentation, MediaPipe
