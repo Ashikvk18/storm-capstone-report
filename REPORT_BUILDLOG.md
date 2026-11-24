@@ -49,3 +49,5 @@ including where each figure and screenshot was placed.
 | `report_figures/survival_phone_call.png` | Video screenshot: survival scenario phone call (P08, t=470s) | In the triangulation paragraph block, first of two images | Shows the survival scenario the timing data flags |
 | `report_figures/survival_navigation_struggle.png` | Video screenshot: P02 mid failed navigation (t=800s) | In the triangulation paragraph block, second image | Directly illustrates the P02 ~8.5-minute struggle case study |
 | `figures/pca_confusion.png` | PCA of session behavior profiles, colored by confusion | After the "Finally, ... verification" paragraph — last image in Section 1 | Closes the detailed description alongside the findings discussion |
+
+## Screenshot extraction details
