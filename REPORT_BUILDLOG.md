@@ -100,3 +100,4 @@ Experience"):
    (small multiples of frown / brow-raise / smile / jaw-open for P02,
    P05, P08, P12, P14, P21 with phase bands), placed right after the
    behavioral-features paragraph and before the analysis paragraph.
+5. `pca_confusion.png` — final image of Section 1.
