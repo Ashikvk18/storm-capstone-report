@@ -41,3 +41,5 @@ including where each figure and screenshot was placed.
    all commits to `origin/master`.
 
 ## Figures and where they appear
+
+| File | Type |
