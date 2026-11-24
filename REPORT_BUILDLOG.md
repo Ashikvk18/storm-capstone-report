@@ -25,3 +25,4 @@ including where each figure and screenshot was placed.
    reflective tone.
 
 4. **Committed granularly.** Built the file up in ~480 small commits —
+   one fragment
