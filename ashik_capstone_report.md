@@ -60,4 +60,4 @@ Psychology and human-factors readings shaped how I defined engagement and confus
 
 ## 9. A Problem I Encountered and Its Solution
 
-The hardest problem was the corrupted five-gigabyte ZIP archive containing every recording. Standard tools could not open it because the central directory
+The hardest problem was the corrupted five-gigabyte ZIP archive containing every recording. Standard tools could not open it because the central directory — the index at the
