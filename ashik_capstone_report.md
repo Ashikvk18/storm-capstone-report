@@ -84,4 +84,4 @@ Statistics helped me understand correlations, sample size, variability, and the 
 
 ## 8. Three Things I Learned
 
-I learned how to turn
+I learned how to turn unstructured video and transcript data
