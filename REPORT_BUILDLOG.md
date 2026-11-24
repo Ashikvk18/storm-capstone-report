@@ -19,3 +19,5 @@ including where each figure and screenshot was placed.
    Zoom-recording recovery, survey labels, phase segmentation, MediaPipe
    face features, correlations, the LASSO null, and the 114-check
    verification harness.
+
+3. **Drafted the report.** Wrote
