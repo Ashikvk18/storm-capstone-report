@@ -1,5 +1,7 @@
 # Large media & archives (keep local only)
 *.zip
+*.mp4
+*.vtt
 recovered/
 _frames/
 
