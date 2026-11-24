@@ -39,7 +39,8 @@ def main():
         ax.set_title(title)
         fig.colorbar(sc, label=target)
         fig.tight_layout()
-        fig.savefig(f"figures/{fname}", dpi=160)
+        fig.savefig(f"figures/{fname}", dpi=160,
+                    bbox_inches="tight", pad_inches=0.15)
         plt.close(fig)
         print("wrote", fname)
 
