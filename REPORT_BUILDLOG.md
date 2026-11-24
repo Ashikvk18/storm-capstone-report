@@ -56,3 +56,4 @@ inside the intended phase. Thirteen frames were extracted from **thirteen
 different participant recordings**:
 
 | File | Participant | Phase | Timestamp |
+|---|---|---|---|
