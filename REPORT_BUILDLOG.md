@@ -73,3 +73,4 @@ different participant recordings**:
 | `report_figures/session_p13_final_quiz.png` | P13 | final_quiz | 798 s |
 | `report_figures/session_p16_lesson1.png` | P16 | lesson1 | 76 s |
 | `report_figures/session_p19_survival_call.png` | P19 | survival_call | 531 s |
+| `report_figures/session_p03_impacts.png` | P03 | impacts | 441 s |
