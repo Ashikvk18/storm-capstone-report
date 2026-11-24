@@ -62,4 +62,4 @@ I also developed verification scripts to check data formats, participant identif
 
 My development work was primarily computer-based and involved processing recorded sessions, writing Python scripts, examining data, and interpreting results. The research environment included collaboration with my project partner and faculty guidance. I used the project repository to organize code, derived datasets, figures, and documentation. Since video processing and testing took time, I separated the pipeline into smaller scripts and cached intermediate results so I could make changes without repeatedly processing every video.
 
-## 3.
+## 3. How Much I Worked With Other People
