@@ -14,3 +14,4 @@ including where each figure and screenshot was placed.
    experience matched expectations).
 
 2. **Gathered source material.** Read `RQ2_findings.md`, `VERIFICATION.md`,
+   `REPRODUCIBILITY.md`, `README.md`,
