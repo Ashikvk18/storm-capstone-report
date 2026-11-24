@@ -20,4 +20,4 @@ including where each figure and screenshot was placed.
    face features, correlations, the LASSO null, and the 114-check
    verification harness.
 
-3. **Drafted the report.** Wrote
+3. **Drafted the report.** Wrote the full first-person draft covering all
