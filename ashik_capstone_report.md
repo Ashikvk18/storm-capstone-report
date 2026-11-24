@@ -64,4 +64,4 @@ My development work was primarily computer-based and involved processing recorde
 
 ## 3. How Much I Worked With Other People
 
-Although STORM was a group
+Although STORM was a group capstone, my main responsibility was
