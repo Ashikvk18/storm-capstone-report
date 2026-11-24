@@ -30,4 +30,4 @@ Finally, because the whole pipeline was built from scratch under time pressure, 
 
 ## 2. Physical, Social, and Development Environment
 
-I worked mainly on my personal Windows computer at home, with occasional work in the university lab and meetings with
+I worked mainly on my personal Windows computer at home, with occasional work in the university lab and meetings with my faculty supervisor.
