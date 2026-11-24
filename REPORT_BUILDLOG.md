@@ -42,3 +42,5 @@ including where each figure, graph, and screenshot was placed.
    all commits to `origin/master`.
 
 ## Analysis figures and where they appear
+
+| File | Type | Placed
