@@ -21,3 +21,4 @@ including where each figure and screenshot was placed.
    verification harness.
 
 3. **Drafted the report.** Wrote the full first-person draft covering all
+   11 required
