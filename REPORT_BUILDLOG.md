@@ -11,3 +11,4 @@ including where each figure and screenshot was placed.
    (detailed description, environment, collaboration, hardware/software,
    communication, CS courses, non-CS courses, three things learned, a
    problem + solution, something wished known earlier, and whether the
+   experience matched expectations).
