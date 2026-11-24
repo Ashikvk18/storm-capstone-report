@@ -50,3 +50,4 @@ including where each figure, graph, and screenshot was placed.
 ## Analysis figures and where they appear
 
 | File | Type | Placed in report | Location in Section 1 |
+|---|---|---|---|
