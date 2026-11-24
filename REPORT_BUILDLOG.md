@@ -12,3 +12,5 @@ including where each figure, graph, and screenshot was placed.
    communication, CS courses, non-CS courses, three things learned, a
    problem + solution, something wished known earlier, and whether the
    experience matched expectations).
+
+2. **Gathered source material.** Read `RQ2_findings.md`, `VERIFICATION.md`,
