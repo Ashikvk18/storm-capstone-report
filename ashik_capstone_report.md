@@ -62,4 +62,4 @@ I used communication skills constantly, mostly written. I documented the pipelin
 
 ## 6. CS Courses or Topics That Were Useful
 
-Data Structures and Algorithms mattered more than I expected: the ZIP extractor is essentially a scanner over a byte stream with careful boundary handling, and the segmentation logic is a state machine over timestamped cues. My machine-learning course gave me the regression, regularization, and cross-validation vocabulary needed for the LASSO/LOO-CV analysis and, just as importantly, the skepticism to report a null result honestly.
+Data Structures and Algorithms mattered more than I expected: the ZIP extractor is essentially a scanner over a byte stream with careful boundary handling, and the segmentation logic is a state machine over timestamped cues. My machine-learning course gave me the regression, regularization, and cross-validation vocabulary needed for the LASSO/LOO-CV analysis and, just as importantly, the skepticism to report a null result honestly. Computer vision concepts — landmarks,
