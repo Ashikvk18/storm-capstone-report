@@ -38,4 +38,4 @@ This was genuinely a team project wearing a single-author-analysis hat. Shalin a
 
 ## 4. Hardware and Software Platform
 
-The analysis ran on a Windows PC with a standard webcam used only inside the recordings. The software stack was Python 3.10 or newer with OpenCV for video decoding, pandas and NumPy for tabular data,
+The analysis ran on a Windows PC with a standard webcam used only inside the recordings. The software stack was Python 3.10 or newer with OpenCV for video decoding, pandas and NumPy for tabular data, scikit-learn and SciPy for statistics
