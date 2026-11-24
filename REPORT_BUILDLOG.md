@@ -4,3 +4,5 @@ How `ashik_capstone_report.md` / `ashik_capstone_report.pdf` were produced,
 including where each figure and screenshot was placed.
 
 ## Steps followed
+
+1. **Studied the target format.**
