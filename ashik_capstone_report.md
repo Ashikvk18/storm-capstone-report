@@ -32,4 +32,4 @@ Finally, because the whole pipeline was built from scratch under time pressure, 
 
 I worked mainly on my personal Windows computer at home, with occasional work in the university lab and meetings with my faculty supervisor. The environment was quiet, which mattered because the pipeline decoded hundreds of gigabytes of video and ran per-second face-landmark inference. Most of my collaborators were asynchronous: my partner Shalin on the shared system, the professor who supplied one participant's aggregate data, and twenty-one study participants who showed up for recorded sessions. Development used VS Code, Python, Git for version control, and a growing collection of command-line scripts.
 
-## 3.
+## 3. How Much I Worked With Other People
