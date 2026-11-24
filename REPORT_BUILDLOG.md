@@ -89,3 +89,4 @@ Experience"):
    order, lesson → quiz → survival.
 3. `survival_navigation_struggle.png` — in the triangulation paragraph
    block, illustrating P02's ~8.5-minute failed navigation.
+4. `pca_confusion.png` — final image of Section 1.
