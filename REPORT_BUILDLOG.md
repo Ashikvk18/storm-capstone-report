@@ -33,3 +33,5 @@ including where each figure, graph, and screenshot was placed.
    from many different participant recordings with OpenCV — not just one
    video — and embedded a six-participant phase gallery plus the P02 case
    study frame.
+
+6. **Rendered the PDF.** `make_report_pdf.py` (adapted from `make_pdf.py`,
