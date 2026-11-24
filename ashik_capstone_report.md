@@ -80,4 +80,4 @@ Artificial intelligence, machine learning, algorithms, data structures, programm
 
 ## 7. Non-CS Courses or Topics That Were Useful
 
-Statistics helped me understand correlations, sample size, variability, and the
+Statistics helped me understand correlations, sample size, variability, and the limitations of exploratory analysis.
