@@ -74,4 +74,4 @@ The analysis used a computer to process MP4 screen recordings and available VTT 
 
 Communication was important because my project combined software development and research. I needed to explain what the extracted features represented, how the analysis worked, and why certain results were limited. I documented the pipeline, feature definitions, and verification procedures so that another person could understand the work. I also had to describe the difference between a statistical association and a reliable prediction. This helped me practice explaining technical results in language that people outside computer science could understand.
 
-## 6.
+## 6. CS Courses or Topics That Were Useful
