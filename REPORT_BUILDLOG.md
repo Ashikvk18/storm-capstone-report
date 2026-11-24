@@ -42,4 +42,4 @@ including where each figure, graph, and screenshot was placed.
    and labels: every `savefig` call lacked `bbox_inches="tight"`. Patched
    `make_figures.py`, `make_pca.py`, and `make_expr_timeline.py`, added
    `make_expr_gallery.py` for the cross-session expression figure,
-   regenerated all six
+   regenerated all six analysis figures, and re-rendered the PDF.
