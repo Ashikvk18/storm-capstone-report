@@ -53,3 +53,4 @@ including where each figure and screenshot was placed.
 ## Screenshot extraction details
 
 Frames were pulled from `recovered/*.mp4` with OpenCV at timestamps chosen
+from `out/*_timeline.csv` phase boundaries, so
