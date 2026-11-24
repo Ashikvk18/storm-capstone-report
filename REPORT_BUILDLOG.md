@@ -94,3 +94,4 @@ Experience"):
    `session_p14_lesson2`, `session_p10_impacts`, `session_p05_quiz1`,
    `session_p11_survival_call`, `session_p09_survival_nav` — in session
    order, lesson → quiz → survival.
+3. `survival_navigation_struggle.png` — in the triangulation paragraph
