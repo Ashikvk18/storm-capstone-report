@@ -34,3 +34,4 @@ including where each figure and screenshot was placed.
    the relevant ones.
 
 6. **Rendered the PDF.** Added `make_report_pdf.py` (adapted from
+   `make_pdf.py`, fpdf2-based)
