@@ -35,3 +35,4 @@ including where each figure, graph, and screenshot was placed.
    study frame.
 
 6. **Rendered the PDF.** `make_report_pdf.py` (adapted from `make_pdf.py`,
+   fpdf2-based) renders the
