@@ -58,3 +58,4 @@ intended phase:
 
 | Screenshot | Source recording | Timestamp | Phase |
 |---|---|---|---|
+| `lesson1_tornado_formation.png` | `0217_P8.mp4` |
