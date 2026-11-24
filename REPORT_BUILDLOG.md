@@ -91,3 +91,4 @@ Experience"):
 2. **Phase gallery** — after the segmentation paragraph ("...rather than
    averaged away."), introduced by a sentence explaining that the frames
    show the same arc across six participants: `session_p12_lesson1`,
+   `session_p14_lesson2`, `session_p10_impacts`, `session_p05_quiz1`,
