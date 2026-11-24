@@ -26,4 +26,4 @@ Once the sessions were segmented, I extracted features that represented differen
 
 ![Shelter-seeking task with on-screen navigation signs and controls](report_figures/session_p09_survival_nav.png)
 
-*Figure 3.
+*Figure 3. Shelter-seeking task with on-screen navigation signs and controls.*
