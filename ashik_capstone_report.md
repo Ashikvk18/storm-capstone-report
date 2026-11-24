@@ -13,3 +13,5 @@ That discovery changed the whole shape of my project. Instead of analyzing clean
 The first major obstacle was the data itself. All the recordings had been shared as one large ZIP archive of about five gigabytes, and the archive was damaged — its central directory was corrupt, so every standard unzip tool failed. I wrote a custom extractor that scanned the raw bytes for local file headers, recorded each entry's offset, and copied the data regions directly out of the archive, carefully handling the data descriptors that mark where each file ends. That script recovered twenty MP4 and VTT pairs that would otherwise have been lost.
 
 ![Session navigation time vs reported confusion](figures/nav_vs_confusion.png)
+
+Once the recordings were recovered,
