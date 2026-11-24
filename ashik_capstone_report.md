@@ -27,3 +27,5 @@ What rescued the analysis was triangulation. I went back to the interview transc
 Finally, because the whole pipeline was built from scratch under time pressure, I wrote two independent verification scripts that re-check every committed artifact — row counts, schemas, known anomaly spot-values, all 324 correlation rows recomputed from scratch, model sanity, figure integrity, and privacy hygiene — 114 checks in total. Every surprising result had to survive that audit before it went into the report.
 
 ![PCA of session behavior profiles, colored by reported confusion](figures/pca_confusion.png)
+
+## 2.
