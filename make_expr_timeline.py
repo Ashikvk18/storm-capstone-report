@@ -118,7 +118,8 @@ def plot(expr, ph):
     ax.set_title("P02 facial expressions across session phases")
     ax.legend(ncol=4, fontsize=8, loc="lower left", frameon=False)
     fig.tight_layout()
-    fig.savefig(OUT_PNG, dpi=160)
+    fig.savefig(OUT_PNG, dpi=160,
+                bbox_inches="tight", pad_inches=0.15)
     plt.close(fig)
     print(f"wrote {OUT_PNG}")
 
