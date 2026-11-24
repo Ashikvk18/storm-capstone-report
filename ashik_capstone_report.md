@@ -54,4 +54,4 @@ This was genuinely a team project wearing a single-author-analysis hat. Shalin a
 
 ## 4. Hardware and Software Platform
 
-The analysis ran on a
+The analysis ran on a Windows PC with a standard
