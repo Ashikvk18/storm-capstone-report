@@ -43,3 +43,4 @@ including where each figure and screenshot was placed.
 ## Figures and where they appear
 
 | File | Type | Placed in report | Location in Section 1 |
+|---|---|---|---|
