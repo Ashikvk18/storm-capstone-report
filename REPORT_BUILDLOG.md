@@ -65,3 +65,4 @@ different participant recordings**:
 | `report_figures/session_p09_survival_nav.png` | P09 | survival_nav | 595 s |
 | `report_figures/session_p13_final_quiz.png` | P13 | final_quiz | 798 s |
 | `report_figures/session_p16_lesson1.png` | P16 | lesson1 | 76 s |
+| `report_figures/session_p19_survival_call.png` | P19 | survival_call | 531 s |
