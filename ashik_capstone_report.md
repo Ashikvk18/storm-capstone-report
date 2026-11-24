@@ -55,4 +55,4 @@ Psychology and human-factors readings shaped how I defined engagement and confus
 ## 8. Three Things I Learned
 
 1. I learned that "no data" is a research problem, not just an engineering one. When the expected telemetry did not exist, the honest move was to rebuild the behavioral record from video and transcripts — and to say clearly in the report where that reconstruction is weaker than real logs.
-2. I learned that data-integrity conventions are research decisions. Treating unobserved phases as NaN instead of zero, excluding pilot submissions, and fuzzy-matching names across surveys changed the results more
+2. I learned that data-integrity conventions are research decisions. Treating unobserved phases as NaN instead of zero, excluding pilot submissions, and fuzzy-matching names across surveys changed the results more than any modeling choice did.
