@@ -57,3 +57,5 @@ Psychology and human-factors readings shaped how I defined engagement and confus
 1. I learned that "no data" is a research problem, not just an engineering one. When the expected telemetry did not exist, the honest move was to rebuild the behavioral record from video and transcripts — and to say clearly in the report where that reconstruction is weaker than real logs.
 2. I learned that data-integrity conventions are research decisions. Treating unobserved phases as NaN instead of zero, excluding pilot submissions, and fuzzy-matching names across surveys changed the results more than any modeling choice did.
 3. I learned to respect negative results. A model that cannot beat the mean at n=21 is a real answer about what session-level self-reports can support, and reporting it — alongside the descriptive signals that do replicate across quantitative and qualitative sources — is more valuable than a tuned-to-significance model.
+
+## 9.
