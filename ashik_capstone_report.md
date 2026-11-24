@@ -96,4 +96,4 @@ One of the biggest problems was the absence of application telemetry. Without in
 
 ## 10. Something I Wish I Had Known Earlier
 
-I wish I had understood the importance of planning the data collection system before conducting the study. If the application had recorded
+I wish I had understood the importance of planning the data collection system before conducting the study. If the application had recorded interaction events, phase transitions, quiz
