@@ -86,3 +86,5 @@ Earlier single-video frames kept as spares (not embedded):
 
 All images live in Section 1 ("Detailed Description of My Capstone
 Experience"):
+
+1. `nav_vs_confusion.png` — after the damaged-ZIP paragraph.
