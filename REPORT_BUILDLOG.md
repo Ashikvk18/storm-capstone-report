@@ -72,3 +72,4 @@ different participant recordings**:
 | `report_figures/survival_navigation_struggle.png` | P02 | survival_nav (failed attempt) | 800 s |
 
 Earlier single-video frames kept as spares (not embedded):
+`lesson1_tornado_formation.png` (P08), `impacts_lesson.png` (P08),
