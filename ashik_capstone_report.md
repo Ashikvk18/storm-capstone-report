@@ -80,4 +80,4 @@ The hardest problem was the corrupted five-gigabyte ZIP archive containing every
 
 ## 10. Something I Wish I Had Known Earlier
 
-I wish I had known at the proposal stage that the app was not actually
+I wish I had known at the proposal stage that the app was not actually logging anything — or, better,
