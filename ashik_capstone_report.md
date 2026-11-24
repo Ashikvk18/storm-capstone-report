@@ -8,4 +8,4 @@ For my capstone project, I worked on Storm, an interactive Unity virtual-reality
 
 The project started from a written proposal that assumed the Storm app would produce detailed in-app telemetry logs — timestamps of where each learner looked, which objects they touched, and how long they spent in each part of the simulation. When I began the analysis work, I discovered that the app had actually been run without any of that logging enabled. There were no interaction logs, no event timestamps, and no in-app behavior records at all. The only behavioral record of each session was a set of Zoom screen recordings: one video per participant showing the fullscreen VR application, a small webcam overlay of the participant in the corner, and a Zoom auto-generated transcript of the narration and the post-session interview.
 
-That discovery changed the whole shape of my project.
+That discovery changed the whole shape of my project. Instead of analyzing clean event
