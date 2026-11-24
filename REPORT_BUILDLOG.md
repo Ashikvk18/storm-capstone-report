@@ -6,3 +6,4 @@ including where each figure, graph, and screenshot was placed.
 ## Steps followed
 
 1. **Studied the target format.** Extracted text from the friend's capstone
+   report PDF (`Capstone
