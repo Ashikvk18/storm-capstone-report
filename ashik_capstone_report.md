@@ -68,4 +68,4 @@ I wish I had known at the proposal stage that the app was not actually logging a
 
 ## 11. Did the Experience Turn Out as Expected?
 
-It was harder than expected and better than expected, in different ways. I expected to analyze clean interaction logs and produce a predictive model of engagement and confusion; instead I spent most of the capstone doing data archaeology on screen recordings, and the predictive model honestly failed. What I did not expect was how much rigorous signal was still recoverable — navigation
+It was harder than expected and better than expected, in different ways. I expected to analyze clean interaction logs and produce a predictive model of engagement and confusion; instead I spent most of the capstone doing data archaeology on screen recordings, and the predictive model honestly failed. What I did not expect was how much rigorous signal was still recoverable — navigation time predicting confusion, dwell time
