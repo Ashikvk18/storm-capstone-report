@@ -92,4 +92,4 @@ I learned that a machine learning model does not need to produce high accuracy f
 
 ## 9. A Problem I Encountered and Its Solution
 
-One of the biggest problems
+One of the biggest problems was the absence of application
