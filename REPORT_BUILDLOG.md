@@ -78,3 +78,4 @@ Earlier single-video frames kept as spares (not embedded):
 ## Where each image goes in the report
 
 All images live in Section 1 ("Detailed Description of My Capstone
+Experience"):
