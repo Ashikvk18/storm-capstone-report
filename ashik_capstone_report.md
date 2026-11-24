@@ -22,4 +22,4 @@ The first challenge was recovering the recordings from a damaged archive. Standa
 
 After recovering the available files, I developed a segmentation pipeline to identify the different stages of the learning experience. I used timestamps from narration in the transcripts and visual information from video frames sampled at one frame per second. The program divided sessions into lessons, quizzes, the survival phone call, navigation, and the post-session interview. I also handled unusual cases such as an application restart, incomplete transcripts, and repeated survival attempts. Missing observations were kept separate from actual zero values.
 
-Once the sessions were segmented, I extracted features that represented different aspects of participant behavior. These included total session duration,
+Once the sessions were segmented, I extracted features that represented different aspects of participant behavior. These included total session duration, time spent in each lesson,
