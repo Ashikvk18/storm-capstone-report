@@ -10,4 +10,4 @@ including where each figure, graph, and screenshot was placed.
    mirrored its structure: a title, then 11 numbered first-person sections
    (detailed description, environment, collaboration, hardware/software,
    communication, CS courses, non-CS courses, three things learned, a
-   problem + solution,
+   problem + solution, something wished known earlier, and whether the
