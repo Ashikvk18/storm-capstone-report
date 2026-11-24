@@ -59,3 +59,5 @@ Psychology and human-factors readings shaped how I defined engagement and confus
 3. I learned to respect negative results. A model that cannot beat the mean at n=21 is a real answer about what session-level self-reports can support, and reporting it — alongside the descriptive signals that do replicate across quantitative and qualitative sources — is more valuable than a tuned-to-significance model.
 
 ## 9. A Problem I Encountered and Its Solution
+
+The hardest problem was the
