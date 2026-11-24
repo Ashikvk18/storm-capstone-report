@@ -2,4 +2,4 @@
 
 *Ashik Dey Rupak | Computer Science Capstone | Truman State University*
 
-## 1.
+## 1. Detailed Description of My Capstone Experience
