@@ -86,4 +86,4 @@ Statistics helped me understand correlations, sample size, variability, and the 
 
 I learned how to turn unstructured video and transcript data into organized, measurable features that can be used for research.
 
-I learned how computer vision can provide useful behavioral information, while also understanding the limitations of facial expressions and head
+I learned how computer vision can provide useful behavioral information, while also understanding the limitations of facial expressions and head orientation as proxies for mental states.
