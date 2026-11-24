@@ -46,4 +46,4 @@ I used communication skills constantly, mostly written. I documented the pipelin
 
 ## 6. CS Courses or Topics That Were Useful
 
-Data Structures and Algorithms mattered more than I expected: the ZIP extractor is essentially a scanner over a byte
+Data Structures and Algorithms mattered more than I expected: the ZIP extractor is essentially a scanner over a byte stream with careful boundary handling,
