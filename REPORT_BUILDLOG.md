@@ -18,3 +18,4 @@ including where each figure and screenshot was placed.
    (`capstone prop.pdf`) to ground every claim in the actual pipeline:
    Zoom-recording recovery, survey labels, phase segmentation, MediaPipe
    face features, correlations, the LASSO null, and the 114-check
+   verification harness.
