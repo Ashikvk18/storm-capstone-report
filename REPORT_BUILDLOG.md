@@ -45,3 +45,4 @@ including where each figure, graph, and screenshot was placed.
    regenerated all six analysis figures, and re-rendered the PDF.
 
 8. **Verified and pushed.** Ran `verify.py` (all checks pass), then pushed
+   all commits to `origin/master`.
