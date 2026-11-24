@@ -25,4 +25,4 @@ including where each figure, graph, and screenshot was placed.
    reflective tone.
 
 4. **Committed granularly.** Built the file up in ~500 small commits —
-   one fragment per
+   one fragment per commit, messages tagged by section — per the project's
