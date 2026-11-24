@@ -30,3 +30,4 @@ including where each figure, graph, and screenshot was placed.
 
 5. **Added figures.** Copied the two analysis graphs used in the report
    into `report_figures/` and embedded them; then extracted session frames
+   from many different
