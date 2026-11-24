@@ -68,4 +68,4 @@ I wish I had known at the proposal stage that the app was not actually logging a
 
 ## 11. Did the Experience Turn Out as Expected?
 
-It was harder than expected and better than expected, in different ways.
+It was harder than expected and better than expected, in different ways. I expected to analyze clean
