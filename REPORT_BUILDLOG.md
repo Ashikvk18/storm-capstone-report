@@ -24,4 +24,4 @@ including where each figure, graph, and screenshot was placed.
    11 required sections (~2,400 words), keeping the friend's plain,
    reflective tone.
 
-4. **Committed granularly.** Built the file
+4. **Committed granularly.** Built the file up in ~500 small commits —
