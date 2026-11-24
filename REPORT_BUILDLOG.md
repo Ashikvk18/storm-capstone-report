@@ -88,3 +88,4 @@ Experience"):
    `session_p11_survival_call`, `session_p09_survival_nav` — in session
    order, lesson → quiz → survival.
 3. `survival_navigation_struggle.png` — in the triangulation paragraph
+   block, illustrating P02's
