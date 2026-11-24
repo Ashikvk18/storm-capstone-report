@@ -11,3 +11,5 @@ For my capstone project, I worked on STORM, an interactive learning program deve
 *Figure 1. STORM geography lesson showing the interactive map of the United States.*
 
 I worked with my project partner, Shalin Bhattarai, and we focused on different research questions. My research question (RQ2) was: Which explainable behavioral features are indicative of cognitive engagement and confusion in immersive VR learning environments? I wanted to determine whether observable behaviors, such as time spent on lessons, navigation difficulties, head movement, and facial expressions, could provide useful information about a learner's experience.
+
+![Example of an in-app multiple-choice knowledge question](report_figures/session_p05_quiz1.png)
