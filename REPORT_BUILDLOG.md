@@ -17,4 +17,4 @@ including where each figure, graph, and screenshot was placed.
    `REPRODUCIBILITY.md`, `README.md`, `DEVLOG.md`, and the proposal PDF
    (`capstone prop.pdf`) to ground every claim in the actual pipeline:
    Zoom-recording recovery, survey labels, phase segmentation, MediaPipe
-   face features, correlations,
+   face features, correlations, the LASSO null, and the 114-check
