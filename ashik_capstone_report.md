@@ -84,4 +84,4 @@ I wish I had known at the proposal stage that the app was not actually logging a
 
 ## 11. Did the Experience Turn Out as Expected?
 
-It was harder than expected and better than expected, in different ways. I expected to analyze clean interaction logs and produce a predictive model of engagement and
+It was harder than expected and better than expected, in different ways. I expected to analyze clean interaction logs and produce a predictive model of engagement and confusion; instead I spent most
