@@ -57,3 +57,4 @@ from `out/*_timeline.csv` phase boundaries, so each frame lands inside the
 intended phase:
 
 | Screenshot | Source recording | Timestamp | Phase |
+|---|---|---|---|
