@@ -91,3 +91,5 @@ I learned how computer vision can provide useful behavioral information, while a
 I learned that a machine learning model does not need to produce high accuracy for a research project to be valuable. Comparing a model with a baseline and reporting negative results honestly can reveal important limitations in the dataset and research design.
 
 ## 9. A Problem I Encountered and Its Solution
+
+One of the biggest problems
