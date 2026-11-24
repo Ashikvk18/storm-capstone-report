@@ -23,3 +23,5 @@ including where each figure, graph, and screenshot was placed.
 3. **Drafted the report.** Wrote the full first-person draft covering all
    11 required sections (~2,400 words), keeping the friend's plain,
    reflective tone.
+
+4. **Committed granularly.** Built the file
