@@ -90,4 +90,4 @@ Experience"):
 1. `nav_vs_confusion.png` — after the damaged-ZIP paragraph.
 2. **Phase gallery** — after the segmentation paragraph ("...rather than
    averaged away."), introduced by a sentence explaining that the frames
-   show the same
+   show the same arc across six participants: `session_p12_lesson1`,
