@@ -19,3 +19,5 @@ Once the recordings were recovered, the next step was turning them into structur
 The phases above are not hypothetical — every recording walks through the same arc. The frames below show that arc across six different participants: lesson one (P12), lesson two (P14), the impacts lesson (P10), quiz one (P05), the survival phone call (P11), and survival navigation (P09). Each frame is the fullscreen application with the participant's webcam overlay in the corner — the only behavioral record that existed.
 
 ![P12 during lesson 1 — tornado formation](report_figures/session_p12_lesson1.png)
+
+![P14 during lesson 2 — tornado geography](report_figures/session_p14_lesson2.png)
