@@ -58,4 +58,4 @@ intended phase:
 
 | Screenshot | Source recording | Timestamp | Phase |
 |---|---|---|---|
-| `lesson1_tornado_formation.png` | `0217_P8.mp4` |
+| `lesson1_tornado_formation.png` | `0217_P8.mp4` | 70 s | lesson1 (35–102 s) |
