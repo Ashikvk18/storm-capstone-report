@@ -74,4 +74,4 @@ Psychology and human-factors readings shaped how I defined engagement and confus
 2. I learned that data-integrity conventions are research decisions. Treating unobserved phases as NaN instead of zero, excluding pilot submissions, and fuzzy-matching names across surveys changed the results more than any modeling choice did.
 3. I learned to respect negative results. A model that cannot beat the mean at n=21 is a real answer about what session-level self-reports can support, and reporting it — alongside the descriptive signals that do replicate across quantitative and qualitative sources — is more valuable than a tuned-to-significance model.
 
-## 9.
+## 9. A Problem I Encountered and Its Solution
