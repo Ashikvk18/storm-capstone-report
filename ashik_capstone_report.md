@@ -64,4 +64,4 @@ I also developed verification scripts to check data formats, participant identif
 
 ## 2. Physical, Social, and Development Environment
 
-My development work was primarily computer-based
+My development work was primarily computer-based and involved processing recorded sessions, writing
