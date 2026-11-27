@@ -112,4 +112,4 @@ The experience did not turn out exactly as I expected. I originally thought I wo
 
 ## References
 
-[1] Ekman, P., & Friesen, W. V. (1978). *Facial Action Coding System*.
+[1] Ekman, P., & Friesen, W. V. (1978). *Facial Action Coding System*. Palo Alto, CA:
