@@ -80,4 +80,4 @@ Communication was important because my project combined software development and
 
 ## 6. CS Courses or Topics That Were Useful
 
-Artificial intelligence, machine learning, algorithms, data structures, programming, and software engineering were particularly useful. Machine learning concepts helped me understand regression, regularization, baseline comparisons,
+Artificial intelligence, machine learning, algorithms, data structures, programming, and software engineering were particularly useful. Machine learning concepts helped me understand regression, regularization, baseline comparisons, and cross-validation. Algorithms and data structures
