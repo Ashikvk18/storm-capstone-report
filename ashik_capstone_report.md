@@ -76,4 +76,4 @@ The analysis used a computer to process MP4 screen recordings and available VTT 
 
 ## 5. Communication Skills I Used
 
-Communication was important because my project combined software development and research.
+Communication was important because my project combined software development and research. I needed to explain what the
