@@ -34,4 +34,4 @@ Once the sessions were segmented, I extracted features that represented differen
 
 Another important part of my project was computer vision. I used MediaPipe FaceLandmarker [3] to estimate head orientation and facial action units [1] from the webcam overlay. Head orientation included yaw, pitch, and roll. I calculated how often a participant's head position deviated from their own typical position as an approximate measure of looking away. Using an individual baseline helped reduce the effect of differences in camera placement and sitting position.
 
-The facial features included brow movement, blinking, frowning, mouth stretching, and jaw movement. These were numerical estimates rather
+The facial features included brow movement, blinking, frowning, mouth stretching, and jaw movement. These were numerical estimates rather than direct measurements of emotions.
