@@ -126,4 +126,4 @@ The experience did not turn out exactly as I expected. I originally thought I wo
 
 [7] Spearman, C. (1904). The proof and measurement of association between two things. *American Journal of Psychology, 15*(1), 72–101. https://doi.org/10.2307/1412159
 
-[8] Sweller, J. (1988). Cognitive load during problem solving:
+[8] Sweller, J. (1988). Cognitive load during problem solving: Effects on learning.
