@@ -107,3 +107,5 @@ I wish I had understood the importance of planning the data collection system be
 The experience did not turn out exactly as I expected. I originally thought I would work with structured interaction data and build a model that could identify engagement and confusion. Instead, I spent a significant part of the project recovering recordings, developing a feature extraction pipeline, and dealing with incomplete information. The predictive models did not perform as well as I had hoped, but the project helped me identify potentially useful behavioral indicators and understand where the learning environment created difficulties for participants. Overall, the experience was valuable because it taught me how to adapt to unexpected challenges, work with real-world data, and communicate research findings responsibly.
 
 *Project repository: https://github.com/Ashikvk18/storm-capstone*
+
+*Analysis note: The study size is
