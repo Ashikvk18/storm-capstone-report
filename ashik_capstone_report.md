@@ -19,3 +19,5 @@ I worked with my project partner, Shalin Bhattarai, and we focused on different 
 ![Example of an in-app multiple-choice knowledge question](report_figures/session_p05_quiz1.png)
 
 *Figure 2. Example of an in-app multiple-choice knowledge question.*
+
+The study involved 21 participants and
