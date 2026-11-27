@@ -46,4 +46,4 @@ I then combined the extracted features with survey measures of engagement, effor
 
 The existing analysis showed several interesting patterns. Looking away more frequently was associated with lower reported effort, while frowning and mouth stretching were associated with higher reported confusion. Longer time in the first lesson was associated with higher post-test scores. These relationships are exploratory and should not be interpreted as proof that one behavior causes another outcome.
 
-Navigation during the survival scenario was
+Navigation during the survival scenario was another major finding.
