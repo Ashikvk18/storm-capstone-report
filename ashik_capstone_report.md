@@ -92,4 +92,4 @@ I learned how to turn unstructured video and transcript data into organized, mea
 
 I learned how computer vision can provide useful behavioral information, while also understanding the limitations of facial expressions and head orientation as proxies for mental states.
 
-I learned that a machine learning model does not need to produce high accuracy for a research project to be valuable.
+I learned that a machine learning model does not need to produce high accuracy for a research project to be valuable. Comparing a model with a baseline
