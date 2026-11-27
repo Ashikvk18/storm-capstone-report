@@ -42,4 +42,4 @@ To examine how these signals changed over time, I compared facial action-unit ac
 
 *Figure 4. Facial action-unit activation across six example sessions (P02, P05, P08, P12, P14, and P21), using 15-second averages.*
 
-I then combined the extracted features with survey measures of engagement, effort, confusion, and knowledge [5].
+I then combined the extracted features with survey measures of engagement, effort, confusion, and knowledge [5]. Pre-test and post-test scores allowed me
