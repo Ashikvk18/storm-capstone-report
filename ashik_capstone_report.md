@@ -128,4 +128,4 @@ The experience did not turn out exactly as I expected. I originally thought I wo
 
 [8] Sweller, J. (1988). Cognitive load during problem solving: Effects on learning. *Cognitive Science, 12*(2), 257–285. https://doi.org/10.1207/s15516709cog1202_4
 
-[9] Tibshirani, R. (1996). Regression shrinkage and selection via the lasso. *Journal of the Royal
+[9] Tibshirani, R. (1996). Regression shrinkage and selection via the lasso. *Journal of the Royal Statistical Society: Series B (Methodological), 58*(1), 267–288. https://doi.org/10.1111/j.2517-6161.1996.tb02080.x
