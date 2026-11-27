@@ -120,4 +120,4 @@ The experience did not turn out exactly as I expected. I originally thought I wo
 
 [4] Makransky, G., & Petersen, G. B. L. (2021). The cognitive affective model of immersive learning (CAMIL): A theoretical research-based model of learning in immersive virtual reality. *Educational Psychology Review, 33*(3), 937–958. https://doi.org/10.1007/s10648-020-09586-2
 
-[5] Phan, M. H., Keebler, J. R., & Chaparro, B.
+[5] Phan, M. H., Keebler, J. R., & Chaparro, B. S. (2016). The development and validation
