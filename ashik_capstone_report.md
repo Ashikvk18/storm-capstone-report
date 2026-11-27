@@ -4,4 +4,4 @@
 
 ## Abstract
 
-This capstone project investigates which explainable behavioral features are indicative of cognitive
+This capstone project investigates which explainable behavioral features are indicative of cognitive engagement and confusion in immersive virtual
