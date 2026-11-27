@@ -122,7 +122,7 @@ The experience did not turn out exactly as I expected. I originally thought I wo
 
 [5] Phan, M. H., Keebler, J. R., & Chaparro, B. S. (2016). The development and validation of the Game User Experience Satisfaction Scale (GUESS). *Human Factors, 58*(8), 1217–1234. https://doi.org/10.1177/0018720816669646
 
-[6] Radianti, J., Majchrowska, A., Fromm, J., & Wohlgenannt, I. (2020). A systematic review of immersive virtual reality applications for higher education: Design elements, lessons learned, and research agenda. *Computers & Education, 147*, 103778. https://doi.org/10.1016/j.compedu.2019.103778
+[6] Radianti, J., Majchrzak, T. A., Fromm, J., & Wohlgenannt, I. (2020). A systematic review of immersive virtual reality applications for higher education: Design elements, lessons learned, and research agenda. *Computers & Education, 147*, 103778. https://doi.org/10.1016/j.compedu.2019.103778
 
 [7] Spearman, C. (1904). The proof and measurement of association between two things. *American Journal of Psychology, 15*(1), 72–101. https://doi.org/10.2307/1412159
 
