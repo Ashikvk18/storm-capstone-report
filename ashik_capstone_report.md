@@ -4,4 +4,4 @@
 
 ## Abstract
 
-This capstone project investigates which explainable behavioral features are indicative of cognitive engagement and confusion in immersive virtual reality (IVR) learning environments. The study uses STORM, a Unity-based VR program that teaches tornado formation, geography, and shelter-seeking behavior.
+This capstone project investigates which explainable behavioral features are indicative of cognitive engagement and confusion in immersive virtual reality (IVR) learning environments. The study uses STORM, a Unity-based VR program that teaches tornado formation, geography, and shelter-seeking behavior. Although the original research plan assumed
