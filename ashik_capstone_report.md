@@ -24,4 +24,4 @@ The study involved 21 participants and 21 video recordings. The recordings provi
 
 The first challenge was recovering the recordings from a damaged archive. Standard extraction tools could not read the archive correctly because its central directory was corrupted. I developed a Python script that searched for local ZIP file headers and recovered accessible video and transcript entries. This allowed the analysis to proceed without relying on the damaged archive index.
 
-After recovering the available files, I
+After recovering the available files, I developed a segmentation pipeline to identify
