@@ -47,3 +47,5 @@ I then combined the extracted features with survey measures of engagement, effor
 The existing analysis showed several interesting patterns. Looking away more frequently was associated with lower reported effort, while frowning and mouth stretching were associated with higher reported confusion. Longer time in the first lesson was associated with higher post-test scores. These relationships are exploratory and should not be interpreted as proof that one behavior causes another outcome.
 
 Navigation during the survival scenario was another major finding. In the documented analysis, navigation duration ranged from about 70 to 633 seconds. Some participants reported that the controls or instructions were confusing. One participant struggled for several minutes before the scenario repeated and was completed on a second attempt. This showed how video timing and interview feedback could be used together to identify a possible usability problem.
+
+![Original project plot:
