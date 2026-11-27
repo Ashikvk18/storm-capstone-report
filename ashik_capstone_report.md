@@ -52,4 +52,4 @@ Navigation during the survival scenario was another major finding. In the docume
 
 *Figure 5. Original project plot: navigation duration versus reported confusion (Spearman rho = 0.25, p = 0.296).*
 
-For the machine learning portion, I
+For the machine learning portion, I used LASSO regression [9] and logistic
