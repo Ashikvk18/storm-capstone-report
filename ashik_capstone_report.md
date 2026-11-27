@@ -50,4 +50,4 @@ Navigation during the survival scenario was another major finding. In the docume
 
 ![Original project plot: navigation duration versus reported confusion (Spearman rho = 0.25, p = 0.296)](figures/nav_vs_confusion.png)
 
-*Figure 5. Original project plot:
+*Figure 5. Original project plot: navigation duration versus reported confusion (Spearman
