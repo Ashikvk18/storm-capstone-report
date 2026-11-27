@@ -44,4 +44,4 @@ To examine how these signals changed over time, I compared facial action-unit ac
 
 I then combined the extracted features with survey measures of engagement, effort, confusion, and knowledge [5]. Pre-test and post-test scores allowed me to examine learning outcomes. I used Spearman correlation [7] to explore relationships between behavior and survey responses, because it measures the strength of a monotonic relationship without requiring a linear relationship.
 
-The existing analysis showed several interesting patterns. Looking away more frequently was associated with lower reported effort, while frowning and mouth stretching were associated with higher reported confusion. Longer time in the first lesson
+The existing analysis showed several interesting patterns. Looking away more frequently was associated with lower reported effort, while frowning and mouth stretching were associated with higher reported confusion. Longer time in the first lesson was associated with higher post-test scores.
