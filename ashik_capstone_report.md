@@ -48,4 +48,4 @@ The existing analysis showed several interesting patterns. Looking away more fre
 
 Navigation during the survival scenario was another major finding. In the documented analysis, navigation duration ranged from about 70 to 633 seconds. Some participants reported that the controls or instructions were confusing. One participant struggled for several minutes before the scenario repeated and was completed on a second attempt. This showed how video timing and interview feedback could be used together to identify a possible usability problem.
 
-![Original project plot: navigation duration versus reported confusion (Spearman
+![Original project plot: navigation duration versus reported confusion (Spearman rho = 0.25, p = 0.296)](figures/nav_vs_confusion.png)
