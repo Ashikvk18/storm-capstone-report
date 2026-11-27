@@ -71,3 +71,5 @@ My development work was primarily computer-based and involved processing recorde
 Although STORM was a group capstone, my main responsibility was RQ2, while Shalin focused on RQ1. We worked with the same learning environment and research data, but our individual analyses addressed different questions. I was responsible for developing the behavioral feature extraction and analysis pipeline for my research question. Working within a shared project helped me understand the importance of keeping data definitions consistent and explaining individual contributions clearly. Faculty guidance also helped shape the research direction.
 
 ## 4. Hardware and Software Platform
+
+The analysis used a computer to
