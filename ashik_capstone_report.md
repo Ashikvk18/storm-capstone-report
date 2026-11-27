@@ -68,4 +68,4 @@ My development work was primarily computer-based and involved processing recorde
 
 ## 3. How Much I Worked With Other People
 
-Although STORM was a group capstone, my main responsibility was RQ2, while Shalin focused on RQ1. We worked with the same learning environment and research data, but our individual analyses addressed different questions. I was responsible for developing the
+Although STORM was a group capstone, my main responsibility was RQ2, while Shalin focused on RQ1. We worked with the same learning environment and research data, but our individual analyses addressed different questions. I was responsible for developing the behavioral feature extraction and analysis pipeline
