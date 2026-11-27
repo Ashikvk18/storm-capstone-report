@@ -52,4 +52,4 @@ Navigation during the survival scenario was another major finding. In the docume
 
 *Figure 5. Original project plot: navigation duration versus reported confusion (Spearman rho = 0.25, p = 0.296).*
 
-For the machine learning portion, I used LASSO regression [9] and logistic regression with leave-one-out cross-validation. This approach allowed the model to be evaluated on a participant who was not included in that training fold. The documented regression results were below the mean-prediction baseline, and the binary confusion classifier achieved approximately 67%
+For the machine learning portion, I used LASSO regression [9] and logistic regression with leave-one-out cross-validation. This approach allowed the model to be evaluated on a participant who was not included in that training fold. The documented regression results were below the mean-prediction baseline, and the binary confusion classifier achieved approximately 67% accuracy compared with a 76% majority-class
