@@ -39,3 +39,5 @@ The facial features included brow movement, blinking, frowning, mouth stretching
 To examine how these signals changed over time, I compared facial action-unit activation across six example sessions. The graph shows 15-second averages of frowning, brow raising, smiling, and jaw opening. The patterns vary across participants and recording phases, illustrating why individual behavior and recording context must be considered when interpreting these measurements. The signals do not directly establish a participant's emotional state.
 
 ![Facial action-unit activation across six example sessions (P02, P05, P08, P12, P14, and P21), using 15-second averages](figures/expr_across_sessions.png)
+
+*Figure 4. Facial action-unit activation across
