@@ -114,4 +114,4 @@ The experience did not turn out exactly as I expected. I originally thought I wo
 
 [1] Ekman, P., & Friesen, W. V. (1978). *Facial Action Coding System*. Palo Alto, CA: Consulting Psychologists Press.
 
-[2] Jolliffe, I. T. (2002). *Principal Component Analysis* (2nd
+[2] Jolliffe, I. T. (2002). *Principal Component Analysis* (2nd ed.). New York, NY: Springer.
