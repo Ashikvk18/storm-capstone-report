@@ -117,3 +117,5 @@ The experience did not turn out exactly as I expected. I originally thought I wo
 [2] Jolliffe, I. T. (2002). *Principal Component Analysis* (2nd ed.). New York, NY: Springer.
 
 [3] Lugaresi, C., Tang, J., Nash, H., McClanahan, C., Uboweja, E., Hays, M., Zhang, F., Chang, C.-L., Yong, M. G., Lee, J., Chang, W.-T., Hua, W., Georg, M., & Grundmann, M. (2019). MediaPipe: A framework for building perception pipelines. *arXiv preprint arXiv:1906.08172*.
+
+[4] Makransky, G., & Petersen, G.
