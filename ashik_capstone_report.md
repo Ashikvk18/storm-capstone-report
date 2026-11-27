@@ -40,4 +40,4 @@ To examine how these signals changed over time, I compared facial action-unit ac
 
 ![Facial action-unit activation across six example sessions (P02, P05, P08, P12, P14, and P21), using 15-second averages](figures/expr_across_sessions.png)
 
-*Figure 4. Facial action-unit activation across
+*Figure 4. Facial action-unit activation across six example sessions (P02, P05, P08,
