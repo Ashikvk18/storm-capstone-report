@@ -72,4 +72,4 @@ Although STORM was a group capstone, my main responsibility was RQ2, while Shali
 
 ## 4. Hardware and Software Platform
 
-The analysis used a computer to process MP4 screen recordings and available VTT transcripts. The original learning environment
+The analysis used a computer to process MP4 screen recordings and available VTT transcripts. The original learning environment was built with Unity, and Zoom
