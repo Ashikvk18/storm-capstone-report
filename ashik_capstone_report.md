@@ -122,4 +122,4 @@ The experience did not turn out exactly as I expected. I originally thought I wo
 
 [5] Phan, M. H., Keebler, J. R., & Chaparro, B. S. (2016). The development and validation of the Game User Experience Satisfaction Scale (GUESS). *Human Factors, 58*(8), 1217–1234. https://doi.org/10.1177/0018720816669646
 
-[6] Radianti, J., Majchrowska, A., Fromm, J., & Wohlgenannt, I.
+[6] Radianti, J., Majchrowska, A., Fromm, J., & Wohlgenannt, I. (2020). A systematic review of immersive
