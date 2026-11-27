@@ -29,3 +29,5 @@ After recovering the available files, I developed a segmentation pipeline to ide
 Once the sessions were segmented, I extracted features that represented different aspects of participant behavior. These included total session duration, time spent in each lesson, navigation duration, number of survival attempts, quiz feedback, participant speech, and webcam movement. I stored these measurements in CSV files using participant identifiers instead of names. This made the information easier to analyze and helped protect participant privacy.
 
 ![Shelter-seeking task with on-screen navigation signs and controls](report_figures/session_p09_survival_nav.png)
+
+*Figure 3. Shelter-seeking task with on-screen navigation signs and controls.*
