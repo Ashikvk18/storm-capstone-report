@@ -128,4 +128,4 @@ The experience did not turn out exactly as I expected. I originally thought I wo
 
 [8] Sweller, J. (1988). Cognitive load during problem solving: Effects on learning. *Cognitive Science, 12*(2), 257–285. https://doi.org/10.1207/s15516709cog1202_4
 
-[9] Tibshirani, R.
+[9] Tibshirani, R. (1996). Regression shrinkage and selection via
