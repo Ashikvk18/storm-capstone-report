@@ -58,4 +58,4 @@ For the machine learning portion, I used LASSO regression [9] and logistic regre
 
 *Figure 6. Original project PCA plot, colored by reported confusion. The first two components explain 67% of the variance.*
 
-I also used principal component analysis (PCA) [2] to visualize similarities and differences among participant behavior profiles. Figure 6 shows that the profiles do not form clearly separated confusion
+I also used principal component analysis (PCA) [2] to visualize similarities and differences among participant behavior profiles. Figure 6 shows that the profiles do not form clearly separated confusion groups; P02 is a notable outlier.
