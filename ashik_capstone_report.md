@@ -81,3 +81,5 @@ Communication was important because my project combined software development and
 ## 6. CS Courses or Topics That Were Useful
 
 Artificial intelligence, machine learning, algorithms, data structures, programming, and software engineering were particularly useful. Machine learning concepts helped me understand regression, regularization, baseline comparisons, and cross-validation. Algorithms and data structures were useful when processing timestamps, scanning archive entries, and organizing participant records. Computer vision concepts helped me understand how video frames and facial landmarks could be converted into numerical features. Software engineering principles helped me divide the project into reusable scripts and develop verification tests.
+
+## 7. Non-CS Courses or Topics That Were Useful
