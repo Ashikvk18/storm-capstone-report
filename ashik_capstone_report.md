@@ -64,4 +64,4 @@ I also developed verification scripts to check data formats, participant identif
 
 ## 2. Physical, Social, and Development Environment
 
-My development work was primarily computer-based and involved processing recorded sessions, writing
+My development work was primarily computer-based and involved processing recorded sessions, writing Python scripts, examining data, and interpreting
