@@ -68,4 +68,4 @@ My development work was primarily computer-based and involved processing recorde
 
 ## 3. How Much I Worked With Other People
 
-Although STORM was a group capstone,
+Although STORM was a group capstone, my main responsibility was RQ2, while
