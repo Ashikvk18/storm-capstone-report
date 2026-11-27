@@ -20,4 +20,4 @@ I worked with my project partner, Shalin Bhattarai, and we focused on different 
 
 *Figure 2. Example of an in-app multiple-choice knowledge question.*
 
-The study involved 21 participants and 21 video recordings. The recordings provided the basis for extracting behavioral data, which was combined with survey responses. The original plan was to use interaction logs from the application, but
+The study involved 21 participants and 21 video recordings. The recordings provided the basis for extracting behavioral data, which was combined with survey responses. The original plan was to use interaction logs from the application, but the application did not produce those
