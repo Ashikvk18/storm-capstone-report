@@ -104,4 +104,4 @@ I wish I had understood the importance of planning the data collection system be
 
 ## 11. Did the Experience Turn Out as Expected?
 
-The experience did not turn out exactly as I expected. I originally thought I would work with structured interaction data and build a model that could identify engagement and confusion. Instead, I spent a significant part of the project recovering recordings, developing a feature extraction pipeline, and dealing with incomplete information. The predictive models did not perform
+The experience did not turn out exactly as I expected. I originally thought I would work with structured interaction data and build a model that could identify engagement and confusion. Instead, I spent a significant part of the project recovering recordings, developing a feature extraction pipeline, and dealing with incomplete information. The predictive models did not perform as well as I had hoped,
