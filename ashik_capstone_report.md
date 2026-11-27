@@ -8,4 +8,4 @@ This capstone project investigates which explainable behavioral features are ind
 
 ## 1. Detailed Description of My Capstone Experience
 
-For my capstone project, I worked
+For my capstone project, I worked on STORM, an interactive learning program
