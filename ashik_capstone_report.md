@@ -111,3 +111,5 @@ The experience did not turn out exactly as I expected. I originally thought I wo
 *Analysis note: The study size is 21 participants and 21 recordings, as confirmed by the project author. The quantitative results and figures above summarize the existing repository analysis; they have not been independently recomputed for a revised recording inventory.*
 
 ## References
+
+[1] Ekman, P., & Friesen, W.
